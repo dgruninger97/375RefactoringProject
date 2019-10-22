@@ -18,7 +18,7 @@ public class PlayerService {
 	}
 
 	public ArrayList<String> getPlayerInformation(String firstName, String lastName, boolean game, boolean season,
-			boolean career) {
+			boolean career, String year) {
 		try {
 			CallableStatement callableStatement = null;
 			if ((game && season) || (game && career) || (career && season)) {
@@ -26,8 +26,6 @@ public class PlayerService {
 				return null;
 			}
 			if (game) {
-				JFrame frame = new JFrame();
-				Object year = JOptionPane.showInputDialog(frame, "Enter a year");
 				callableStatement = dbService.getConnection().prepareCall("{?=call view_player_game(?,?,?)}");
 				callableStatement.registerOutParameter(1, Types.INTEGER);
 				callableStatement.setString(2, firstName);
@@ -38,12 +36,29 @@ public class PlayerService {
 				while(rs.next()) {
 					list.add(rs.getString(3) + " vs. " + rs.getString(4));
 				}
-				System.out.println(list);
 				return list;
 			} else if (season) {
-
+				callableStatement = dbService.getConnection().prepareCall("{?=call view_player_season(?,?)}");
+				callableStatement.registerOutParameter(1, Types.INTEGER);
+				callableStatement.setString(2, firstName);
+				callableStatement.setString(3, lastName);
+				ResultSet rs = callableStatement.executeQuery();
+				ArrayList<String> list = new ArrayList<String>();
+				while(rs.next()) {
+					list.add("Season year: " + rs.getString(3));
+				}
+				return list;
 			} else if (career) {
-
+				callableStatement = dbService.getConnection().prepareCall("{?=call view_player_career(?,?)}");
+				callableStatement.registerOutParameter(1, Types.INTEGER);
+				callableStatement.setString(2, firstName);
+				callableStatement.setString(3, lastName);
+				ResultSet rs = callableStatement.executeQuery();
+				ArrayList<String> list = new ArrayList<String>();
+				while(rs.next()) {
+					list.add("Career Points: " + rs.getString(3) + "\nCareer Rebounds: " +  rs.getString(4) + "\nCareer Assists: " + rs.getString(5));
+				}
+				return list;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -6,6 +6,9 @@ import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.SwingConstants;
 import javax.swing.JTextArea;
 import javax.swing.JLabel;
@@ -13,15 +16,17 @@ import javax.swing.JLabel;
 public class NBADatabaseWindow {
 
 	private JFrame frame;
+	private DatabaseConnectionService dbService = null;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args, DatabaseConnectionService dbService) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					NBADatabaseWindow window = new NBADatabaseWindow();
+					window.setService(dbService);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -36,6 +41,17 @@ public class NBADatabaseWindow {
 	public NBADatabaseWindow() {
 		initialize();
 	}
+	
+	public void setService(DatabaseConnectionService dbService) {
+		this.dbService = dbService;
+		System.out.println("set service " + this.dbService);
+	}
+	
+	public DatabaseConnectionService getService() {
+		System.out.println("get service " + this.dbService);
+		return this.dbService;
+	}
+	
 
 	/**
 	 * Initialize the contents of the frame.
@@ -50,6 +66,17 @@ public class NBADatabaseWindow {
 		JButton btnPlayers = new JButton("Players");
 		btnPlayers.setBounds(62, 141, 97, 25);
 		frame.getContentPane().add(btnPlayers);
+		
+		btnPlayers.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				PlayerWindow pw = new PlayerWindow();
+				pw.main(new String[0], getService());
+			}
+		});
 		
 		JButton btnTeams = new JButton("Teams");
 		btnTeams.setBounds(249, 141, 97, 25);
