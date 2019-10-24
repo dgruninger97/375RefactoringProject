@@ -8,6 +8,8 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+
+import javax.swing.ButtonGroup;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
@@ -18,6 +20,8 @@ import javax.swing.JOptionPane;
 import java.awt.Choice;
 import java.awt.Label;
 import java.awt.TextArea;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 
 public class PlayerWindow {
 
@@ -32,6 +36,7 @@ public class PlayerWindow {
 	private ArrayList<String> returnedList;
 	private Choice choice;
 	private TextArea textArea;
+	private JPanel panel;
 
 	/**
 	 * Launch the application.
@@ -96,55 +101,66 @@ public class PlayerWindow {
 		JFormattedTextField formattedTextField_1 = new JFormattedTextField();
 		formattedTextField_1.setBounds(301, 30, 177, 22);
 		frame.getContentPane().add(formattedTextField_1);
+		
+		panel = new JPanel();
+		panel.setBounds(12, 144, 544, 221);
+		frame.getContentPane().add(panel);
 
-		JCheckBox chckbxGame = new JCheckBox("Game");
-		chckbxGame.setBounds(12, 72, 113, 25);
-		frame.getContentPane().add(chckbxGame);
-
-		JCheckBox chckbxSeason = new JCheckBox("Season");
-		chckbxSeason.setBounds(129, 72, 113, 25);
-		frame.getContentPane().add(chckbxSeason);
-
-		JCheckBox chckbxCareer = new JCheckBox("Career");
-		chckbxCareer.setBounds(246, 72, 113, 25);
-		frame.getContentPane().add(chckbxCareer);
-
+		JRadioButton rdbtnGame = new JRadioButton("Game");
+		rdbtnGame.setBounds(18, 72, 61, 25);
+		frame.getContentPane().add(rdbtnGame);
+		
+		JRadioButton rdbtnSeason = new JRadioButton("Season");
+		rdbtnSeason.setBounds(106, 72, 71, 25);
+		frame.getContentPane().add(rdbtnSeason);
+		
+		JRadioButton rdbtnCareer = new JRadioButton("Career");
+		rdbtnCareer.setBounds(202, 72, 127, 25);
+		frame.getContentPane().add(rdbtnCareer);
+		ButtonGroup group = new ButtonGroup();
+		group.add(rdbtnGame);
+		group.add(rdbtnSeason);
+		group.add(rdbtnCareer);
+		rdbtnGame.setSelected(true);
 		btnSearch.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				panel.removeAll();
 				lastName = formattedTextField_1.getText();
 				firstName = formattedTextField.getText();
-				game = chckbxGame.isSelected();
-				season = chckbxSeason.isSelected();
-				career = chckbxCareer.isSelected();
-				if ((game && season) || (game && career) || (career && season)) {
-					JOptionPane.showMessageDialog(null, "You can only select one checkbox");
-					
+				game = rdbtnGame.isSelected();
+				season = rdbtnSeason.isSelected();
+				career = rdbtnCareer.isSelected();
+				
+				if(firstName.isEmpty() || lastName.isEmpty()) {
+					JOptionPane.showMessageDialog(null, "You need to enter a first and last name");
 				}
+				
 				if (game) {
 					System.out.println("here");
 					year = JOptionPane.showInputDialog(frame, "Enter a year");
 				}
 				if (game || season) {
 					choice = new Choice();
-					choice.setBounds(49, 158, 171, 22);
-					frame.getContentPane().add(choice);
+					choice.setBounds(0, 30, 171, 22);
+					panel.add(choice);
 				}
-
+			
 				Label label = new Label(firstName + " " + lastName);
 				label.setAlignment(Label.CENTER);
 				label.setFont(new Font("Arial", Font.BOLD, 12));
-				label.setBounds(39, 128, 165, 24);
-				frame.getContentPane().add(label);
+				label.setBounds(0, 0, 165, 24);
+				panel.add(label);
 
 				if (career) {
 					textArea = new TextArea();
-					textArea.setBounds(12, 171, 221, 129);
+					textArea.setBounds(0, 30, 221, 129);
 					textArea.setEditable(false);
-					frame.getContentPane().add(textArea);
+					panel.add(textArea);
 				}
+				
 				callPlayerService();
 
 			}
@@ -153,6 +169,16 @@ public class PlayerWindow {
 		JButton btnClearAll = new JButton("Clear All");
 		btnClearAll.setBounds(210, 106, 97, 25);
 		frame.getContentPane().add(btnClearAll);
+		
+		btnClearAll.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				panel.removeAll();
+			}
+		});
+
 
 	}
 

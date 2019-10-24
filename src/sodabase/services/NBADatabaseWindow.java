@@ -81,6 +81,16 @@ public class NBADatabaseWindow {
 		JButton btnTeams = new JButton("Teams");
 		btnTeams.setBounds(249, 141, 97, 25);
 		frame.getContentPane().add(btnTeams);
+		btnTeams.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				TeamWindow tw = new TeamWindow();
+				tw.main(new String[0], getService());
+			}
+		});
 		
 		JLabel lblWelcomeToThe = new JLabel("Welcome to the NBA Database!");
 		lblWelcomeToThe.setHorizontalAlignment(SwingConstants.CENTER);

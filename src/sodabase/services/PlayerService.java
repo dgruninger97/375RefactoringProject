@@ -21,10 +21,6 @@ public class PlayerService {
 			boolean career, String year) {
 		try {
 			CallableStatement callableStatement = null;
-			if ((game && season) || (game && career) || (career && season)) {
-				JOptionPane.showMessageDialog(null, "You can only select one checkbox");
-				return null;
-			}
 			if (game) {
 				callableStatement = dbService.getConnection().prepareCall("{?=call view_player_game(?,?,?)}");
 				callableStatement.registerOutParameter(1, Types.INTEGER);
