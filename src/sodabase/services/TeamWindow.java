@@ -33,7 +33,11 @@ public class TeamWindow {
 	private TextArea textArea;
 	private DatabaseConnectionService dbService;
 	private ArrayList<String> returnedList;
-	private JPanel panel;
+	private JPanel panel_1;
+	private JPanel panel_2;
+	private JPanel panel_3;
+	private JPanel curPanel;
+	private int openSlot = 1;
 
 	/**
 	 * Launch the application.
@@ -86,11 +90,11 @@ public class TeamWindow {
 		frame.getContentPane().add(formattedTextField);
 
 		JButton button = new JButton("Search");
-		button.setBounds(314, 38, 151, 25);
+		button.setBounds(314, 38, 136, 25);
 		frame.getContentPane().add(button);
 
 		JButton button_1 = new JButton("Clear All");
-		button_1.setBounds(139, 104, 97, 25);
+		button_1.setBounds(459, 38, 97, 25);
 		frame.getContentPane().add(button_1);
 		
 		button_1.addActionListener(new ActionListener() {
@@ -98,13 +102,21 @@ public class TeamWindow {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				panel.removeAll();
+				panel_1.removeAll();
 			}
 		});
 		
-		panel = new JPanel();
-		panel.setBounds(12, 144, 544, 221);
-		frame.getContentPane().add(panel);
+		panel_1 = new JPanel();
+		panel_1.setBounds(12, 106, 165, 259);
+		frame.getContentPane().add(panel_1);
+		
+		panel_2 = new JPanel();
+		panel_2.setBounds(202, 106, 165, 259);
+		frame.getContentPane().add(panel_2);
+		
+		panel_3 = new JPanel();
+		panel_3.setBounds(391, 106, 165, 259);
+		frame.getContentPane().add(panel_3);
 		
 		JRadioButton rdbtnGame = new JRadioButton("Game");
 		rdbtnGame.setBounds(18, 72, 61, 25);
@@ -115,7 +127,7 @@ public class TeamWindow {
 		frame.getContentPane().add(rdbtnSeason);
 		
 		JRadioButton rdbtnFranchise = new JRadioButton("Franchise");
-		rdbtnFranchise.setBounds(202, 72, 127, 25);
+		rdbtnFranchise.setBounds(202, 72, 97, 25);
 		frame.getContentPane().add(rdbtnFranchise);
 		ButtonGroup group = new ButtonGroup();
 		group.add(rdbtnGame);
@@ -128,7 +140,14 @@ public class TeamWindow {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				panel.removeAll();
+				if (openSlot == 1) curPanel = panel_1;
+				else if (openSlot == 2) curPanel = panel_2;
+				else if (openSlot == 3) curPanel = panel_3;
+				else {
+					JOptionPane.showMessageDialog(null, "You are at max view");
+					return;
+				}
+				curPanel.removeAll();
 				teamName = formattedTextField.getText();
 				game = rdbtnGame.isSelected();
 				season = rdbtnSeason.isSelected();
@@ -136,27 +155,31 @@ public class TeamWindow {
 				
 				if(teamName.isEmpty()) {
 					JOptionPane.showMessageDialog(null, "You need to enter a team name");
+					return;
 				}
 				if (game) {
-					System.out.println("here");
-					year = JOptionPane.showInputDialog(frame, "Enter a year");
+					year = JOptionPane.showInputDialog(frame, "Enter a year (2000 - 2019)");
+					if(year.isEmpty() || Integer.parseInt(year) < 2000 || Integer.parseInt(year) > 2019) {
+						JOptionPane.showMessageDialog(null, "You didn't enter a valid year");
+						return;
+					}
 				}
 				if (game || season) {
 					choice = new Choice();
-					choice.setBounds(0, 30, 171, 22);
-					panel.add(choice);
+					choice.setBounds(0, 30, 165, 22);
+					curPanel.add(choice);
 				}
 
 				Label label = new Label(teamName);
 				label.setAlignment(Label.CENTER);
 				label.setFont(new Font("Arial", Font.BOLD, 12));
 				label.setBounds(0, 0, 165, 24);
-				panel.add(label);
+				curPanel.add(label);
 				if (franchise) {
 					textArea = new TextArea();
-					textArea.setBounds(0, 30, 221, 129);
+					textArea.setBounds(0, 30, 165, 129);
 					textArea.setEditable(false);
-					panel.add(textArea);
+					curPanel.add(textArea);
 				}
 				
 				callTeamService();
@@ -164,12 +187,37 @@ public class TeamWindow {
 			}
 
 		});
+		JButton btnHomeButton = new JButton("Home");
+		btnHomeButton.setBounds(12, 4, 67, 20);
+		frame.getContentPane().add(btnHomeButton);
+		
+		btnHomeButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				NBADatabaseWindow newWin = new NBADatabaseWindow();
+				newWin.main(new String[0], getService());
+			}
+		});
+		
+		JButton btnAddNewTeam = new JButton("Add new Team");
+		btnAddNewTeam.setBounds(314, 72, 136, 25);
+		frame.getContentPane().add(btnAddNewTeam);
+		btnAddNewTeam.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				openSlot++;
+			}
+		});
 	}
 
 	protected void callTeamService() {
 		// TODO Auto-generated method stub
 		TeamService teamService = new TeamService(this.dbService);
-		System.out.println("got to the call in team");
 		returnedList = teamService.getTeamInformation(teamName, game, season, franchise, (String) year);
 		if (game || season) {
 			for (int i = 0; i < returnedList.size(); i++) {

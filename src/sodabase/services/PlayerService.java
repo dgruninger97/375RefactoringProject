@@ -41,7 +41,7 @@ public class PlayerService {
 				ResultSet rs = callableStatement.executeQuery();
 				ArrayList<String> list = new ArrayList<String>();
 				while(rs.next()) {
-					list.add("Season year: " + rs.getString(3));
+					list.add("Season year: " + rs.getString(1));
 				}
 				return list;
 			} else if (career) {

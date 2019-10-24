@@ -32,11 +32,15 @@ public class PlayerWindow {
 	private boolean game;
 	private boolean season;
 	private boolean career;
-	private Object year;
+	private String year;
 	private ArrayList<String> returnedList;
 	private Choice choice;
 	private TextArea textArea;
-	private JPanel panel;
+	private JPanel panel_1;
+	private JPanel panel_2;
+	private JPanel panel_3;
+	private JPanel curPanel;
+	private int openSlot = 1;
 
 	/**
 	 * Launch the application.
@@ -91,7 +95,7 @@ public class PlayerWindow {
 		frame.getContentPane().add(lblLastName);
 
 		JButton btnSearch = new JButton("Search");
-		btnSearch.setBounds(367, 72, 151, 25);
+		btnSearch.setBounds(459, 29, 97, 25);
 		frame.getContentPane().add(btnSearch);
 
 		JFormattedTextField formattedTextField = new JFormattedTextField();
@@ -99,12 +103,20 @@ public class PlayerWindow {
 		frame.getContentPane().add(formattedTextField);
 
 		JFormattedTextField formattedTextField_1 = new JFormattedTextField();
-		formattedTextField_1.setBounds(301, 30, 177, 22);
+		formattedTextField_1.setBounds(301, 30, 151, 22);
 		frame.getContentPane().add(formattedTextField_1);
 		
-		panel = new JPanel();
-		panel.setBounds(12, 144, 544, 221);
-		frame.getContentPane().add(panel);
+		panel_1 = new JPanel();
+		panel_1.setBounds(12, 110, 165, 255);
+		frame.getContentPane().add(panel_1);
+		
+		panel_2 = new JPanel();
+		panel_2.setBounds(202, 110, 165, 255);
+		frame.getContentPane().add(panel_2);
+		
+		panel_3 = new JPanel();
+		panel_3.setBounds(389, 110, 165, 255);
+		frame.getContentPane().add(panel_3);
 
 		JRadioButton rdbtnGame = new JRadioButton("Game");
 		rdbtnGame.setBounds(18, 72, 61, 25);
@@ -115,19 +127,28 @@ public class PlayerWindow {
 		frame.getContentPane().add(rdbtnSeason);
 		
 		JRadioButton rdbtnCareer = new JRadioButton("Career");
-		rdbtnCareer.setBounds(202, 72, 127, 25);
+		rdbtnCareer.setBounds(202, 72, 76, 25);
 		frame.getContentPane().add(rdbtnCareer);
 		ButtonGroup group = new ButtonGroup();
+		
 		group.add(rdbtnGame);
 		group.add(rdbtnSeason);
 		group.add(rdbtnCareer);
 		rdbtnGame.setSelected(true);
+		
 		btnSearch.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				panel.removeAll();
+				if (openSlot == 1) curPanel = panel_1;
+				else if (openSlot == 2) curPanel = panel_2;
+				else if (openSlot == 3) curPanel = panel_3;
+				else {
+					JOptionPane.showMessageDialog(null, "You are at max view");
+					return;
+				}
+				curPanel.removeAll();
 				lastName = formattedTextField_1.getText();
 				firstName = formattedTextField.getText();
 				game = rdbtnGame.isSelected();
@@ -136,30 +157,35 @@ public class PlayerWindow {
 				
 				if(firstName.isEmpty() || lastName.isEmpty()) {
 					JOptionPane.showMessageDialog(null, "You need to enter a first and last name");
+					return;
 				}
 				
 				if (game) {
-					System.out.println("here");
-					year = JOptionPane.showInputDialog(frame, "Enter a year");
+					year = JOptionPane.showInputDialog(frame, "Enter a year (2000 - 2019)");
+					if (year.isEmpty() || Integer.parseInt(year) < 2000 || Integer.parseInt(year) > 2019) {
+						JOptionPane.showMessageDialog(null, "You didn't enter a valid year");
+						return;
+					}
 				}
+				
 				if (game || season) {
 					choice = new Choice();
-					choice.setBounds(0, 30, 171, 22);
-					panel.add(choice);
+					choice.setBounds(0, 30, 165, 22);
+					curPanel.add(choice);
 				}
 			
+				if (career) {
+					textArea = new TextArea();
+					textArea.setBounds(0, 30, 165, 129);
+					textArea.setEditable(false);
+					curPanel.add(textArea);
+				}
+				
 				Label label = new Label(firstName + " " + lastName);
 				label.setAlignment(Label.CENTER);
 				label.setFont(new Font("Arial", Font.BOLD, 12));
 				label.setBounds(0, 0, 165, 24);
-				panel.add(label);
-
-				if (career) {
-					textArea = new TextArea();
-					textArea.setBounds(0, 30, 221, 129);
-					textArea.setEditable(false);
-					panel.add(textArea);
-				}
+				curPanel.add(label);
 				
 				callPlayerService();
 
@@ -167,18 +193,45 @@ public class PlayerWindow {
 		});
 
 		JButton btnClearAll = new JButton("Clear All");
-		btnClearAll.setBounds(210, 106, 97, 25);
+		btnClearAll.setBounds(283, 72, 97, 25);
 		frame.getContentPane().add(btnClearAll);
+		
 		
 		btnClearAll.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				panel.removeAll();
+				panel_1.removeAll();
+				panel_2.removeAll();
+				panel_3.removeAll();
+				openSlot = 1;
 			}
 		});
 
+		JButton btnHomeButton = new JButton("Home");
+		btnHomeButton.setBounds(12, 4, 67, 20);
+		frame.getContentPane().add(btnHomeButton);
+		
+		JButton btnAddNew = new JButton("Add new player");
+		btnAddNew.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				openSlot++;
+			}
+		});
+		btnAddNew.setBounds(398, 72, 126, 25);
+		frame.getContentPane().add(btnAddNew);
+		
+		btnHomeButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				NBADatabaseWindow newWin = new NBADatabaseWindow();
+				newWin.main(new String[0], getService());
+			}
+		});
 
 	}
 
