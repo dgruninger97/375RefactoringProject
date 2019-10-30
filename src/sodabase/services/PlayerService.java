@@ -12,13 +12,14 @@ import javax.swing.JOptionPane;
 public class PlayerService {
 
 	private DatabaseConnectionService dbService = null;
+	private String gameID;
 
 	public PlayerService(DatabaseConnectionService dbService) {
 		this.dbService = dbService;
 	}
 
 	public ArrayList<String> getPlayerInformation(String firstName, String lastName, boolean game, boolean season,
-			boolean career, String year) {
+			boolean career, String year, int choiceIndex) {
 		try {
 			CallableStatement callableStatement = null;
 			if (game) {
@@ -29,9 +30,11 @@ public class PlayerService {
 				callableStatement.setInt(4, Integer.valueOf((String) year));
 				ResultSet rs = callableStatement.executeQuery();
 				ArrayList<String> list = new ArrayList<String>();
-				while(rs.next()) {
-					list.add(rs.getString(3) + " vs. " + rs.getString(4));
+				while (rs.next()) {
+					list.add(rs.getString(5) + ": " + rs.getString(3) + " vs. " + rs.getString(4));
 				}
+				gameID = list.get(choiceIndex).split(":")[0];
+				System.out.println("Game ID: " + gameID);
 				return list;
 			} else if (season) {
 				callableStatement = dbService.getConnection().prepareCall("{?=call view_player_season(?,?)}");
@@ -40,7 +43,7 @@ public class PlayerService {
 				callableStatement.setString(3, lastName);
 				ResultSet rs = callableStatement.executeQuery();
 				ArrayList<String> list = new ArrayList<String>();
-				while(rs.next()) {
+				while (rs.next()) {
 					list.add("Season year: " + rs.getString(1));
 				}
 				return list;
@@ -51,16 +54,37 @@ public class PlayerService {
 				callableStatement.setString(3, lastName);
 				ResultSet rs = callableStatement.executeQuery();
 				ArrayList<String> list = new ArrayList<String>();
-				while(rs.next()) {
-					list.add("Career Points: " + rs.getString(3) + "\nCareer Rebounds: " +  rs.getString(4) + "\nCareer Assists: " + rs.getString(5));
+				while (rs.next()) {
+					list.add("Career Points: " + rs.getString(3) + "\nCareer Assists: " + rs.getString(4)
+							+ "\nCareer Rebounds: " + rs.getString(5));
 				}
 				return list;
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			// e.printStackTrace();
+			// return null;
 			return null;
 		}
 		return null;
+	}
+
+	public ArrayList<String> getGameInfo(String firstName, String lastName) {
+		CallableStatement callableStatement = null;
+		try {
+			callableStatement = dbService.getConnection().prepareCall("{?=call player_game_data(?,?,?)}");
+			callableStatement.registerOutParameter(1, Types.INTEGER);
+			callableStatement.setString(2, firstName);
+			callableStatement.setString(3, lastName);
+			callableStatement.setInt(4, Integer.valueOf(gameID));
+			ResultSet rs = callableStatement.executeQuery();
+			ArrayList<String> list = new ArrayList<String>();
+			while(rs.next()) {
+				list.add("Game Points: " + rs.getString(1) + "\nGame Assists: " + rs.getString(2) + "\nGame Rebounds: " + rs.getString(3));
+			}
+			return list;
+		} catch (SQLException e) {
+			return null;
+		}
 	}
 
 }

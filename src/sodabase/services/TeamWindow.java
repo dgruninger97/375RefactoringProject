@@ -76,25 +76,25 @@ public class TeamWindow {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 585, 426);
+		frame.setBounds(100, 100, 700, 530);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
 		JLabel lblTeamName = new JLabel("Team Name:");
 		lblTeamName.setFont(new Font("Arial", Font.PLAIN, 15));
-		lblTeamName.setBounds(12, 42, 85, 16);
+		lblTeamName.setBounds(25, 42, 85, 16);
 		frame.getContentPane().add(lblTeamName);
 
 		JFormattedTextField formattedTextField = new JFormattedTextField();
-		formattedTextField.setBounds(109, 39, 193, 22);
+		formattedTextField.setBounds(122, 39, 237, 22);
 		frame.getContentPane().add(formattedTextField);
 
 		JButton button = new JButton("Search");
-		button.setBounds(314, 38, 136, 25);
+		button.setBounds(371, 38, 136, 25);
 		frame.getContentPane().add(button);
 
 		JButton button_1 = new JButton("Clear All");
-		button_1.setBounds(459, 38, 97, 25);
+		button_1.setBounds(544, 38, 97, 25);
 		frame.getContentPane().add(button_1);
 		
 		button_1.addActionListener(new ActionListener() {
@@ -103,19 +103,21 @@ public class TeamWindow {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				panel_1.removeAll();
+				panel_2.removeAll();
+				panel_3.removeAll();
 			}
 		});
 		
 		panel_1 = new JPanel();
-		panel_1.setBounds(12, 106, 165, 259);
+		panel_1.setBounds(12, 106, 186, 349);
 		frame.getContentPane().add(panel_1);
 		
 		panel_2 = new JPanel();
-		panel_2.setBounds(202, 106, 165, 259);
+		panel_2.setBounds(227, 106, 186, 349);
 		frame.getContentPane().add(panel_2);
 		
 		panel_3 = new JPanel();
-		panel_3.setBounds(391, 106, 165, 259);
+		panel_3.setBounds(448, 106, 186, 349);
 		frame.getContentPane().add(panel_3);
 		
 		JRadioButton rdbtnGame = new JRadioButton("Game");
@@ -159,7 +161,17 @@ public class TeamWindow {
 				}
 				if (game) {
 					year = JOptionPane.showInputDialog(frame, "Enter a year (2000 - 2019)");
-					if(year.isEmpty() || Integer.parseInt(year) < 2000 || Integer.parseInt(year) > 2019) {
+					if(year.isEmpty()) {
+						JOptionPane.showMessageDialog(null, "You didn't enter a valid year");
+						return;
+					}
+					for(int i = 0; i < year.length(); i++) {
+						if(!Character.isDigit(year.charAt(i))) {
+							JOptionPane.showMessageDialog(null, "You didn't enter a valid year");
+							return;
+						}
+					}
+					if (Integer.parseInt(year) < 2000 || Integer.parseInt(year) > 2019) {
 						JOptionPane.showMessageDialog(null, "You didn't enter a valid year");
 						return;
 					}
@@ -219,6 +231,12 @@ public class TeamWindow {
 		// TODO Auto-generated method stub
 		TeamService teamService = new TeamService(this.dbService);
 		returnedList = teamService.getTeamInformation(teamName, game, season, franchise, (String) year);
+		if (returnedList == null) {
+			JOptionPane.showMessageDialog(null, "Invalid Team, try again.");
+			frame.dispose();
+			main(new String[0], getService());
+			return;
+		}
 		if (game || season) {
 			for (int i = 0; i < returnedList.size(); i++) {
 				choice.add(returnedList.get(i));

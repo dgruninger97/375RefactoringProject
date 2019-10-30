@@ -23,7 +23,11 @@ public class DatabaseConnectionService {
 	public boolean connect(String user, String pass) {
 		//TODO: Task 1
 		//BUILD YOUR CONNECTION STRING HERE USING THE SAMPLE URL ABOVE
-		String connectionString = "jdbc:sqlserver://" + serverName + ";databaseName=" + databaseName + ";user=" + user + ";password={" + pass + "}";
+		String replaceString = SampleURL.replace("${dbServer}", serverName);
+		String replaceString2 = replaceString.replace("${dbName}", databaseName);
+		String replaceString3 = replaceString2.replace("${user}", user);
+		String connectionString = replaceString3.replace("${pass}", pass);
+//		String connectionString = "jdbc:sqlserver://" + serverName + ";databaseName=" + databaseName + ";user=" + user + ";password={" + pass + "}";
 		try {
 			this.connection = DriverManager.getConnection(connectionString);
 		} catch (SQLException e) {
