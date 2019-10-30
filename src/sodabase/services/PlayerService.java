@@ -13,6 +13,7 @@ public class PlayerService {
 
 	private DatabaseConnectionService dbService = null;
 	private String gameID;
+	private String seasonYear;
 
 	public PlayerService(DatabaseConnectionService dbService) {
 		this.dbService = dbService;
@@ -33,8 +34,10 @@ public class PlayerService {
 				while (rs.next()) {
 					list.add(rs.getString(5) + ": " + rs.getString(3) + " vs. " + rs.getString(4));
 				}
+				if(list.size() == 0) {
+					return null;
+				}
 				gameID = list.get(choiceIndex).split(":")[0];
-				System.out.println("Game ID: " + gameID);
 				return list;
 			} else if (season) {
 				callableStatement = dbService.getConnection().prepareCall("{?=call view_player_season(?,?)}");
@@ -46,6 +49,10 @@ public class PlayerService {
 				while (rs.next()) {
 					list.add("Season year: " + rs.getString(1));
 				}
+				if(list.size() == 0) {
+					return null;
+				}
+				seasonYear = list.get(choiceIndex).split(": ")[1];
 				return list;
 			} else if (career) {
 				callableStatement = dbService.getConnection().prepareCall("{?=call view_player_career(?,?)}");
@@ -80,6 +87,25 @@ public class PlayerService {
 			ArrayList<String> list = new ArrayList<String>();
 			while(rs.next()) {
 				list.add("Game Points: " + rs.getString(1) + "\nGame Assists: " + rs.getString(2) + "\nGame Rebounds: " + rs.getString(3));
+			}
+			return list;
+		} catch (SQLException e) {
+			return null;
+		}
+	}
+	
+	public ArrayList<String> getSeasonInfo(String firstName, String lastName){
+		CallableStatement callableStatement = null;
+		try {
+			callableStatement = dbService.getConnection().prepareCall("{?=call player_season_data(?,?,?)}");
+			callableStatement.registerOutParameter(1, Types.INTEGER);
+			callableStatement.setString(2, firstName);
+			callableStatement.setString(3, lastName);
+			callableStatement.setInt(4, Integer.valueOf(seasonYear));
+			ResultSet rs = callableStatement.executeQuery();
+			ArrayList<String> list = new ArrayList<String>();
+			while(rs.next()) {
+				list.add("Season Points: " + rs.getString(1) + "\nSeason Assists: " + rs.getString(2) + "\nSeason Rebounds: " + rs.getString(3));
 			}
 			return list;
 		} catch (SQLException e) {

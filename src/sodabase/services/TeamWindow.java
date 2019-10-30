@@ -38,6 +38,9 @@ public class TeamWindow {
 	private JPanel panel_3;
 	private JPanel curPanel;
 	private int openSlot = 1;
+	private static TeamService teamService;
+	private JButton btnGo;
+	private int choiceIndex;
 
 	/**
 	 * Launch the application.
@@ -49,6 +52,7 @@ public class TeamWindow {
 					TeamWindow window = new TeamWindow();
 					window.setService(newService);
 					window.frame.setVisible(true);
+					teamService  = new TeamService(newService);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -62,11 +66,11 @@ public class TeamWindow {
 	public TeamWindow() {
 		initialize();
 	}
-	
+
 	public void setService(DatabaseConnectionService newService) {
 		this.dbService = newService;
 	}
-	
+
 	public DatabaseConnectionService getService() {
 		return this.dbService;
 	}
@@ -96,9 +100,9 @@ public class TeamWindow {
 		JButton button_1 = new JButton("Clear All");
 		button_1.setBounds(544, 38, 97, 25);
 		frame.getContentPane().add(button_1);
-		
+
 		button_1.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -107,27 +111,27 @@ public class TeamWindow {
 				panel_3.removeAll();
 			}
 		});
-		
+
 		panel_1 = new JPanel();
 		panel_1.setBounds(12, 106, 186, 349);
 		frame.getContentPane().add(panel_1);
-		
+
 		panel_2 = new JPanel();
 		panel_2.setBounds(227, 106, 186, 349);
 		frame.getContentPane().add(panel_2);
-		
+
 		panel_3 = new JPanel();
 		panel_3.setBounds(448, 106, 186, 349);
 		frame.getContentPane().add(panel_3);
-		
+
 		JRadioButton rdbtnGame = new JRadioButton("Game");
 		rdbtnGame.setBounds(18, 72, 61, 25);
 		frame.getContentPane().add(rdbtnGame);
-		
+
 		JRadioButton rdbtnSeason = new JRadioButton("Season");
 		rdbtnSeason.setBounds(106, 72, 71, 25);
 		frame.getContentPane().add(rdbtnSeason);
-		
+
 		JRadioButton rdbtnFranchise = new JRadioButton("Franchise");
 		rdbtnFranchise.setBounds(202, 72, 97, 25);
 		frame.getContentPane().add(rdbtnFranchise);
@@ -136,15 +140,18 @@ public class TeamWindow {
 		group.add(rdbtnSeason);
 		group.add(rdbtnFranchise);
 		rdbtnGame.setSelected(true);
-		
+
 		button.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				if (openSlot == 1) curPanel = panel_1;
-				else if (openSlot == 2) curPanel = panel_2;
-				else if (openSlot == 3) curPanel = panel_3;
+				if (openSlot == 1)
+					curPanel = panel_1;
+				else if (openSlot == 2)
+					curPanel = panel_2;
+				else if (openSlot == 3)
+					curPanel = panel_3;
 				else {
 					JOptionPane.showMessageDialog(null, "You are at max view");
 					return;
@@ -154,19 +161,19 @@ public class TeamWindow {
 				game = rdbtnGame.isSelected();
 				season = rdbtnSeason.isSelected();
 				franchise = rdbtnFranchise.isSelected();
-				
-				if(teamName.isEmpty()) {
+
+				if (teamName.isEmpty()) {
 					JOptionPane.showMessageDialog(null, "You need to enter a team name");
 					return;
 				}
 				if (game) {
 					year = JOptionPane.showInputDialog(frame, "Enter a year (2000 - 2019)");
-					if(year.isEmpty()) {
+					if (year.isEmpty()) {
 						JOptionPane.showMessageDialog(null, "You didn't enter a valid year");
 						return;
 					}
-					for(int i = 0; i < year.length(); i++) {
-						if(!Character.isDigit(year.charAt(i))) {
+					for (int i = 0; i < year.length(); i++) {
+						if (!Character.isDigit(year.charAt(i))) {
 							JOptionPane.showMessageDialog(null, "You didn't enter a valid year");
 							return;
 						}
@@ -179,7 +186,21 @@ public class TeamWindow {
 				if (game || season) {
 					choice = new Choice();
 					choice.setBounds(0, 30, 165, 22);
+					
+					
+					btnGo = new JButton("Go");
+					btnGo.setBounds(170, 30, 50, 20);
+					
+					btnGo.addActionListener(new ActionListener() {
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							// TODO Auto-generated method stub
+							if(game) callTeamService(2);
+							else if(season) callTeamService(3);
+						}
+					});
 					curPanel.add(choice);
+					curPanel.add(btnGo);
 				}
 
 				Label label = new Label(teamName);
@@ -193,8 +214,8 @@ public class TeamWindow {
 					textArea.setEditable(false);
 					curPanel.add(textArea);
 				}
-				
-				callTeamService();
+
+				callTeamService(1);
 
 			}
 
@@ -202,9 +223,9 @@ public class TeamWindow {
 		JButton btnHomeButton = new JButton("Home");
 		btnHomeButton.setBounds(12, 4, 67, 20);
 		frame.getContentPane().add(btnHomeButton);
-		
+
 		btnHomeButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -213,12 +234,12 @@ public class TeamWindow {
 				newWin.main(new String[0], getService());
 			}
 		});
-		
+
 		JButton btnAddNewTeam = new JButton("Add new Team");
 		btnAddNewTeam.setBounds(314, 72, 136, 25);
 		frame.getContentPane().add(btnAddNewTeam);
 		btnAddNewTeam.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -227,26 +248,47 @@ public class TeamWindow {
 		});
 	}
 
-	protected void callTeamService() {
+	protected void callTeamService(int methodType) {
 		// TODO Auto-generated method stub
-		TeamService teamService = new TeamService(this.dbService);
-		returnedList = teamService.getTeamInformation(teamName, game, season, franchise, (String) year);
-		if (returnedList == null) {
-			JOptionPane.showMessageDialog(null, "Invalid Team, try again.");
-			frame.dispose();
-			main(new String[0], getService());
-			return;
-		}
-		if (game || season) {
-			for (int i = 0; i < returnedList.size(); i++) {
-				choice.add(returnedList.get(i));
+		if (methodType == 1) {
+			returnedList = teamService.getTeamInformation(teamName, game, season, franchise, (String) year);
+			if (returnedList == null) {
+				JOptionPane.showMessageDialog(null, "Invalid Team, try again.");
+				frame.dispose();
+				main(new String[0], getService());
+				return;
 			}
-		} else {
-			String franchiseInfo = "";
-			for (int i = 0; i < returnedList.size(); i++) {
-				franchiseInfo += returnedList.get(i);
+			if (game || season) {
+				for (int i = 0; i < returnedList.size(); i++) {
+					choice.add(returnedList.get(i));
+				}
+				choiceIndex = choice.getSelectedIndex();
+				return;
 			}
-			textArea.setText(franchiseInfo);
+		}else if (methodType == 2) {
+			returnedList = teamService.getTeamGameInfo(teamName, year);
+			curPanel.removeAll();
+			textArea = new TextArea();
+			textArea.setBounds(0, 30, 165, 129);
+			textArea.setEditable(false);
+			curPanel.add(textArea);
+		} else if (methodType == 3) {
+			returnedList = teamService.getTeamSeasonInfo(teamName);
+			curPanel.removeAll();
+			textArea = new TextArea();
+			textArea.setBounds(0, 30, 165, 129);
+			textArea.setEditable(false);
+			curPanel.add(textArea);
 		}
+		String careerInfo = "";
+		for (int i = 0; i < returnedList.size(); i++) {
+			careerInfo += returnedList.get(i);
+		}
+		textArea.setText(careerInfo);
+		Label label = new Label(teamName);
+		label.setAlignment(Label.CENTER);
+		label.setFont(new Font("Arial", Font.BOLD, 12));
+		label.setBounds(0, 0, 165, 24);
+		curPanel.add(label);
 	}
 }

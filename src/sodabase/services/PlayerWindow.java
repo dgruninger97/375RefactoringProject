@@ -72,7 +72,6 @@ public class PlayerWindow {
 
 	public void setService(DatabaseConnectionService dbService) {
 		this.dbservice = dbService;
-		System.out.println("player set " + dbservice);
 	}
 
 	public DatabaseConnectionService getService() {
@@ -195,7 +194,8 @@ public class PlayerWindow {
 						@Override
 						public void actionPerformed(ActionEvent e) {
 							// TODO Auto-generated method stub
-							callPlayerService(2);
+							if(game) callPlayerService(2);
+							else if(season) callPlayerService(3);
 						}
 					});
 					curPanel.add(choice);
@@ -209,13 +209,13 @@ public class PlayerWindow {
 					curPanel.add(textArea);
 				}
 
-				callPlayerService(1);
-
 				Label label = new Label(firstName + " " + lastName);
 				label.setAlignment(Label.CENTER);
 				label.setFont(new Font("Arial", Font.BOLD, 12));
 				label.setBounds(0, 0, 165, 24);
 				curPanel.add(label);
+
+				callPlayerService(1);
 
 			}
 		});
@@ -239,12 +239,7 @@ public class PlayerWindow {
 		JButton btnHomeButton = new JButton("Home");
 		btnHomeButton.setBounds(12, 4, 67, 20);
 		frame.getContentPane().add(btnHomeButton);
-
-		JTextPane textPane = new JTextPane();
-		textPane.setText(Integer.toString(openSlot));
-		textPane.setBounds(650, 75, 20, 22);
-		frame.getContentPane().add(textPane);
-
+		
 		JButton btnAddNew = new JButton("Add new player");
 		btnAddNew.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -277,9 +272,8 @@ public class PlayerWindow {
 		if (methodType == 1) {
 			returnedList = playerServe.getPlayerInformation(firstName, lastName, game, season, career, (String) year, choiceIndex);
 			if (returnedList == null) {
-				JOptionPane.showMessageDialog(null, "Invalid Player, try again.");
-				frame.dispose();
-				main(new String[0], getService());
+				JOptionPane.showMessageDialog(null, "Invalid Entry, try again.");
+				curPanel.removeAll();
 				return;
 			}
 			if (game || season) {
@@ -297,13 +291,22 @@ public class PlayerWindow {
 			textArea.setEditable(false);
 			curPanel.add(textArea);
 		} else if (methodType == 3) {
-
+			returnedList = playerServe.getSeasonInfo(firstName, lastName);
+			curPanel.removeAll();
+			textArea = new TextArea();
+			textArea.setBounds(0, 30, 165, 129);
+			textArea.setEditable(false);
+			curPanel.add(textArea);
 		}
 		String careerInfo = "";
-		System.out.println(returnedList);
 		for (int i = 0; i < returnedList.size(); i++) {
 			careerInfo += returnedList.get(i);
 		}
 		textArea.setText(careerInfo);
+		Label label = new Label(firstName + " " + lastName);
+		label.setAlignment(Label.CENTER);
+		label.setFont(new Font("Arial", Font.BOLD, 12));
+		label.setBounds(0, 0, 165, 24);
+		curPanel.add(label);
 	}
 }

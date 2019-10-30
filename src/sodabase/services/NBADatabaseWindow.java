@@ -44,11 +44,9 @@ public class NBADatabaseWindow {
 	
 	public void setService(DatabaseConnectionService dbService) {
 		this.dbService = dbService;
-		System.out.println("set service " + this.dbService);
 	}
 	
 	public DatabaseConnectionService getService() {
-		System.out.println("get service " + this.dbService);
 		return this.dbService;
 	}
 	

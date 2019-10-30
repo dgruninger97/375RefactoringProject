@@ -12,8 +12,6 @@ import sodabase.ui.ApplicationRunner;
 public class Main {
 
 	public static void main(String[] args) {
-//		ApplicationRunner appRunner = new ApplicationRunner();
-//		appRunner.runApplication(args);
 		DatabaseConnectionService dbService = new DatabaseConnectionService("golem.csse.rose-hulman.edu", "NBADatabase19");
 		dbService.connect("NBADatabase19", "Password123");
 		NBADatabaseWindow mainWin = new NBADatabaseWindow();
