@@ -40,7 +40,9 @@ public class TeamWindow {
 	private int openSlot = 1;
 	private static TeamService teamService;
 	private JButton btnGo;
+	private JButton backBtn;
 	private int choiceIndex;
+	private int buttonSelection = -1;
 
 	/**
 	 * Launch the application.
@@ -80,7 +82,8 @@ public class TeamWindow {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 700, 530);
+		frame.setResizable(false);
+		frame.setBounds(100, 100, 800, 530);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
@@ -93,15 +96,15 @@ public class TeamWindow {
 		formattedTextField.setBounds(122, 39, 237, 22);
 		frame.getContentPane().add(formattedTextField);
 
-		JButton button = new JButton("Search");
-		button.setBounds(371, 38, 136, 25);
-		frame.getContentPane().add(button);
+		JButton search_button = new JButton("Search");
+		search_button.setBounds(371, 38, 136, 25);
+		frame.getContentPane().add(search_button);
 
-		JButton button_1 = new JButton("Clear All");
-		button_1.setBounds(544, 38, 97, 25);
-		frame.getContentPane().add(button_1);
+		JButton clear_button = new JButton("Clear All");
+		clear_button.setBounds(544, 38, 97, 25);
+		frame.getContentPane().add(clear_button);
 
-		button_1.addActionListener(new ActionListener() {
+		clear_button.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -109,19 +112,21 @@ public class TeamWindow {
 				panel_1.removeAll();
 				panel_2.removeAll();
 				panel_3.removeAll();
+				openSlot = 1;
+				buttonSelection = -1;
 			}
 		});
 
 		panel_1 = new JPanel();
-		panel_1.setBounds(12, 106, 186, 349);
+		panel_1.setBounds(5, 106, 250, 349);
 		frame.getContentPane().add(panel_1);
 
 		panel_2 = new JPanel();
-		panel_2.setBounds(227, 106, 186, 349);
+		panel_2.setBounds(277, 106, 250, 349);
 		frame.getContentPane().add(panel_2);
 
 		panel_3 = new JPanel();
-		panel_3.setBounds(448, 106, 186, 349);
+		panel_3.setBounds(540, 106, 250, 349);
 		frame.getContentPane().add(panel_3);
 
 		JRadioButton rdbtnGame = new JRadioButton("Game");
@@ -141,11 +146,29 @@ public class TeamWindow {
 		group.add(rdbtnFranchise);
 		rdbtnGame.setSelected(true);
 
-		button.addActionListener(new ActionListener() {
+		search_button.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				if(buttonSelection == -1) {
+					if(rdbtnGame.isSelected()) buttonSelection = 1;
+					if(rdbtnSeason.isSelected()) buttonSelection = 2;
+					if(rdbtnFranchise.isSelected()) buttonSelection = 3;
+				}else{
+					if(buttonSelection == 1 && (rdbtnFranchise.isSelected() || rdbtnSeason.isSelected())) {
+						JOptionPane.showMessageDialog(null, "You must select the same comparison option");
+						return;
+					}
+					else if(buttonSelection == 2 && (rdbtnFranchise.isSelected() || rdbtnGame.isSelected())) {
+						JOptionPane.showMessageDialog(null, "You must select the same comparison option");
+						return;
+					}
+					else if(buttonSelection == 3 && (rdbtnSeason.isSelected() || rdbtnGame.isSelected())) {
+						JOptionPane.showMessageDialog(null, "You must select the same comparison option");
+						return;
+					}
+				}
 				if (openSlot == 1)
 					curPanel = panel_1;
 				else if (openSlot == 2)
@@ -197,10 +220,25 @@ public class TeamWindow {
 							// TODO Auto-generated method stub
 							if(game) callTeamService(2);
 							else if(season) callTeamService(3);
+							backBtn = new JButton("Back");
+							backBtn.setBounds(170, 30, 80, 20);
+							curPanel.add(backBtn);
+							curPanel.repaint();
+							backBtn.addActionListener(new ActionListener() {
+								
+								@Override
+								public void actionPerformed(ActionEvent e) {
+									curPanel.removeAll();
+									curPanel.add(btnGo);
+									curPanel.add(choice);
+									curPanel.repaint();
+								}
+							});
 						}
 					});
 					curPanel.add(choice);
 					curPanel.add(btnGo);
+					curPanel.repaint();
 				}
 
 				Label label = new Label(teamName);
@@ -209,6 +247,7 @@ public class TeamWindow {
 				label.setBounds(0, 0, 165, 24);
 				curPanel.add(label);
 				if (franchise) {
+					curPanel.repaint();
 					textArea = new TextArea();
 					textArea.setBounds(0, 30, 165, 129);
 					textArea.setEditable(false);

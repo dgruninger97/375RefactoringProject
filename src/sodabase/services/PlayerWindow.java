@@ -43,8 +43,10 @@ public class PlayerWindow {
 	private JPanel curPanel;
 	private int openSlot = 1;
 	private JButton btnGo;
+	private JButton backBtn;
 	private int choiceIndex;
 	private static PlayerService playerServe;
+	private int buttonSelection = -1;
 	/**
 	 * Launch the application.
 	 */
@@ -83,7 +85,8 @@ public class PlayerWindow {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 700, 530);
+		frame.setResizable(false);
+		frame.setBounds(100, 100, 800, 530);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
@@ -110,15 +113,15 @@ public class PlayerWindow {
 		frame.getContentPane().add(formattedTextField_1);
 
 		panel_1 = new JPanel();
-		panel_1.setBounds(5, 110, 220, 328);
+		panel_1.setBounds(5, 110, 250, 328);
 		frame.getContentPane().add(panel_1);
 
 		panel_2 = new JPanel();
-		panel_2.setBounds(227, 110, 220, 328);
+		panel_2.setBounds(277, 110, 250, 328);
 		frame.getContentPane().add(panel_2);
 
 		panel_3 = new JPanel();
-		panel_3.setBounds(450, 110, 220, 328);
+		panel_3.setBounds(540, 110, 250, 328);
 		frame.getContentPane().add(panel_3);
 
 		JRadioButton rdbtnGame = new JRadioButton("Game");
@@ -144,6 +147,24 @@ public class PlayerWindow {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				if(buttonSelection == -1) {
+					if(rdbtnGame.isSelected()) buttonSelection = 1;
+					if(rdbtnSeason.isSelected()) buttonSelection = 2;
+					if(rdbtnCareer.isSelected()) buttonSelection = 3;
+				}else{
+					if(buttonSelection == 1 && (rdbtnCareer.isSelected() || rdbtnSeason.isSelected())) {
+						JOptionPane.showMessageDialog(null, "You must select the same comparison option");
+						return;
+					}
+					else if(buttonSelection == 2 && (rdbtnCareer.isSelected() || rdbtnGame.isSelected())) {
+						JOptionPane.showMessageDialog(null, "You must select the same comparison option");
+						return;
+					}
+					else if(buttonSelection == 3 && (rdbtnSeason.isSelected() || rdbtnGame.isSelected())) {
+						JOptionPane.showMessageDialog(null, "You must select the same comparison option");
+						return;
+					}
+				}
 				if (openSlot == 1)
 					curPanel = panel_1;
 				else if (openSlot == 2)
@@ -196,17 +217,34 @@ public class PlayerWindow {
 							// TODO Auto-generated method stub
 							if(game) callPlayerService(2);
 							else if(season) callPlayerService(3);
+							backBtn = new JButton("Back");
+							backBtn.setBounds(170, 30, 80, 20);
+							curPanel.add(backBtn);
+							curPanel.repaint();
+							backBtn.addActionListener(new ActionListener() {
+								
+								@Override
+								public void actionPerformed(ActionEvent e) {
+									curPanel.removeAll();
+									curPanel.add(btnGo);
+									curPanel.add(choice);
+									curPanel.repaint();
+								}
+							});
 						}
 					});
 					curPanel.add(choice);
 					curPanel.add(btnGo);
+					curPanel.repaint();
 				}
 
 				if (career) {
+					curPanel.repaint();
 					textArea = new TextArea();
 					textArea.setBounds(0, 30, 165, 129);
 					textArea.setEditable(false);
 					curPanel.add(textArea);
+					
 				}
 
 				Label label = new Label(firstName + " " + lastName);
@@ -233,6 +271,7 @@ public class PlayerWindow {
 				panel_2.removeAll();
 				panel_3.removeAll();
 				openSlot = 1;
+				buttonSelection = -1;
 			}
 		});
 
