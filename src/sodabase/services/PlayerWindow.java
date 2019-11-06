@@ -47,6 +47,7 @@ public class PlayerWindow {
 	private int choiceIndex;
 	private static PlayerService playerServe;
 	private int buttonSelection = -1;
+	private QueryInfo[] infoArray;
 	/**
 	 * Launch the application.
 	 */
@@ -111,6 +112,8 @@ public class PlayerWindow {
 		JFormattedTextField formattedTextField_1 = new JFormattedTextField();
 		formattedTextField_1.setBounds(371, 30, 185, 22);
 		frame.getContentPane().add(formattedTextField_1);
+		
+		infoArray = new QueryInfo[3];
 
 		panel_1 = new JPanel();
 		panel_1.setBounds(5, 110, 250, 328);
@@ -189,7 +192,7 @@ public class PlayerWindow {
 
 				if (game) {
 					year = JOptionPane.showInputDialog(frame, "Enter a year (2000 - 2019)");
-					if (year.isEmpty()) {
+					if (year == null || year.isEmpty()) {
 						JOptionPane.showMessageDialog(null, "You didn't enter a valid year");
 						return;
 					}
@@ -228,6 +231,11 @@ public class PlayerWindow {
 									curPanel.removeAll();
 									curPanel.add(btnGo);
 									curPanel.add(choice);
+									Label label = new Label(firstName + " " + lastName);
+									label.setAlignment(Label.CENTER);
+									label.setFont(new Font("Arial", Font.BOLD, 12));
+									label.setBounds(0, 0, 165, 24);
+									curPanel.add(label);
 									curPanel.repaint();
 								}
 							});

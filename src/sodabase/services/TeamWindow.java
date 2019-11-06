@@ -112,6 +112,9 @@ public class TeamWindow {
 				panel_1.removeAll();
 				panel_2.removeAll();
 				panel_3.removeAll();
+				panel_1.repaint();
+				panel_2.repaint();
+				panel_3.repaint();
 				openSlot = 1;
 				buttonSelection = -1;
 			}
@@ -191,7 +194,7 @@ public class TeamWindow {
 				}
 				if (game) {
 					year = JOptionPane.showInputDialog(frame, "Enter a year (2000 - 2019)");
-					if (year.isEmpty()) {
+					if (year == null || year.isEmpty()) {
 						JOptionPane.showMessageDialog(null, "You didn't enter a valid year");
 						return;
 					}
@@ -231,6 +234,11 @@ public class TeamWindow {
 									curPanel.removeAll();
 									curPanel.add(btnGo);
 									curPanel.add(choice);
+									Label label = new Label(teamName);
+									label.setAlignment(Label.CENTER);
+									label.setFont(new Font("Arial", Font.BOLD, 12));
+									label.setBounds(0, 0, 165, 24);
+									curPanel.add(label);
 									curPanel.repaint();
 								}
 							});
