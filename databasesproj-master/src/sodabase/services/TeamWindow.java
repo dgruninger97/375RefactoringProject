@@ -112,6 +112,9 @@ public class TeamWindow {
 				panel_1.removeAll();
 				panel_2.removeAll();
 				panel_3.removeAll();
+				panel_1.repaint();
+				panel_2.repaint();
+				panel_3.repaint();
 				openSlot = 1;
 				buttonSelection = -1;
 			}

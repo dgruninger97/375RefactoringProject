@@ -47,7 +47,6 @@ public class PlayerWindow {
 	private int choiceIndex;
 	private static PlayerService playerServe;
 	private int buttonSelection = -1;
-	private QueryInfo[] infoArray;
 	/**
 	 * Launch the application.
 	 */
@@ -112,8 +111,6 @@ public class PlayerWindow {
 		JFormattedTextField formattedTextField_1 = new JFormattedTextField();
 		formattedTextField_1.setBounds(371, 30, 185, 22);
 		frame.getContentPane().add(formattedTextField_1);
-		
-		infoArray = new QueryInfo[3];
 
 		panel_1 = new JPanel();
 		panel_1.setBounds(5, 110, 250, 328);
