@@ -86,7 +86,7 @@ public class PlayerWindow {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setResizable(false);
-		frame.setBounds(100, 100, 800, 530);
+		frame.setBounds(100, 100, 1225, 630);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
@@ -113,15 +113,15 @@ public class PlayerWindow {
 		frame.getContentPane().add(formattedTextField_1);
 
 		panel_1 = new JPanel();
-		panel_1.setBounds(5, 110, 250, 328);
+		panel_1.setBounds(5, 110, 400, 328);
 		frame.getContentPane().add(panel_1);
 
 		panel_2 = new JPanel();
-		panel_2.setBounds(277, 110, 250, 328);
+		panel_2.setBounds(405, 110, 400, 328);
 		frame.getContentPane().add(panel_2);
 
 		panel_3 = new JPanel();
-		panel_3.setBounds(540, 110, 250, 328);
+		panel_3.setBounds(810, 110, 400, 328);
 		frame.getContentPane().add(panel_3);
 
 		JRadioButton rdbtnGame = new JRadioButton("Game");
@@ -207,18 +207,19 @@ public class PlayerWindow {
 
 				if (game || season) {
 					choice = new Choice();
-					choice.setBounds(0, 30, 165, 22);
+					choice.setBounds(0, 30, 300, 22);
 					btnGo = new JButton("Go");
-					btnGo.setBounds(170, 30, 50, 20);
+					btnGo.setBounds(310, 30, 50, 20);
 					
 					btnGo.addActionListener(new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent e) {
 							// TODO Auto-generated method stub
+							choiceIndex = choice.getSelectedIndex();
 							if(game) callPlayerService(2);
 							else if(season) callPlayerService(3);
 							backBtn = new JButton("Back");
-							backBtn.setBounds(170, 30, 80, 20);
+							backBtn.setBounds(310, 30, 80, 20);
 							curPanel.add(backBtn);
 							curPanel.repaint();
 							backBtn.addActionListener(new ActionListener() {
@@ -246,7 +247,7 @@ public class PlayerWindow {
 				if (career) {
 					curPanel.repaint();
 					textArea = new TextArea();
-					textArea.setBounds(0, 30, 165, 129);
+					textArea.setBounds(0, 30, 300, 129);
 					textArea.setEditable(false);
 					curPanel.add(textArea);
 					
@@ -257,7 +258,6 @@ public class PlayerWindow {
 				label.setFont(new Font("Arial", Font.BOLD, 12));
 				label.setBounds(0, 0, 165, 24);
 				curPanel.add(label);
-
 				callPlayerService(1);
 
 			}
@@ -275,6 +275,9 @@ public class PlayerWindow {
 				panel_1.removeAll();
 				panel_2.removeAll();
 				panel_3.removeAll();
+				panel_1.repaint();
+				panel_2.repaint();
+				panel_3.repaint();
 				openSlot = 1;
 				buttonSelection = -1;
 			}
@@ -314,7 +317,7 @@ public class PlayerWindow {
 	protected void callPlayerService(int methodType) {
 		// TODO Auto-generated method stub
 		if (methodType == 1) {
-			returnedList = playerServe.getPlayerInformation(firstName, lastName, game, season, career, (String) year, choiceIndex);
+			returnedList = playerServe.getPlayerInformation(firstName, lastName, game, season, career, (String) year, 0);
 			if (returnedList == null) {
 				JOptionPane.showMessageDialog(null, "Invalid Entry, try again.");
 				curPanel.removeAll();
@@ -328,17 +331,17 @@ public class PlayerWindow {
 				return;
 			}
 		} else if (methodType == 2) {
-			returnedList = playerServe.getGameInfo(firstName, lastName);
+			returnedList = playerServe.getGameInfo(firstName, lastName, choiceIndex);
 			curPanel.removeAll();
 			textArea = new TextArea();
-			textArea.setBounds(0, 30, 165, 129);
+			textArea.setBounds(0, 30, 310, 129);
 			textArea.setEditable(false);
 			curPanel.add(textArea);
 		} else if (methodType == 3) {
-			returnedList = playerServe.getSeasonInfo(firstName, lastName);
+			returnedList = playerServe.getSeasonInfo(firstName, lastName, choiceIndex);
 			curPanel.removeAll();
 			textArea = new TextArea();
-			textArea.setBounds(0, 30, 165, 129);
+			textArea.setBounds(0, 30, 310, 129);
 			textArea.setEditable(false);
 			curPanel.add(textArea);
 		}

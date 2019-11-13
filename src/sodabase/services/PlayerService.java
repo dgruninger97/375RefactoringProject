@@ -14,7 +14,8 @@ public class PlayerService {
 	private DatabaseConnectionService dbService = null;
 	private String gameID;
 	private String seasonYear;
-
+	private ArrayList<String> gameList;
+	private ArrayList<String> seasonList;
 	public PlayerService(DatabaseConnectionService dbService) {
 		this.dbService = dbService;
 	}
@@ -30,30 +31,31 @@ public class PlayerService {
 				callableStatement.setString(3, lastName);
 				callableStatement.setInt(4, Integer.valueOf((String) year));
 				ResultSet rs = callableStatement.executeQuery();
-				ArrayList<String> list = new ArrayList<String>();
+				gameList = new ArrayList<String>();
 				while (rs.next()) {
-					list.add(rs.getString(5) + ": " + rs.getString(3) + " vs. " + rs.getString(4));
+					gameList.add(rs.getString(5) + ": " + rs.getString(3) + " vs. " + rs.getString(4));
 				}
-				if(list.size() == 0) {
+				if(gameList.size() == 0) {
 					return null;
 				}
-				gameID = list.get(choiceIndex).split(":")[0];
-				return list;
+				gameID = gameList.get(choiceIndex).split(":")[0];
+				return gameList;
 			} else if (season) {
 				callableStatement = dbService.getConnection().prepareCall("{?=call view_player_season(?,?)}");
 				callableStatement.registerOutParameter(1, Types.INTEGER);
 				callableStatement.setString(2, firstName);
 				callableStatement.setString(3, lastName);
 				ResultSet rs = callableStatement.executeQuery();
-				ArrayList<String> list = new ArrayList<String>();
+				seasonList = new ArrayList<String>();
 				while (rs.next()) {
-					list.add("Season year: " + rs.getString(1));
+					seasonList.add("Season year: " + rs.getString(1));
 				}
-				if(list.size() == 0) {
+				if(seasonList.size() == 0) {
 					return null;
 				}
-				seasonYear = list.get(choiceIndex).split(": ")[1];
-				return list;
+				seasonYear = seasonList.get(choiceIndex).split(":")[1];
+				seasonYear = seasonYear.substring(1);
+				return seasonList;
 			} else if (career) {
 				callableStatement = dbService.getConnection().prepareCall("{?=call view_player_career(?,?)}");
 				callableStatement.registerOutParameter(1, Types.INTEGER);
@@ -75,13 +77,14 @@ public class PlayerService {
 		return null;
 	}
 
-	public ArrayList<String> getGameInfo(String firstName, String lastName) {
+	public ArrayList<String> getGameInfo(String firstName, String lastName, int choiceIndex) {
 		CallableStatement callableStatement = null;
 		try {
 			callableStatement = dbService.getConnection().prepareCall("{?=call player_game_data(?,?,?)}");
 			callableStatement.registerOutParameter(1, Types.INTEGER);
 			callableStatement.setString(2, firstName);
 			callableStatement.setString(3, lastName);
+			gameID = gameList.get(choiceIndex).split(":")[0];
 			callableStatement.setInt(4, Integer.valueOf(gameID));
 			ResultSet rs = callableStatement.executeQuery();
 			ArrayList<String> list = new ArrayList<String>();
@@ -94,7 +97,7 @@ public class PlayerService {
 		}
 	}
 	
-	public ArrayList<String> getSeasonInfo(String firstName, String lastName){
+	public ArrayList<String> getSeasonInfo(String firstName, String lastName, int choiceIndex){
 		CallableStatement callableStatement = null;
 		try {
 			callableStatement = dbService.getConnection().prepareCall("{?=call player_season_data(?,?,?)}");

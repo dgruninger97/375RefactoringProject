@@ -83,7 +83,7 @@ public class TeamWindow {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setResizable(false);
-		frame.setBounds(100, 100, 800, 530);
+		frame.setBounds(100, 100, 1225, 630);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
@@ -112,21 +112,24 @@ public class TeamWindow {
 				panel_1.removeAll();
 				panel_2.removeAll();
 				panel_3.removeAll();
+				panel_1.repaint();
+				panel_2.repaint();
+				panel_3.repaint();
 				openSlot = 1;
 				buttonSelection = -1;
 			}
 		});
 
 		panel_1 = new JPanel();
-		panel_1.setBounds(5, 106, 250, 349);
+		panel_1.setBounds(5, 110, 400, 328);
 		frame.getContentPane().add(panel_1);
 
 		panel_2 = new JPanel();
-		panel_2.setBounds(277, 106, 250, 349);
+		panel_2.setBounds(405, 110, 400, 328);
 		frame.getContentPane().add(panel_2);
 
 		panel_3 = new JPanel();
-		panel_3.setBounds(540, 106, 250, 349);
+		panel_3.setBounds(810, 110, 400, 328);
 		frame.getContentPane().add(panel_3);
 
 		JRadioButton rdbtnGame = new JRadioButton("Game");
@@ -208,20 +211,21 @@ public class TeamWindow {
 				}
 				if (game || season) {
 					choice = new Choice();
-					choice.setBounds(0, 30, 165, 22);
+					choice.setBounds(0, 30, 300, 22);
 					
 					
 					btnGo = new JButton("Go");
-					btnGo.setBounds(170, 30, 50, 20);
+					btnGo.setBounds(310, 30, 50, 20);
 					
 					btnGo.addActionListener(new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent e) {
 							// TODO Auto-generated method stub
+							choiceIndex = choice.getSelectedIndex();
 							if(game) callTeamService(2);
 							else if(season) callTeamService(3);
 							backBtn = new JButton("Back");
-							backBtn.setBounds(170, 30, 80, 20);
+							backBtn.setBounds(310, 30, 80, 20);
 							curPanel.add(backBtn);
 							curPanel.repaint();
 							backBtn.addActionListener(new ActionListener() {
@@ -254,11 +258,11 @@ public class TeamWindow {
 				if (franchise) {
 					curPanel.repaint();
 					textArea = new TextArea();
-					textArea.setBounds(0, 30, 165, 129);
+					textArea.setBounds(0, 30, 310, 129);
 					textArea.setEditable(false);
 					curPanel.add(textArea);
 				}
-
+				
 				callTeamService(1);
 
 			}
@@ -295,7 +299,7 @@ public class TeamWindow {
 	protected void callTeamService(int methodType) {
 		// TODO Auto-generated method stub
 		if (methodType == 1) {
-			returnedList = teamService.getTeamInformation(teamName, game, season, franchise, (String) year);
+			returnedList = teamService.getTeamInformation(teamName, game, season, franchise, (String) year, 0);
 			if (returnedList == null) {
 				JOptionPane.showMessageDialog(null, "Invalid Team, try again.");
 				frame.dispose();
@@ -310,17 +314,17 @@ public class TeamWindow {
 				return;
 			}
 		}else if (methodType == 2) {
-			returnedList = teamService.getTeamGameInfo(teamName, year);
+			returnedList = teamService.getTeamGameInfo(teamName, year, choiceIndex);
 			curPanel.removeAll();
 			textArea = new TextArea();
-			textArea.setBounds(0, 30, 165, 129);
+			textArea.setBounds(0, 30, 310, 129);
 			textArea.setEditable(false);
 			curPanel.add(textArea);
 		} else if (methodType == 3) {
-			returnedList = teamService.getTeamSeasonInfo(teamName);
+			returnedList = teamService.getTeamSeasonInfo(teamName, choiceIndex);
 			curPanel.removeAll();
 			textArea = new TextArea();
-			textArea.setBounds(0, 30, 165, 129);
+			textArea.setBounds(0, 30, 310, 129);
 			textArea.setEditable(false);
 			curPanel.add(textArea);
 		}
