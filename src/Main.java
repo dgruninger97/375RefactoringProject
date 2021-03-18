@@ -13,8 +13,8 @@ import sodabase.ui.ApplicationRunner;
 public class Main {
 
 	public static void main(String[] args) {
-		DatabaseConnectionService dbService = new DatabaseConnectionService("golem.csse.rose-hulman.edu", "NBADatabase19");
-		dbService.connect("NBADatabase19", "Password123");
+		DatabaseConnectionService dbService = new DatabaseConnectionService("nba-database.csse.rose-hulman.edu", "TestDatabase");
+		dbService.connect("sa", "Thesquarerootoftheradiusofthesun123");
 		DataParser parser = new DataParser();
 		parser.main(args, dbService);
 		NBADatabaseWindow mainWin = new NBADatabaseWindow();
