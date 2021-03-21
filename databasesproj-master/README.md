@@ -1,2 +1,0 @@
-# databasesproj
-Project for Databases

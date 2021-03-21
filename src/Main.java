@@ -4,7 +4,6 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
 
-import oracle.jrockit.jfr.parser.Parser;
 import sodabase.services.DatabaseConnectionService;
 import sodabase.services.NBADatabaseWindow;
 import sodabase.services.PlayerService;
