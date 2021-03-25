@@ -21,13 +21,8 @@ public class TeamService {
 	public ArrayList<String> getTeamInformation(String teamName, boolean game, boolean season,
 			boolean career, String year, int choiceIndex) {
 		try {
-			CallableStatement callableStatement = null;
 			if (game) {
-				callableStatement = dbService.getConnection().prepareCall("{?=call view_team_game(?,?)}");
-				callableStatement.registerOutParameter(1, Types.INTEGER);
-				callableStatement.setString(2, teamName);
-				callableStatement.setInt(3, Integer.valueOf(year));
-				ResultSet rs = callableStatement.executeQuery();
+				ResultSet rs = callViewTeamGame(teamName, year);
 				gameList = new ArrayList<String>();
 				while(rs.next()) {
 					gameList.add(rs.getString(5) + ":" + rs.getString(1) + " vs. " + rs.getString(2));
@@ -35,20 +30,14 @@ public class TeamService {
 				gameID = gameList.get(choiceIndex).split(":")[0];
 				return gameList;
 			} else if (season) {
-				callableStatement = dbService.getConnection().prepareCall("{?=call view_team_season(?)}");
-				callableStatement.registerOutParameter(1, Types.INTEGER);
-				callableStatement.setString(2, teamName);
-				ResultSet rs = callableStatement.executeQuery();
+				ResultSet rs = callViewTeamSeason(teamName);
 				seasonList = new ArrayList<String>();
 				while(rs.next()) {
 					seasonList.add("Season year: " + rs.getString(1));
 				}
 				return seasonList;
 			} else if (career) {
-				callableStatement = dbService.getConnection().prepareCall("{?=call view_team_franchise(?)}");
-				callableStatement.registerOutParameter(1, Types.INTEGER);
-				callableStatement.setString(2, teamName);
-				ResultSet rs = callableStatement.executeQuery();
+				ResultSet rs = callViewTeamFranchise(teamName);
 				ArrayList<String> list = new ArrayList<String>();
 				while(rs.next()) {
 					list.add("Franchise Points For: " + rs.getString(2) + "\nFranchise Points Against: " +  rs.getString(3) + "\nWin Percentage: " + rs.getString(4));
@@ -60,16 +49,11 @@ public class TeamService {
 			}
 			return null;
 	}
+
 	public ArrayList<String> getTeamGameInfo(String teamName, String year, int choiceIndex) {
-		CallableStatement callableStatement = null;
 		try {
 			gameID = gameList.get(choiceIndex).split(":")[0];
-			callableStatement = dbService.getConnection().prepareCall("{?=call team_game_data(?,?,?)}");
-			callableStatement.registerOutParameter(1, Types.INTEGER);
-			callableStatement.setString(2, teamName);
-			callableStatement.setInt(3, Integer.valueOf(year));
-			callableStatement.setInt(4, Integer.valueOf(gameID));
-			ResultSet rs = callableStatement.executeQuery();
+			ResultSet rs = callTeamGameData(teamName, year);
 			ArrayList<String> list = new ArrayList<String>();
 			while(rs.next()) {
 				list.add("Game Points For: " + rs.getString(1) + "\nGame Points Against: " + rs.getString(2));
@@ -79,16 +63,11 @@ public class TeamService {
 			return null;
 		}
 	}
-	
 	public ArrayList<String> getTeamSeasonInfo(String teamName, int choiceIndex){
 		CallableStatement callableStatement = null;
 		try {
 			String year = seasonList.get(choiceIndex).split(": ")[1];
-			callableStatement = dbService.getConnection().prepareCall("{?=call team_season_data(?, ?)}");
-			callableStatement.registerOutParameter(1, Types.INTEGER);
-			callableStatement.setString(2, teamName);
-			callableStatement.setString(3, year);
-			ResultSet rs = callableStatement.executeQuery();
+			ResultSet rs = callTeamSeasonData(teamName, year);
 			ArrayList<String> list = new ArrayList<String>();
 			while(rs.next()) {
 				list.add("Season Points For: " + rs.getString(1) + "\nSeason Points Against: " + rs.getString(2) + "\nWin Percentage: " + rs.getString(3));
@@ -98,5 +77,55 @@ public class TeamService {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	private ResultSet callViewTeamFranchise(String teamName) throws SQLException {
+		CallableStatement callableStatement;
+		callableStatement = dbService.getConnection().prepareCall("{?=call view_team_franchise(?)}");
+		registerTeamName(teamName, callableStatement);
+		ResultSet rs = callableStatement.executeQuery();
+		return rs;
+	}
+
+	private ResultSet callViewTeamSeason(String teamName) throws SQLException {
+		CallableStatement callableStatement;
+		callableStatement = dbService.getConnection().prepareCall("{?=call view_team_season(?)}");
+		registerTeamName(teamName, callableStatement);
+		ResultSet rs = callableStatement.executeQuery();
+		return rs;
+	}
+
+	private void registerTeamName(String teamName, CallableStatement callableStatement) throws SQLException {
+		callableStatement.registerOutParameter(1, Types.INTEGER);
+		callableStatement.setString(2, teamName);
+	}
+
+	private ResultSet callViewTeamGame(String teamName, String year) throws SQLException {
+		CallableStatement callableStatement;
+		callableStatement = dbService.getConnection().prepareCall("{?=call view_team_game(?,?)}");
+		registerTeamName(teamName, callableStatement);
+		callableStatement.setInt(3, Integer.valueOf(year));
+		ResultSet rs = callableStatement.executeQuery();
+		return rs;
+	}
+
+	private ResultSet callTeamGameData(String teamName, String year) throws SQLException {
+		CallableStatement callableStatement;
+		callableStatement = dbService.getConnection().prepareCall("{?=call team_game_data(?,?,?)}");
+		registerTeamName(teamName, callableStatement);
+		callableStatement.setInt(3, Integer.valueOf(year));
+		callableStatement.setInt(4, Integer.valueOf(gameID));
+		ResultSet rs = callableStatement.executeQuery();
+		return rs;
+	}
+	
+
+	private ResultSet callTeamSeasonData(String teamName, String year) throws SQLException {
+		CallableStatement callableStatement;
+		callableStatement = dbService.getConnection().prepareCall("{?=call team_season_data(?, ?)}");
+		registerTeamName(teamName, callableStatement);
+		callableStatement.setString(3, year);
+		ResultSet rs = callableStatement.executeQuery();
+		return rs;
 	}
 }
