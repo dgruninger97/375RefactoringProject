@@ -84,21 +84,8 @@ public class PlayerWindow {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setResizable(false);
-		frame.setBounds(100, 100, 1225, 630);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-
-		JLabel lblSearchForPlayer = new JLabel("First Name:");
-		lblSearchForPlayer.setFont(new Font("Arial", Font.PLAIN, 15));
-		lblSearchForPlayer.setBounds(12, 33, 85, 16);
-		frame.getContentPane().add(lblSearchForPlayer);
-
-		JLabel lblLastName = new JLabel("Last Name:");
-		lblLastName.setFont(new Font("Arial", Font.PLAIN, 15));
-		lblLastName.setBounds(283, 33, 85, 16);
-		frame.getContentPane().add(lblLastName);
+		setupFramePane();
+		setupNameButtons();
 
 		JButton btnSearch = new JButton("Search");
 		btnSearch.setBounds(573, 29, 97, 25);
@@ -112,17 +99,7 @@ public class PlayerWindow {
 		formattedTextField_1.setBounds(371, 30, 185, 22);
 		frame.getContentPane().add(formattedTextField_1);
 
-		panel_1 = new JPanel();
-		panel_1.setBounds(5, 110, 400, 328);
-		frame.getContentPane().add(panel_1);
-
-		panel_2 = new JPanel();
-		panel_2.setBounds(405, 110, 400, 328);
-		frame.getContentPane().add(panel_2);
-
-		panel_3 = new JPanel();
-		panel_3.setBounds(810, 110, 400, 328);
-		frame.getContentPane().add(panel_3);
+		setFramePanelBoundaries();
 
 		JRadioButton rdbtnGame = new JRadioButton("Game");
 		rdbtnGame.setBounds(18, 72, 61, 25);
@@ -146,24 +123,27 @@ public class PlayerWindow {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				if(buttonSelection == -1) {
-					if(rdbtnGame.isSelected()) buttonSelection = 1;
-					if(rdbtnSeason.isSelected()) buttonSelection = 2;
-					if(rdbtnCareer.isSelected()) buttonSelection = 3;
+					if(rdbtnGame.isSelected()){
+						buttonSelection = 1;
+					}
+					if(rdbtnSeason.isSelected()) {
+						buttonSelection = 2;
+					}
+					if(rdbtnCareer.isSelected()) {
+						buttonSelection = 3;
+					}
 				}else{
 					if(buttonSelection == 1 && (rdbtnCareer.isSelected() || rdbtnSeason.isSelected())) {
 						JOptionPane.showMessageDialog(null, "You must select the same comparison option");
-						return;
 					}
 					else if(buttonSelection == 2 && (rdbtnCareer.isSelected() || rdbtnGame.isSelected())) {
 						JOptionPane.showMessageDialog(null, "You must select the same comparison option");
-						return;
 					}
 					else if(buttonSelection == 3 && (rdbtnSeason.isSelected() || rdbtnGame.isSelected())) {
 						JOptionPane.showMessageDialog(null, "You must select the same comparison option");
-						return;
 					}
+					return;
 				}
 				if (openSlot == 1)
 					curPanel = panel_1;
@@ -214,7 +194,6 @@ public class PlayerWindow {
 					btnGo.addActionListener(new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent e) {
-							// TODO Auto-generated method stub
 							choiceIndex = choice.getSelectedIndex();
 							if(game) callPlayerService(2);
 							else if(season) callPlayerService(3);
@@ -312,6 +291,40 @@ public class PlayerWindow {
 			}
 		});
 
+	}
+
+	private void setFramePanelBoundaries() {
+		panel_1 = new JPanel();
+		panel_1.setBounds(5, 110, 400, 328);
+		frame.getContentPane().add(panel_1);
+
+		panel_2 = new JPanel();
+		panel_2.setBounds(405, 110, 400, 328);
+		frame.getContentPane().add(panel_2);
+
+		panel_3 = new JPanel();
+		panel_3.setBounds(810, 110, 400, 328);
+		frame.getContentPane().add(panel_3);
+	}
+
+	private void setupNameButtons() {
+		JLabel lblSearchForPlayer = new JLabel("First Name:");
+		lblSearchForPlayer.setFont(new Font("Arial", Font.PLAIN, 15));
+		lblSearchForPlayer.setBounds(12, 33, 85, 16);
+		frame.getContentPane().add(lblSearchForPlayer);
+
+		JLabel lblLastName = new JLabel("Last Name:");
+		lblLastName.setFont(new Font("Arial", Font.PLAIN, 15));
+		lblLastName.setBounds(283, 33, 85, 16);
+		frame.getContentPane().add(lblLastName);
+	}
+
+	private void setupFramePane() {
+		frame = new JFrame();
+		frame.setResizable(false);
+		frame.setBounds(100, 100, 1225, 630);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
 	}
 
 	protected void callPlayerService(int methodType) {

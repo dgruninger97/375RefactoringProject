@@ -155,9 +155,15 @@ public class TeamWindow {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				if(buttonSelection == -1) {
-					if(rdbtnGame.isSelected()) buttonSelection = 1;
-					if(rdbtnSeason.isSelected()) buttonSelection = 2;
-					if(rdbtnFranchise.isSelected()) buttonSelection = 3;
+					if(rdbtnGame.isSelected()) {
+						buttonSelection = 1;
+					}
+					if(rdbtnSeason.isSelected()) { 
+						buttonSelection = 2;
+					}
+					if(rdbtnFranchise.isSelected()) {
+						buttonSelection = 3;
+					}
 				}else{
 					if(buttonSelection == 1 && (rdbtnFranchise.isSelected() || rdbtnSeason.isSelected())) {
 						JOptionPane.showMessageDialog(null, "You must select the same comparison option");
