@@ -89,7 +89,7 @@ public class NBADatabaseWindow {
 				// TODO Auto-generated method stub
 				frame.dispose();
 				TeamWindow tw = new TeamWindow();
-				tw.main(new String[0], getService());
+				tw.startWindow(new String[0], getService());
 			}
 		});
 	}
