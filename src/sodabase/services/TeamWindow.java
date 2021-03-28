@@ -114,6 +114,7 @@ public class TeamWindow {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				searchButton(rdbtnGame, rdbtnSeason, rdbtnFranchise, formattedTextField);
+				buttonSelection = -1;
 			}
 
 		});
