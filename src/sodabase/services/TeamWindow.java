@@ -43,6 +43,8 @@ public class TeamWindow {
 	private JButton backBtn;
 	private int choiceIndex;
 	private int buttonSelection = -1;
+	
+	
 
 	/**
 	 * Launch the application.
@@ -132,22 +134,22 @@ public class TeamWindow {
 		panel_3.setBounds(810, 110, 400, 328);
 		frame.getContentPane().add(panel_3);
 
-		JRadioButton rdbtnGame = new JRadioButton("Game");
-		rdbtnGame.setBounds(18, 72, 61, 25);
-		frame.getContentPane().add(rdbtnGame);
+		JRadioButton gameRadioButton = new JRadioButton("Game");
+		gameRadioButton.setBounds(18, 72, 61, 25);
+		frame.getContentPane().add(gameRadioButton);
 
-		JRadioButton rdbtnSeason = new JRadioButton("Season");
-		rdbtnSeason.setBounds(106, 72, 71, 25);
-		frame.getContentPane().add(rdbtnSeason);
+		JRadioButton seasonRadioButton = new JRadioButton("Season");
+		seasonRadioButton.setBounds(106, 72, 71, 25);
+		frame.getContentPane().add(seasonRadioButton);
 
-		JRadioButton rdbtnFranchise = new JRadioButton("Franchise");
-		rdbtnFranchise.setBounds(202, 72, 97, 25);
-		frame.getContentPane().add(rdbtnFranchise);
+		JRadioButton franchiseRadioButton = new JRadioButton("Franchise");
+		franchiseRadioButton.setBounds(202, 72, 97, 25);
+		frame.getContentPane().add(franchiseRadioButton);
 		ButtonGroup group = new ButtonGroup();
-		group.add(rdbtnGame);
-		group.add(rdbtnSeason);
-		group.add(rdbtnFranchise);
-		rdbtnGame.setSelected(true);
+		group.add(gameRadioButton);
+		group.add(seasonRadioButton);
+		group.add(franchiseRadioButton);
+		gameRadioButton.setSelected(true);
 
 		search_button.addActionListener(new ActionListener() {
 
@@ -155,19 +157,19 @@ public class TeamWindow {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				if(buttonSelection == -1) {
-					if(rdbtnGame.isSelected()) buttonSelection = 1;
-					if(rdbtnSeason.isSelected()) buttonSelection = 2;
-					if(rdbtnFranchise.isSelected()) buttonSelection = 3;
-				}else{
-					if(buttonSelection == 1 && (rdbtnFranchise.isSelected() || rdbtnSeason.isSelected())) {
+					if(gameRadioButton.isSelected()) buttonSelection = 1;
+					if(seasonRadioButton.isSelected()) buttonSelection = 2;
+					if(franchiseRadioButton.isSelected()) buttonSelection = 3;
+				} else{
+					if(buttonSelection == 1 && (franchiseRadioButton.isSelected() || seasonRadioButton.isSelected())) {
 						JOptionPane.showMessageDialog(null, "You must select the same comparison option");
 						return;
 					}
-					else if(buttonSelection == 2 && (rdbtnFranchise.isSelected() || rdbtnGame.isSelected())) {
+					else if(buttonSelection == 2 && (franchiseRadioButton.isSelected() || gameRadioButton.isSelected())) {
 						JOptionPane.showMessageDialog(null, "You must select the same comparison option");
 						return;
 					}
-					else if(buttonSelection == 3 && (rdbtnSeason.isSelected() || rdbtnGame.isSelected())) {
+					else if(buttonSelection == 3 && (seasonRadioButton.isSelected() || gameRadioButton.isSelected())) {
 						JOptionPane.showMessageDialog(null, "You must select the same comparison option");
 						return;
 					}
@@ -184,9 +186,9 @@ public class TeamWindow {
 				}
 				curPanel.removeAll();
 				teamName = formattedTextField.getText();
-				game = rdbtnGame.isSelected();
-				season = rdbtnSeason.isSelected();
-				franchise = rdbtnFranchise.isSelected();
+				game = gameRadioButton.isSelected();
+				season = seasonRadioButton.isSelected();
+				franchise = franchiseRadioButton.isSelected();
 
 				if (teamName.isEmpty()) {
 					JOptionPane.showMessageDialog(null, "You need to enter a team name");
