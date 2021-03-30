@@ -102,54 +102,29 @@ public class PlayerService {
 	}
 
 	private ResultSet callPlayerGameData(String firstName, String lastName) throws SQLException {
-		CallableStatement callableStatement;
-		callableStatement = dbService.getConnection().prepareCall("{?=call player_game_data(?,?,?)}");
-		registerPlayerName(firstName, lastName, callableStatement);
-		callableStatement.setInt(4, Integer.valueOf(gameID));
-		ResultSet rs = callableStatement.executeQuery();
-		return rs;
+		DatabaseQuery query = new PlayerGameDataQuery(dbService, firstName, lastName, seasonYear);
+		return query.runQuery();
 	}
-
-	private void registerPlayerName(String firstName, String lastName, CallableStatement callableStatement)
-			throws SQLException {
-		callableStatement.registerOutParameter(1, Types.INTEGER);
-		callableStatement.setString(2, firstName);
-		callableStatement.setString(3, lastName);
-	}
-	
 
 	private ResultSet callPlayerSeasonData(String firstName, String lastName) throws SQLException {
 		DatabaseQuery query = new PlayerSeasonDataQuery(dbService, firstName, lastName, seasonYear);
 		return query.runQuery();
-//		CallableStatement callableStatement;
-//		callableStatement = dbService.getConnection().prepareCall("{?=call player_season_data(?,?,?)}");
-//		registerPlayerName(firstName, lastName, callableStatement);
-//		callableStatement.setInt(4, Integer.valueOf(seasonYear));
-//		ResultSet rs = callableStatement.executeQuery();
-//		return rs;
 	}
 	
 
 	private ResultSet callViewPlayerCareer(String firstName, String lastName) throws SQLException {
-		CallableStatement callableStatement = dbService.getConnection().prepareCall("{?=call view_player_career(?,?)}");
-		registerPlayerName(firstName, lastName, callableStatement);
-		ResultSet rs = callableStatement.executeQuery();
-		return rs;
+		DatabaseQuery query = new PlayerCareerDataQuery(dbService, firstName, lastName);
+		return query.runQuery();
 	}
 
 	private ResultSet callViewPlayerSeason(String firstName, String lastName) throws SQLException {
-		CallableStatement callableStatement = dbService.getConnection().prepareCall("{?=call view_player_season(?,?)}");
-		registerPlayerName(firstName, lastName, callableStatement);
-		ResultSet rs = callableStatement.executeQuery();
-		return rs;
+		DatabaseQuery query = new PlayerSeasonsPlayedDataQuery(dbService, firstName, lastName);
+		return query.runQuery();
 	}
 
 	private ResultSet callViewPlayerGame(String firstName, String lastName, String year) throws SQLException {
-		CallableStatement callableStatement = dbService.getConnection().prepareCall("{?=call view_player_game(?,?,?)}");
-		registerPlayerName(firstName, lastName, callableStatement);
-		callableStatement.setInt(4, Integer.valueOf((String) year));
-		ResultSet rs = callableStatement.executeQuery();
-		return rs;
+		DatabaseQuery query = new PlayerGamesPlayedInSeasonDataQuery(dbService, firstName, lastName, seasonYear);
+		return query.runQuery();
 	}
 
 }
