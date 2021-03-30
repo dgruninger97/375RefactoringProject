@@ -2,17 +2,22 @@ package sodabase.services;
 
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class DatabaseQuery {
+	protected DatabaseConnectionService dbService;
 	protected CallableStatement callableStatement;
 	
-	public final ResultSet runQuery() {
-		callableStatement = prepareCallableStatement();
-		ResultSet rs = callableStatement.executeQuery();
-		return rs;
+	public DatabaseQuery(DatabaseConnectionService dbService) {
+		this.dbService = dbService;
+	}
+	
+	public final ResultSet runQuery() throws SQLException {
+		prepareCallableStatement();
+		return callableStatement.executeQuery();
 	}
 
-	protected abstract CallableStatement prepareCallableStatement();
+	protected abstract void prepareCallableStatement() throws SQLException;
 }

@@ -119,12 +119,14 @@ public class PlayerService {
 	
 
 	private ResultSet callPlayerSeasonData(String firstName, String lastName) throws SQLException {
-		CallableStatement callableStatement;
-		callableStatement = dbService.getConnection().prepareCall("{?=call player_season_data(?,?,?)}");
-		registerPlayerName(firstName, lastName, callableStatement);
-		callableStatement.setInt(4, Integer.valueOf(seasonYear));
-		ResultSet rs = callableStatement.executeQuery();
-		return rs;
+		DatabaseQuery query = new PlayerSeasonDataQuery(dbService, firstName, lastName, seasonYear);
+		return query.runQuery();
+//		CallableStatement callableStatement;
+//		callableStatement = dbService.getConnection().prepareCall("{?=call player_season_data(?,?,?)}");
+//		registerPlayerName(firstName, lastName, callableStatement);
+//		callableStatement.setInt(4, Integer.valueOf(seasonYear));
+//		ResultSet rs = callableStatement.executeQuery();
+//		return rs;
 	}
 	
 
