@@ -2,6 +2,7 @@ package sodabase.services;
 
 import java.sql.SQLException;
 import java.sql.Types;
+import java.util.List;
 
 public class PlayerCareerDataQuery extends DatabaseQuery {
 	private String firstName;
@@ -19,5 +20,11 @@ public class PlayerCareerDataQuery extends DatabaseQuery {
 		callableStatement.registerOutParameter(1, Types.INTEGER);
 		callableStatement.setString(2, firstName);
 		callableStatement.setString(3, lastName);
+	}
+
+	@Override
+	protected List<String> addResultStrings() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

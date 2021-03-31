@@ -3,6 +3,7 @@ package sodabase.services;
 import java.sql.CallableStatement;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.util.List;
 
 public class PlayerSeasonDataQuery extends DatabaseQuery {
 	private String firstName;
@@ -23,5 +24,11 @@ public class PlayerSeasonDataQuery extends DatabaseQuery {
 		callableStatement.setString(2, firstName);
 		callableStatement.setString(3, lastName);
 		callableStatement.setInt(4, Integer.valueOf(seasonYear));
+	}
+
+	@Override
+	protected List<String> addResultStrings() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

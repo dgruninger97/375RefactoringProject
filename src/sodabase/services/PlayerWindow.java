@@ -7,7 +7,9 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultListModel;
@@ -34,7 +36,7 @@ public class PlayerWindow {
 	private boolean season;
 	private boolean career;
 	private String year;
-	private ArrayList<String> returnedList;
+	private List<String> returnedList;
 	private Choice choice;
 	private TextArea textArea;
 	private JPanel panel_1;
