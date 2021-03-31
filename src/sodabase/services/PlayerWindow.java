@@ -30,9 +30,9 @@ public class PlayerWindow {
 	private DatabaseConnectionService dbservice = null;
 	private String firstName;
 	private String lastName;
-	private boolean game;
-	private boolean season;
-	private boolean career;
+	private boolean gameIsSelected;
+	private boolean seasonIsSelected;
+	private boolean careerIsSelected;
 	private String year;
 	private ArrayList<String> returnedList;
 	private Choice choice;
@@ -235,36 +235,40 @@ public class PlayerWindow {
 	}
 
 	protected void callPlayerService(int methodType) {
-		// TODO Auto-generated method stub
 		if (methodType == 1) {
-			returnedList = playerService.getPlayerInformation(firstName, lastName, game, season, career, (String) year, 0);
-			if (returnedList == null) {
-				JOptionPane.showMessageDialog(null, "Invalid Entry, try again.");
-				curPanel.removeAll();
+			returnedList = playerService.getPlayerInformation(firstName, lastName, gameIsSelected, seasonIsSelected, careerIsSelected, (String) year, 0);
+			if(checkInvalidTeam()) {
 				return;
 			}
-			if (game || season) {
-				for (int i = 0; i < returnedList.size(); i++) {
-					choice.add(returnedList.get(i));
-				}
-				choiceIndex = choice.getSelectedIndex();
+			if (gameIsSelected || seasonIsSelected) {
+				getAvailableYears();
 				return;
 			}
 		} else if (methodType == 2) {
-			returnedList = playerService.getGameInfo(firstName, lastName, choiceIndex);
-			curPanel.removeAll();
-			textArea = new TextArea();
-			textArea.setBounds(0, 30, 310, 129);
-			textArea.setEditable(false);
-			curPanel.add(textArea);
+			retrieveGameInfo();
 		} else if (methodType == 3) {
-			returnedList = playerService.getSeasonInfo(firstName, lastName, choiceIndex);
-			curPanel.removeAll();
-			textArea = new TextArea();
-			textArea.setBounds(0, 30, 310, 129);
-			textArea.setEditable(false);
-			curPanel.add(textArea);
+			retrieveSeasonInfo();
 		}
+		retrieveCareerInfo();
+	}
+
+	private boolean checkInvalidTeam() {
+		if (returnedList == null) {
+			JOptionPane.showMessageDialog(null, "Invalid Entry, try again.");
+			curPanel.removeAll();
+			return true;
+		}
+		return false;
+	}
+
+	private void getAvailableYears() {
+		for (int i = 0; i < returnedList.size(); i++) {
+			choice.add(returnedList.get(i));
+		}
+		choiceIndex = choice.getSelectedIndex();
+	}
+
+	private void retrieveCareerInfo() {
 		String careerInfo = "";
 		for (int i = 0; i < returnedList.size(); i++) {
 			careerInfo += returnedList.get(i);
@@ -275,6 +279,24 @@ public class PlayerWindow {
 		label.setFont(new Font("Arial", Font.BOLD, 12));
 		label.setBounds(0, 0, 165, 24);
 		curPanel.add(label);
+	}
+
+	private void retrieveSeasonInfo() {
+		returnedList = playerService.getSeasonInfo(firstName, lastName, choiceIndex);
+		curPanel.removeAll();
+		textArea = new TextArea();
+		textArea.setBounds(0, 30, 310, 129);
+		textArea.setEditable(false);
+		curPanel.add(textArea);
+	}
+
+	private void retrieveGameInfo() {
+		returnedList = playerService.getGameInfo(firstName, lastName, choiceIndex);
+		curPanel.removeAll();
+		textArea = new TextArea();
+		textArea.setBounds(0, 30, 310, 129);
+		textArea.setEditable(false);
+		curPanel.add(textArea);
 	}
 	
 	private void backButton() {
@@ -290,8 +312,8 @@ public class PlayerWindow {
 	}
 	private void goButton() {
 		choiceIndex = choice.getSelectedIndex();
-		if(game) callPlayerService(2);
-		else if(season) callPlayerService(3);
+		if(gameIsSelected) callPlayerService(2);
+		else if(seasonIsSelected) callPlayerService(3);
 		backBtn = new JButton("Back");
 		backBtn.setBounds(310, 30, 80, 20);
 		curPanel.add(backBtn);
@@ -322,16 +344,20 @@ public class PlayerWindow {
 			JOptionPane.showMessageDialog(null, "You need to enter a first and last name");
 			return;
 		}
-		if (game) {
+		if (gameIsSelected) {
 			year = JOptionPane.showInputDialog(frame, "Enter a year (2000 - 2019)");
 			if(checkYearInput()) {
 				return;
 			}
 		}
-		if (game || season) {
+		setUpSearchSelection();
+	}
+
+	private void setUpSearchSelection() {
+		if (gameIsSelected || seasonIsSelected) {
 			setUpYearSelection();
 		}
-		if (career) {
+		if (careerIsSelected) {
 			setUpCareerInfoArea();
 		}
 		setUpInfoPanel();
@@ -394,9 +420,9 @@ public class PlayerWindow {
 		curPanel.removeAll();
 		lastName = formattedTextField_1.getText();
 		firstName = formattedTextField.getText();
-		game = rdbtnGame.isSelected();
-		season = rdbtnSeason.isSelected();
-		career = rdbtnCareer.isSelected();
+		gameIsSelected = rdbtnGame.isSelected();
+		seasonIsSelected = rdbtnSeason.isSelected();
+		careerIsSelected = rdbtnCareer.isSelected();
 	}
 
 	private void setCurPanel() {

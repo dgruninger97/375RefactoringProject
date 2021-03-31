@@ -25,9 +25,9 @@ public class TeamWindow {
 
 	private JFrame frame;
 	private String teamName;
-	private boolean game;
-	private boolean season;
-	private boolean franchise;
+	private boolean gameIsSelected;
+	private boolean seasonIsSelected;
+	private boolean franchiseIsSelected;
 	private String year;
 	private Choice choice;
 	private TextArea textArea;
@@ -219,18 +219,12 @@ public class TeamWindow {
 
 	protected void callTeamService(int methodType) {
 		if (methodType == 1) {
-			returnedList = teamService.getTeamInformation(teamName, game, season, franchise, (String) year, 0);
-			if (returnedList == null) {
-				JOptionPane.showMessageDialog(null, "Invalid Team, try again.");
-				frame.dispose();
-				startWindow(getService());
+			returnedList = teamService.getTeamInformation(teamName, gameIsSelected, seasonIsSelected, franchiseIsSelected, (String) year, 0);
+			if(checkInvalidTeam()) {
 				return;
 			}
-			if (game || season) {
-				for (int i = 0; i < returnedList.size(); i++) {
-					choice.add(returnedList.get(i));
-				}
-				choiceIndex = choice.getSelectedIndex();
+			if (gameIsSelected || seasonIsSelected) {
+				getAvailableYears();
 				return;
 			}
 		} else if (methodType == 2) {
@@ -239,6 +233,23 @@ public class TeamWindow {
 			retrieveSeasonInfo();
 		}
 		retrieveCareerInfo();
+	}
+
+	private void getAvailableYears() {
+		for (int i = 0; i < returnedList.size(); i++) {
+			choice.add(returnedList.get(i));
+		}
+		choiceIndex = choice.getSelectedIndex();
+	}
+
+	private boolean checkInvalidTeam() {
+		if (returnedList == null) {
+			JOptionPane.showMessageDialog(null, "Invalid Team, try again.");
+			frame.dispose();
+			startWindow(getService());
+			return true;
+		}
+		return false;
 	}
 
 	private void retrieveCareerInfo() {
@@ -286,9 +297,9 @@ public class TeamWindow {
 
 	public void goButton() {
 		choiceIndex = choice.getSelectedIndex();
-		if (game) {
+		if (gameIsSelected) {
 			callTeamService(2);
-		} else if (season) {
+		} else if (seasonIsSelected) {
 			callTeamService(3);
 		}
 		backBtn = new JButton("Back");
@@ -321,13 +332,13 @@ public class TeamWindow {
 			JOptionPane.showMessageDialog(null, "You need to enter a team name");
 			return;
 		}
-		if (game) {
+		if (gameIsSelected) {
 			year = JOptionPane.showInputDialog(frame, "Enter a year (2000 - 2019)");
 			if (checkForGameYearErrors()) {
 				return;
 			}
 		}
-		if (game || season) {
+		if (gameIsSelected || seasonIsSelected) {
 			setUpChoiceWindow();
 		}
 		setUpFranchiseView();
@@ -338,9 +349,9 @@ public class TeamWindow {
 			JFormattedTextField formattedTextField) {
 		curPanel.removeAll();
 		teamName = formattedTextField.getText();
-		game = rdbtnGame.isSelected();
-		season = rdbtnSeason.isSelected();
-		franchise = rdbtnFranchise.isSelected();
+		gameIsSelected = rdbtnGame.isSelected();
+		seasonIsSelected = rdbtnSeason.isSelected();
+		franchiseIsSelected = rdbtnFranchise.isSelected();
 	}
 
 	private void setUpFranchiseView() {
@@ -349,7 +360,7 @@ public class TeamWindow {
 		label.setFont(new Font("Arial", Font.BOLD, 12));
 		label.setBounds(0, 0, 165, 24);
 		curPanel.add(label);
-		if (franchise) {
+		if (franchiseIsSelected) {
 			curPanel.repaint();
 			textArea = new TextArea();
 			textArea.setBounds(0, 30, 310, 129);
