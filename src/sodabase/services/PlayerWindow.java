@@ -307,27 +307,99 @@ public class PlayerWindow {
 	private void searchButton(JFormattedTextField formattedTextField, JFormattedTextField formattedTextField_1,
 			JRadioButton rdbtnGame, JRadioButton rdbtnSeason, JRadioButton rdbtnCareer) {
 		if(buttonSelection == -1) {
-			if(rdbtnGame.isSelected()){
-				buttonSelection = 1;
-			}
-			if(rdbtnSeason.isSelected()) {
-				buttonSelection = 2;
-			}
-			if(rdbtnCareer.isSelected()) {
-				buttonSelection = 3;
-			}
+			getSelectedButton(rdbtnGame, rdbtnSeason, rdbtnCareer);
 		}else{
-			if(buttonSelection == 1 && (rdbtnCareer.isSelected() || rdbtnSeason.isSelected())) {
-				JOptionPane.showMessageDialog(null, "You must select the same comparison option");
-			}
-			else if(buttonSelection == 2 && (rdbtnCareer.isSelected() || rdbtnGame.isSelected())) {
-				JOptionPane.showMessageDialog(null, "You must select the same comparison option");
-			}
-			else if(buttonSelection == 3 && (rdbtnSeason.isSelected() || rdbtnGame.isSelected())) {
-				JOptionPane.showMessageDialog(null, "You must select the same comparison option");
-			}
+			displayComparisonSelectionErrors(rdbtnGame, rdbtnSeason, rdbtnCareer);
 			return;
 		}
+		setCurPanel();
+		if(curPanel == null) {
+			JOptionPane.showMessageDialog(null, "You are at max view");
+			return;
+		}
+		retrieveSeasonInfo(formattedTextField, formattedTextField_1, rdbtnGame, rdbtnSeason, rdbtnCareer);
+		if (firstName.isEmpty() || lastName.isEmpty()) {
+			JOptionPane.showMessageDialog(null, "You need to enter a first and last name");
+			return;
+		}
+		if (game) {
+			year = JOptionPane.showInputDialog(frame, "Enter a year (2000 - 2019)");
+			if(checkYearInput()) {
+				return;
+			}
+		}
+		if (game || season) {
+			setUpYearSelection();
+		}
+		if (career) {
+			setUpCareerInfoArea();
+		}
+		setUpInfoPanel();
+	}
+
+	private void setUpCareerInfoArea() {
+		curPanel.repaint();
+		textArea = new TextArea();
+		textArea.setBounds(0, 30, 300, 129);
+		textArea.setEditable(false);
+		curPanel.add(textArea);
+	}
+
+	private void setUpYearSelection() {
+		choice = new Choice();
+		choice.setBounds(0, 30, 300, 22);
+		btnGo = new JButton("Go");
+		btnGo.setBounds(310, 30, 50, 20);
+		
+		btnGo.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				goButton();
+			}
+		});
+		curPanel.add(choice);
+		curPanel.add(btnGo);
+		curPanel.repaint();
+	}
+
+	private void setUpInfoPanel() {
+		Label label = new Label(firstName + " " + lastName);
+		label.setAlignment(Label.CENTER);
+		label.setFont(new Font("Arial", Font.BOLD, 12));
+		label.setBounds(0, 0, 165, 24);
+		curPanel.add(label);
+		callPlayerService(1);
+	}
+
+	private boolean checkYearInput() {
+		if (year == null || year.isEmpty()) {
+			JOptionPane.showMessageDialog(null, "You didn't enter a valid year");
+			return true;
+		}
+		for (int i = 0; i < year.length(); i++) {
+			if (!Character.isDigit(year.charAt(i))) {
+				JOptionPane.showMessageDialog(null, "You didn't enter a valid year");
+				return true;
+			}
+		}
+		if (Integer.parseInt(year) < 2000 || Integer.parseInt(year) > 2019) {
+			JOptionPane.showMessageDialog(null, "You didn't enter a valid year");
+			return true;
+		}
+		return false;
+	}
+
+	private void retrieveSeasonInfo(JFormattedTextField formattedTextField, JFormattedTextField formattedTextField_1,
+			JRadioButton rdbtnGame, JRadioButton rdbtnSeason, JRadioButton rdbtnCareer) {
+		curPanel.removeAll();
+		lastName = formattedTextField_1.getText();
+		firstName = formattedTextField.getText();
+		game = rdbtnGame.isSelected();
+		season = rdbtnSeason.isSelected();
+		career = rdbtnCareer.isSelected();
+	}
+
+	private void setCurPanel() {
 		if (openSlot == 1)
 			curPanel = panel_1;
 		else if (openSlot == 2)
@@ -335,71 +407,33 @@ public class PlayerWindow {
 		else if (openSlot == 3)
 			curPanel = panel_3;
 		else {
-			JOptionPane.showMessageDialog(null, "You are at max view");
-			return;
+			curPanel = null;
 		}
-		curPanel.removeAll();
-		lastName = formattedTextField_1.getText();
-		firstName = formattedTextField.getText();
-		game = rdbtnGame.isSelected();
-		season = rdbtnSeason.isSelected();
-		career = rdbtnCareer.isSelected();
+	}
 
-		if (firstName.isEmpty() || lastName.isEmpty()) {
-			JOptionPane.showMessageDialog(null, "You need to enter a first and last name");
-			return;
+	private void displayComparisonSelectionErrors(JRadioButton rdbtnGame, JRadioButton rdbtnSeason,
+			JRadioButton rdbtnCareer) {
+		if(buttonSelection == 1 && (rdbtnCareer.isSelected() || rdbtnSeason.isSelected())) {
+			JOptionPane.showMessageDialog(null, "You must select the same comparison option");
 		}
-
-		if (game) {
-			year = JOptionPane.showInputDialog(frame, "Enter a year (2000 - 2019)");
-			if (year == null || year.isEmpty()) {
-				JOptionPane.showMessageDialog(null, "You didn't enter a valid year");
-				return;
-			}
-			for (int i = 0; i < year.length(); i++) {
-				if (!Character.isDigit(year.charAt(i))) {
-					JOptionPane.showMessageDialog(null, "You didn't enter a valid year");
-					return;
-				}
-			}
-			if (Integer.parseInt(year) < 2000 || Integer.parseInt(year) > 2019) {
-				JOptionPane.showMessageDialog(null, "You didn't enter a valid year");
-				return;
-			}
+		else if(buttonSelection == 2 && (rdbtnCareer.isSelected() || rdbtnGame.isSelected())) {
+			JOptionPane.showMessageDialog(null, "You must select the same comparison option");
 		}
-
-		if (game || season) {
-			choice = new Choice();
-			choice.setBounds(0, 30, 300, 22);
-			btnGo = new JButton("Go");
-			btnGo.setBounds(310, 30, 50, 20);
-			
-			btnGo.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					goButton();
-				}
-			});
-			curPanel.add(choice);
-			curPanel.add(btnGo);
-			curPanel.repaint();
+		else if(buttonSelection == 3 && (rdbtnSeason.isSelected() || rdbtnGame.isSelected())) {
+			JOptionPane.showMessageDialog(null, "You must select the same comparison option");
 		}
+	}
 
-		if (career) {
-			curPanel.repaint();
-			textArea = new TextArea();
-			textArea.setBounds(0, 30, 300, 129);
-			textArea.setEditable(false);
-			curPanel.add(textArea);
-			
+	private void getSelectedButton(JRadioButton rdbtnGame, JRadioButton rdbtnSeason, JRadioButton rdbtnCareer) {
+		if(rdbtnGame.isSelected()){
+			buttonSelection = 1;
 		}
-
-		Label label = new Label(firstName + " " + lastName);
-		label.setAlignment(Label.CENTER);
-		label.setFont(new Font("Arial", Font.BOLD, 12));
-		label.setBounds(0, 0, 165, 24);
-		curPanel.add(label);
-		callPlayerService(1);
+		if(rdbtnSeason.isSelected()) {
+			buttonSelection = 2;
+		}
+		if(rdbtnCareer.isSelected()) {
+			buttonSelection = 3;
+		}
 	}
 	
 	private void clearButton() {
