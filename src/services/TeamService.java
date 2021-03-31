@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
-public class TeamService {
+public class TeamService{
 	private DatabaseConnectionService dbService = null;
 	private String gameID;
 	private ArrayList<String> seasonList;

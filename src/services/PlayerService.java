@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-public class PlayerService {
+public class PlayerService{
 
 	private DatabaseConnectionService dbService = null;
 	private String gameID;
