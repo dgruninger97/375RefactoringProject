@@ -2,28 +2,16 @@ package windows;
 
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-
 import javax.swing.ButtonGroup;
-import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
-import javax.swing.JCheckBox;
-
-import javax.swing.JList;
 import javax.swing.JOptionPane;
-import java.awt.Choice;
 import java.awt.Label;
-import java.awt.TextArea;
-import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import javax.swing.JTextPane;
-
 import services.DatabaseConnectionService;
 import services.PlayerService;
 
