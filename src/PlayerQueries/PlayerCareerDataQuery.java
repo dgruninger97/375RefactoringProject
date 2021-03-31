@@ -1,8 +1,11 @@
-package sodabase.services;
+package PlayerQueries;
 
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.List;
+
+import DatabaseQueries.DatabaseQuery;
+import sodabase.services.DatabaseConnectionService;
 
 public class PlayerCareerDataQuery extends DatabaseQuery {
 	private String firstName;
@@ -23,8 +26,12 @@ public class PlayerCareerDataQuery extends DatabaseQuery {
 	}
 
 	@Override
-	protected List<String> addResultStrings() {
-		// TODO Auto-generated method stub
-		return null;
+	protected List<String> addResultStrings() throws SQLException {
+		while(resultSet.next()) {
+			results.add("Career Points: " + resultSet.getString(3) + "\nCareer Assists: " + resultSet.getString(4)
+					+ "\nCareer Rebounds: " + resultSet.getString(5));
+		}
+		
+		return results;
 	}
 }

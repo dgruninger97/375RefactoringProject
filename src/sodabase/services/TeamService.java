@@ -5,8 +5,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JOptionPane;
+
+import DatabaseQueries.DatabaseQuery;
+import PlayerQueries.PlayerGamesPlayedInSeasonDataQuery;
+import TeamQueries.TeamGameDataQuery;
 
 public class TeamService {
 	private DatabaseConnectionService dbService = null;
@@ -60,24 +65,10 @@ public class TeamService {
 			}
 			return null;
 	}
-	public ArrayList<String> getTeamGameInfo(String teamName, String year, int choiceIndex) {
-		CallableStatement callableStatement = null;
-		try {
-			gameID = gameList.get(choiceIndex).split(":")[0];
-			callableStatement = dbService.getConnection().prepareCall("{?=call team_game_data(?,?,?)}");
-			callableStatement.registerOutParameter(1, Types.INTEGER);
-			callableStatement.setString(2, teamName);
-			callableStatement.setInt(3, Integer.valueOf(year));
-			callableStatement.setInt(4, Integer.valueOf(gameID));
-			ResultSet rs = callableStatement.executeQuery();
-			ArrayList<String> list = new ArrayList<String>();
-			while(rs.next()) {
-				list.add("Game Points For: " + rs.getString(1) + "\nGame Points Against: " + rs.getString(2));
-			}
-			return list;
-		} catch (SQLException e) {
-			return null;
-		}
+	public List<String> getTeamGameInfo(String teamName, String year, int choiceIndex) throws SQLException {
+		gameID = gameList.get(choiceIndex).split(":")[0];
+		DatabaseQuery query = new TeamGameDataQuery(dbService, teamName, year, gameID);
+		return query.getResults();
 	}
 	
 	public ArrayList<String> getTeamSeasonInfo(String teamName, int choiceIndex){

@@ -1,9 +1,12 @@
-package sodabase.services;
+package PlayerQueries;
 
 import java.sql.CallableStatement;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.List;
+
+import DatabaseQueries.DatabaseQuery;
+import sodabase.services.DatabaseConnectionService;
 
 public class PlayerSeasonDataQuery extends DatabaseQuery {
 	private String firstName;
@@ -27,8 +30,12 @@ public class PlayerSeasonDataQuery extends DatabaseQuery {
 	}
 
 	@Override
-	protected List<String> addResultStrings() {
-		// TODO Auto-generated method stub
-		return null;
+	protected List<String> addResultStrings() throws SQLException {
+		while(resultSet.next()) {
+			results.add("Season Points: " + resultSet.getString(1) + "\nSeason Assists: " + resultSet.getString(2)
+					+ "\nSeason Rebounds: " + resultSet.getString(3));
+		}
+		
+		return results;
 	}
 }

@@ -333,14 +333,24 @@ public class PlayerWindow {
 				return;
 			}
 		} else if (methodType == 2) {
-			returnedList = playerServe.getGameInfo(firstName, lastName, choiceIndex);
+			try {
+				returnedList = playerServe.getGameInfo(firstName, lastName, choiceIndex);
+			} catch (SQLException e) {
+				// TODO: Determine best way to handle SQLExceptions from Database Queries
+				e.printStackTrace();
+			}
 			curPanel.removeAll();
 			textArea = new TextArea();
 			textArea.setBounds(0, 30, 310, 129);
 			textArea.setEditable(false);
 			curPanel.add(textArea);
 		} else if (methodType == 3) {
-			returnedList = playerServe.getSeasonInfo(firstName, lastName, choiceIndex);
+			try {
+				returnedList = playerServe.getSeasonInfo(firstName, lastName, choiceIndex);
+			} catch (SQLException e) {
+				// TODO: Determine best way to handle SQLExceptions from Database Queries
+				e.printStackTrace();
+			}
 			curPanel.removeAll();
 			textArea = new TextArea();
 			textArea.setBounds(0, 30, 310, 129);

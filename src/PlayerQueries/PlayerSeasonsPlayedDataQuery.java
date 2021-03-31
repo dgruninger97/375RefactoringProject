@@ -1,8 +1,11 @@
-package sodabase.services;
+package PlayerQueries;
 
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.List;
+
+import DatabaseQueries.DatabaseQuery;
+import sodabase.services.DatabaseConnectionService;
 
 public class PlayerSeasonsPlayedDataQuery extends DatabaseQuery {
 	private String firstName;
