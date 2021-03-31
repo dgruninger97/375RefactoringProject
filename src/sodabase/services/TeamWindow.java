@@ -47,7 +47,7 @@ public class TeamWindow {
 	/**
 	 * Launch the application.
 	 */
-	public static void startWindow(String[] args, DatabaseConnectionService newService) {
+	public static void startWindow(DatabaseConnectionService newService) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -167,7 +167,7 @@ public class TeamWindow {
 				// TODO Auto-generated method stub
 				frame.dispose();
 				NBADatabaseWindow newWin = new NBADatabaseWindow();
-				newWin.main(new String[0], getService());
+				newWin.startMainWindow(getService());
 			}
 		});
 	}
@@ -223,7 +223,7 @@ public class TeamWindow {
 			if (returnedList == null) {
 				JOptionPane.showMessageDialog(null, "Invalid Team, try again.");
 				frame.dispose();
-				startWindow(new String[0], getService());
+				startWindow(getService());
 				return;
 			}
 			if (game || season) {

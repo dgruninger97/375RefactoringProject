@@ -17,7 +17,7 @@ public class Main {
 		DataParser parser = new DataParser();
 		parser.main(args, dbService);
 		NBADatabaseWindow mainWin = new NBADatabaseWindow();
-		mainWin.main(args, dbService);
+		mainWin.startMainWindow(dbService);
 	}
 
 }

@@ -45,19 +45,19 @@ public class PlayerWindow {
 	private JButton btnGo;
 	private JButton backBtn;
 	private int choiceIndex;
-	private static PlayerService playerServe;
+	private static PlayerService playerService;
 	private int buttonSelection = -1;
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args, DatabaseConnectionService dbService) {
+	public static void startWindow(DatabaseConnectionService dbService) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					PlayerWindow window = new PlayerWindow();
 					window.setService(dbService);
 					window.frame.setVisible(true);
-					playerServe = new PlayerService(dbService);
+					playerService = new PlayerService(dbService);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -84,13 +84,13 @@ public class PlayerWindow {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		setupFramePane();
+		setUpFrame();
+		JFormattedTextField firstNameTextField = createFirstNameSearchBox();
+		JFormattedTextField lastNameTextField = createLastNameSearchBox();
 		setupNameButtons();
 		JButton btnSearch = createSearchButton();
-		JFormattedTextField formattedTextField = createFirstNameSearchBox();
-		JFormattedTextField formattedTextField_1 = createLastNameSearchBox();
-		setFramePanelBoundaries();
-		setupRadialButtons(btnSearch, formattedTextField, formattedTextField_1);
+		setupPanels();
+		setupRadialButtons(btnSearch, firstNameTextField, lastNameTextField);
 		setupClearButton();
 		setupHomeButton();
 		setupAddButton();
@@ -117,13 +117,11 @@ public class PlayerWindow {
 		btnHomeButton.setBounds(12, 4, 67, 20);
 		frame.getContentPane().add(btnHomeButton);
 		btnHomeButton.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				frame.dispose();
 				NBADatabaseWindow newWin = new NBADatabaseWindow();
-				newWin.main(new String[0], getService());
+				newWin.startMainWindow(getService());
 			}
 		});
 		return btnHomeButton;
@@ -133,12 +131,9 @@ public class PlayerWindow {
 		JButton btnClearAll = new JButton("Clear All");
 		btnClearAll.setBounds(356, 72, 97, 25);
 		frame.getContentPane().add(btnClearAll);
-
 		btnClearAll.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				clearButton();
 			}
 
@@ -147,32 +142,41 @@ public class PlayerWindow {
 
 	private void setupRadialButtons(JButton btnSearch, JFormattedTextField formattedTextField,
 			JFormattedTextField formattedTextField_1) {
-		JRadioButton rdbtnGame = new JRadioButton("Game");
-		rdbtnGame.setBounds(18, 72, 61, 25);
-		frame.getContentPane().add(rdbtnGame);
-
-		JRadioButton rdbtnSeason = new JRadioButton("Season");
-		rdbtnSeason.setBounds(117, 72, 71, 25);
-		frame.getContentPane().add(rdbtnSeason);
-
-		JRadioButton rdbtnCareer = new JRadioButton("Career");
-		rdbtnCareer.setBounds(237, 72, 76, 25);
-		frame.getContentPane().add(rdbtnCareer);
+		JRadioButton rdbtnGame = setupGameRadialButton();
+		JRadioButton rdbtnSeason = setupSeasonRadialButton();
+		JRadioButton rdbtnCareer = setupCareerRadialButton();
 		ButtonGroup group = new ButtonGroup();
-
 		group.add(rdbtnGame);
 		group.add(rdbtnSeason);
 		group.add(rdbtnCareer);
 		rdbtnGame.setSelected(true);
-
 		btnSearch.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				searchButton(formattedTextField, formattedTextField_1, rdbtnGame, rdbtnSeason, rdbtnCareer);
-
 			}
 		});
+	}
+
+	private JRadioButton setupCareerRadialButton() {
+		JRadioButton rdbtnCareer = new JRadioButton("Career");
+		rdbtnCareer.setBounds(237, 72, 76, 25);
+		frame.getContentPane().add(rdbtnCareer);
+		return rdbtnCareer;
+	}
+
+	private JRadioButton setupSeasonRadialButton() {
+		JRadioButton rdbtnSeason = new JRadioButton("Season");
+		rdbtnSeason.setBounds(117, 72, 71, 25);
+		frame.getContentPane().add(rdbtnSeason);
+		return rdbtnSeason;
+	}
+
+	private JRadioButton setupGameRadialButton() {
+		JRadioButton rdbtnGame = new JRadioButton("Game");
+		rdbtnGame.setBounds(18, 72, 61, 25);
+		frame.getContentPane().add(rdbtnGame);
+		return rdbtnGame;
 	}
 
 	private JButton createSearchButton() {
@@ -196,7 +200,7 @@ public class PlayerWindow {
 		return formattedTextField;
 	}
 
-	private void setFramePanelBoundaries() {
+	private void setupPanels() {
 		panel_1 = new JPanel();
 		panel_1.setBounds(5, 110, 400, 328);
 		frame.getContentPane().add(panel_1);
@@ -222,7 +226,7 @@ public class PlayerWindow {
 		frame.getContentPane().add(lblLastName);
 	}
 
-	private void setupFramePane() {
+	private void setUpFrame() {
 		frame = new JFrame();
 		frame.setResizable(false);
 		frame.setBounds(100, 100, 1225, 630);
@@ -233,7 +237,7 @@ public class PlayerWindow {
 	protected void callPlayerService(int methodType) {
 		// TODO Auto-generated method stub
 		if (methodType == 1) {
-			returnedList = playerServe.getPlayerInformation(firstName, lastName, game, season, career, (String) year, 0);
+			returnedList = playerService.getPlayerInformation(firstName, lastName, game, season, career, (String) year, 0);
 			if (returnedList == null) {
 				JOptionPane.showMessageDialog(null, "Invalid Entry, try again.");
 				curPanel.removeAll();
@@ -247,14 +251,14 @@ public class PlayerWindow {
 				return;
 			}
 		} else if (methodType == 2) {
-			returnedList = playerServe.getGameInfo(firstName, lastName, choiceIndex);
+			returnedList = playerService.getGameInfo(firstName, lastName, choiceIndex);
 			curPanel.removeAll();
 			textArea = new TextArea();
 			textArea.setBounds(0, 30, 310, 129);
 			textArea.setEditable(false);
 			curPanel.add(textArea);
 		} else if (methodType == 3) {
-			returnedList = playerServe.getSeasonInfo(firstName, lastName, choiceIndex);
+			returnedList = playerService.getSeasonInfo(firstName, lastName, choiceIndex);
 			curPanel.removeAll();
 			textArea = new TextArea();
 			textArea.setBounds(0, 30, 310, 129);
@@ -293,12 +297,10 @@ public class PlayerWindow {
 		curPanel.add(backBtn);
 		curPanel.repaint();
 		backBtn.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				backButton();
 			}
-
 		});
 	}
 	
@@ -377,8 +379,6 @@ public class PlayerWindow {
 				public void actionPerformed(ActionEvent e) {
 					goButton();
 				}
-
-
 			});
 			curPanel.add(choice);
 			curPanel.add(btnGo);
