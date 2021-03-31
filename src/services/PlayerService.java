@@ -1,4 +1,4 @@
-package sodabase.services;
+package services;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -10,7 +10,7 @@ import PlayerQueries.PlayerGamesPlayedInSeasonDataQuery;
 import PlayerQueries.PlayerSeasonDataQuery;
 import PlayerQueries.PlayerSeasonsPlayedDataQuery;
 
-public class PlayerService {
+public class PlayerService{
 	private DatabaseConnectionService dbService = null;
 	private String seasonYear;
 

@@ -1,4 +1,4 @@
-package sodabase.services;
+package windows;
 
 import java.awt.EventQueue;
 
@@ -10,6 +10,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.SwingConstants;
+
+import services.DatabaseConnectionService;
+
 import javax.swing.JTextArea;
 import javax.swing.JLabel;
 
@@ -21,7 +24,7 @@ public class NBADatabaseWindow {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args, DatabaseConnectionService dbService) {
+	public static void startMainWindow(DatabaseConnectionService dbService) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -73,7 +76,7 @@ public class NBADatabaseWindow {
 				// TODO Auto-generated method stub
 				frame.dispose();
 				PlayerWindow pw = new PlayerWindow();
-				pw.main(new String[0], getService());
+				pw.startWindow(getService());
 			}
 		});
 	}
@@ -89,7 +92,7 @@ public class NBADatabaseWindow {
 				// TODO Auto-generated method stub
 				frame.dispose();
 				TeamWindow tw = new TeamWindow();
-				tw.main(new String[0], getService());
+				tw.startWindow(getService());
 			}
 		});
 	}
