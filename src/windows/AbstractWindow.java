@@ -226,16 +226,17 @@ public abstract class AbstractWindow {
 	}
 	
 	
-	protected void promptForYear() {
+	protected boolean promptForYear() {
 		if (gameIsSelected) {
 			year = JOptionPane.showInputDialog(frame, "Enter a year (2000 - 2019)");
 			if(checkYearInput()) {
-				return;
+				return true;
 			}
 		}
 		if (gameIsSelected || seasonIsSelected) {
 			setUpChoiceWindow();
 		}
+		return false;
 	}
 	
 	protected void getGameAndSeasonSelections(JRadioButton rdbtnGame, JRadioButton rdbtnSeason) {
