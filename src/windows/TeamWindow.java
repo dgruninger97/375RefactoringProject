@@ -1,4 +1,4 @@
-package sodabase.services;
+package windows;
 
 import java.awt.Choice;
 import java.awt.EventQueue;
@@ -8,6 +8,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+
+import services.DatabaseConnectionService;
+import services.TeamService;
 
 import java.awt.Font;
 import java.awt.Label;

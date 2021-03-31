@@ -1,4 +1,4 @@
-package sodabase.services;
+package windows;
 
 import java.awt.EventQueue;
 
@@ -10,6 +10,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.SwingConstants;
+
+import services.DatabaseConnectionService;
+
 import javax.swing.JTextArea;
 import javax.swing.JLabel;
 

@@ -4,10 +4,10 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
 
-import sodabase.services.DatabaseConnectionService;
-import sodabase.services.NBADatabaseWindow;
-import sodabase.services.PlayerService;
+import services.DatabaseConnectionService;
+import services.PlayerService;
 import sodabase.ui.ApplicationRunner;
+import windows.NBADatabaseWindow;
 
 public class Main {
 

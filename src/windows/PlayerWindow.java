@@ -1,4 +1,4 @@
-package sodabase.services;
+package windows;
 
 import java.awt.EventQueue;
 
@@ -23,6 +23,9 @@ import java.awt.TextArea;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextPane;
+
+import services.DatabaseConnectionService;
+import services.PlayerService;
 
 public class PlayerWindow {
 

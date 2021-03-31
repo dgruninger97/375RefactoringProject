@@ -7,7 +7,7 @@ import java.sql.Types;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
-import sodabase.services.DatabaseConnectionService;
+import services.DatabaseConnectionService;
 
 public class DataParser {
 	// Rename and get rid of String[] args
