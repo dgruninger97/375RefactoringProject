@@ -113,7 +113,6 @@ public abstract class AbstractWindow {
 		for (int i = 0; i < returnedList.size(); i++) {
 			careerInfo += returnedList.get(i);
 		}
-		displayInfo();
 		textArea.setText(careerInfo);
 		Label label = new Label(labelText);
 		label.setAlignment(Label.CENTER);

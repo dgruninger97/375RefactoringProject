@@ -135,6 +135,7 @@ public class PlayerWindow extends AbstractWindow{
 				return;
 			}
 			getAvailableYears();
+			return;
 		} else if (methodType == 2) {
 			retrieveGameInfo();
 		} else if (methodType == 3) {
