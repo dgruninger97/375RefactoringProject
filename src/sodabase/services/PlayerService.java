@@ -31,6 +31,7 @@ public class PlayerService {
 		} catch (SQLException e) {
 			return null;
 		}
+		
 		return null;
 	}
 

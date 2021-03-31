@@ -14,7 +14,9 @@ import java.awt.Label;
 import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JFormattedTextField;
 import javax.swing.JCheckBox;
@@ -32,7 +34,7 @@ public class TeamWindow {
 	private Choice choice;
 	private TextArea textArea;
 	private DatabaseConnectionService dbService;
-	private ArrayList<String> returnedList;
+	private List<String> returnedList;
 	private JPanel panel_1;
 	private JPanel panel_2;
 	private JPanel panel_3;
@@ -316,14 +318,24 @@ public class TeamWindow {
 				return;
 			}
 		}else if (methodType == 2) {
-			returnedList = teamService.getTeamGameInfo(teamName, year, choiceIndex);
+			try {
+				returnedList = teamService.getTeamGameInfo(teamName, year, choiceIndex);
+			} catch (SQLException e) {
+				// TODO: Determine best way to handle SQLExceptions from Database Queries
+				e.printStackTrace();
+			}
 			curPanel.removeAll();
 			textArea = new TextArea();
 			textArea.setBounds(0, 30, 310, 129);
 			textArea.setEditable(false);
 			curPanel.add(textArea);
 		} else if (methodType == 3) {
-			returnedList = teamService.getTeamSeasonInfo(teamName, choiceIndex);
+			try {
+				returnedList = teamService.getTeamSeasonInfo(teamName, choiceIndex);
+			} catch (SQLException e) {
+				// TODO: Determine best way to handle SQLExceptions from Database Queries
+				e.printStackTrace();
+			}
 			curPanel.removeAll();
 			textArea = new TextArea();
 			textArea.setBounds(0, 30, 310, 129);
