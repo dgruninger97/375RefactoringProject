@@ -226,16 +226,17 @@ public abstract class AbstractWindow {
 	}
 	
 	
-	protected void promptForYear() {
+	protected boolean promptForYear() {
 		if (gameIsSelected) {
 			year = JOptionPane.showInputDialog(frame, "Enter a year (2000 - 2019)");
 			if(checkYearInput()) {
-				return;
+				return true;
 			}
 		}
 		if (gameIsSelected || seasonIsSelected) {
 			setUpChoiceWindow();
 		}
+		return false;
 	}
 	
 	protected void getGameAndSeasonSelections(JRadioButton rdbtnGame, JRadioButton rdbtnSeason) {
@@ -321,5 +322,17 @@ public abstract class AbstractWindow {
 		rdbtnCareer.setBounds(237, 72, 76, 25);
 		frame.getContentPane().add(rdbtnCareer);
 		return rdbtnCareer;
+	}
+	
+	protected void getSelectedButton(JRadioButton rdbtnGame, JRadioButton rdbtnSeason, JRadioButton rdbtnOverall) {
+		if(rdbtnGame.isSelected()){
+			buttonSelection = 1;
+		}
+		if(rdbtnSeason.isSelected()) {
+			buttonSelection = 2;
+		}
+		if(rdbtnOverall.isSelected()) {
+			buttonSelection = 3;
+		}
 	}
 }

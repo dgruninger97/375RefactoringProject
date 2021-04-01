@@ -188,16 +188,5 @@ public class TeamWindow extends AbstractWindow {
 		}
 	}
 
-	private void getSelectedButton(JRadioButton rdbtnGame, JRadioButton rdbtnSeason, JRadioButton rdbtnFranchise) {
-		if (rdbtnGame.isSelected()) {
-			buttonSelection = 1;
-		}
-		if (rdbtnSeason.isSelected()) {
-			buttonSelection = 2;
-		}
-		if (rdbtnFranchise.isSelected()) {
-			buttonSelection = 3;
-		}
-	}
 
 }
