@@ -7,6 +7,7 @@ import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -28,7 +29,7 @@ public abstract class AbstractWindow {
 	private JButton backBtn;
 	private TextArea textArea;
 	private Choice choice;
-	private ArrayList<String> returnedList;
+	private List<String> returnedList;
 	private DatabaseConnectionService dbService;
 	private int choiceIndex;
 	private boolean gameIsSelected;
@@ -174,7 +175,7 @@ public abstract class AbstractWindow {
 		return choice.getSelectedIndex();
 	}
 	
-	protected void setReturnedList(ArrayList<String> stringList) {
+	protected void setReturnedList(List<String> stringList) {
 		returnedList = stringList;
 	}
 	

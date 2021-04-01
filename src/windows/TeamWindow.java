@@ -11,6 +11,8 @@ import java.awt.Font;
 import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+
 import javax.swing.JFormattedTextField;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -121,12 +123,22 @@ public class TeamWindow extends AbstractWindow {
 	}
 	
 	private void retrieveSeasonInfo() {
-		super.setReturnedList(teamService.getTeamSeasonInfo(teamName, super.getSelectedIndex()));
+		try {
+			super.setReturnedList(teamService.getTeamSeasonInfo(teamName, super.getSelectedIndex()));
+		} catch (SQLException e) {
+			// TODO Figure out the best way to respond to SQLExceptions
+			e.printStackTrace();
+		}
 		super.displayInfo();
 	}
 
 	private void retrieveGameInfo() {
-		super.setReturnedList(teamService.getTeamGameInfo(teamName, super.getYear(), super.getSelectedIndex()));
+		try {
+			super.setReturnedList(teamService.getTeamGameInfo(teamName, super.getYear(), super.getSelectedIndex()));
+		} catch (SQLException e) {
+			// TODO Figure out the best way to respond to SQLExceptions
+			e.printStackTrace();
+		}
 		super.displayInfo();
 	}
 	@Override
