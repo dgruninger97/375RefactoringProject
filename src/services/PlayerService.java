@@ -20,9 +20,10 @@ public class PlayerService{
 
 	public List<String> getPlayerInformation(String firstName, String lastName, boolean game, boolean season,
 			boolean career, String year, int choiceIndex) {
+		seasonYear = year;
+		
 		try {
 			if (game) {
-				seasonYear = year;
 				return getPlayerGameInformation(firstName, lastName, year, choiceIndex);
 			} else if (season) {
 				return getPlayerSeasonInformation(firstName, lastName, choiceIndex);
