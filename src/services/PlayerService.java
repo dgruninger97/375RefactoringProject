@@ -22,6 +22,7 @@ public class PlayerService{
 			boolean career, String year, int choiceIndex) {
 		try {
 			if (game) {
+				seasonYear = year;
 				return getPlayerGameInformation(firstName, lastName, year, choiceIndex);
 			} else if (season) {
 				return getPlayerSeasonInformation(firstName, lastName, choiceIndex);
