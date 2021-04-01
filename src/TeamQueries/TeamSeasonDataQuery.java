@@ -5,7 +5,7 @@ import java.sql.Types;
 import java.util.List;
 
 import DatabaseQueries.DatabaseQuery;
-import sodabase.services.DatabaseConnectionService;
+import services.DatabaseConnectionService;
 
 public class TeamSeasonDataQuery extends DatabaseQuery {
 	private String teamName;

@@ -6,6 +6,8 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
@@ -139,12 +141,22 @@ public class PlayerWindow extends AbstractWindow{
 	}
 
 	private void retrieveSeasonInfo() {
-		super.setReturnedList(playerService.getSeasonInfo(firstName, lastName, super.getSelectedIndex()));
+		try {
+			super.setReturnedList(playerService.getSeasonInfo(firstName, lastName, super.getSelectedIndex()));
+		} catch (SQLException e) {
+			// TODO Figure out the best way to respond to SQLExceptions
+			e.printStackTrace();
+		}
 		super.displayInfo();
 	}
 
 	private void retrieveGameInfo() {
-		super.setReturnedList(playerService.getGameInfo(firstName, lastName, super.getSelectedIndex()));
+		try {
+			super.setReturnedList(playerService.getGameInfo(firstName, lastName, super.getSelectedIndex()));
+		} catch (SQLException e) {
+			// TODO Figure out the best way to respond to SQLExceptions
+			e.printStackTrace();
+		}
 		super.displayInfo();
 	}
 	@Override

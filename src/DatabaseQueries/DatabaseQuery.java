@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import sodabase.services.DatabaseConnectionService;
+import services.DatabaseConnectionService;
 
 public abstract class DatabaseQuery {
 	protected DatabaseConnectionService dbService;
