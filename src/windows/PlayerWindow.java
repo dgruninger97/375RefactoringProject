@@ -18,12 +18,9 @@ import services.DatabaseConnectionService;
 import services.PlayerService;
 
 public class PlayerWindow extends AbstractWindow{
-
-
 	private String firstName;
 	private String lastName;
 	private boolean careerIsSelected;
-
 	private static PlayerService playerService;
 	private int buttonSelection = -1;
 	/**
@@ -125,6 +122,9 @@ public class PlayerWindow extends AbstractWindow{
 				return;
 			}
 			getAvailableYears();
+			if(careerIsSelected) {
+				retrieveCareerInfo();
+			}
 			return;
 		} else if (methodType == 2) {
 			retrieveGameInfo();
@@ -169,7 +169,7 @@ public class PlayerWindow extends AbstractWindow{
 		if(buttonSelection == -1) {
 			getSelectedButton(rdbtnGame, rdbtnSeason, rdbtnCareer);
 		}else{
-			displayComparisonSelectionErrors(rdbtnGame, rdbtnSeason, rdbtnCareer);
+//			displayComparisonSelectionErrors(rdbtnGame, rdbtnSeason, rdbtnCareer);
 			return;
 		}
 		setCurrentPanel();
@@ -178,7 +178,9 @@ public class PlayerWindow extends AbstractWindow{
 			JOptionPane.showMessageDialog(null, "You need to enter a first and last name");
 			return;
 		}
-		promptForYear();
+		while(promptForYear()) {
+
+		}
 		if (careerIsSelected) {
 			setUpCareerInfoArea();
 		}
@@ -217,29 +219,18 @@ public class PlayerWindow extends AbstractWindow{
 		careerIsSelected = rdbtnCareer.isSelected();
 	}
 
-	private void displayComparisonSelectionErrors(JRadioButton rdbtnGame, JRadioButton rdbtnSeason,
-			JRadioButton rdbtnCareer) {
-		if(buttonSelection == 1 && (rdbtnCareer.isSelected() || rdbtnSeason.isSelected())) {
-			JOptionPane.showMessageDialog(null, "You must select the same comparison option");
-		}
-		else if(buttonSelection == 2 && (rdbtnCareer.isSelected() || rdbtnGame.isSelected())) {
-			JOptionPane.showMessageDialog(null, "You must select the same comparison option");
-		}
-		else if(buttonSelection == 3 && (rdbtnSeason.isSelected() || rdbtnGame.isSelected())) {
-			JOptionPane.showMessageDialog(null, "You must select the same comparison option");
-		}
-	}
+//	private void displayComparisonSelectionErrors(JRadioButton rdbtnGame, JRadioButton rdbtnSeason,
+//			JRadioButton rdbtnCareer) {
+//		if(buttonSelection == 1 && (rdbtnCareer.isSelected() || rdbtnSeason.isSelected())) {
+//			JOptionPane.showMessageDialog(null, "You must select the same comparison option");
+//		}
+//		else if(buttonSelection == 2 && (rdbtnCareer.isSelected() || rdbtnGame.isSelected())) {
+//			JOptionPane.showMessageDialog(null, "You must select the same comparison option");
+//		}
+//		else if(buttonSelection == 3 && (rdbtnSeason.isSelected() || rdbtnGame.isSelected())) {
+//			JOptionPane.showMessageDialog(null, "You must select the same comparison option");
+//		}
+//	}
 
-	private void getSelectedButton(JRadioButton rdbtnGame, JRadioButton rdbtnSeason, JRadioButton rdbtnCareer) {
-		if(rdbtnGame.isSelected()){
-			buttonSelection = 1;
-		}
-		if(rdbtnSeason.isSelected()) {
-			buttonSelection = 2;
-		}
-		if(rdbtnCareer.isSelected()) {
-			buttonSelection = 3;
-		}
-	}
 	
 }
