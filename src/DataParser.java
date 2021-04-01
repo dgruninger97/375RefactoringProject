@@ -13,6 +13,7 @@ public class DataParser {
 	// Rename and get rid of String[] args
 	public static void main(String[] args, DatabaseConnectionService dbService) {
 		String fileName = "DataSheet.csv";
+		clearDatabase(dbService);
 		File file = new File(fileName);
 		try {
 			Scanner inputStream = new Scanner(file);
@@ -22,6 +23,52 @@ public class DataParser {
 			}
 			inputStream.close();
 		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private static void clearDatabase(DatabaseConnectionService dbService) {
+		CallableStatement callableStatement;
+		try {
+			callableStatement = dbService.getConnection()
+					.prepareCall("Delete * from Team");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		try {
+			callableStatement = dbService.getConnection()
+					.prepareCall("Delete * from Player");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		try {
+			callableStatement = dbService.getConnection()
+					.prepareCall("Delete * from Game");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		try {
+			callableStatement = dbService.getConnection()
+					.prepareCall("Delete * from On_A");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		try {
+			callableStatement = dbService.getConnection()
+					.prepareCall("Delete * from Plays_A");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		try {
+			callableStatement = dbService.getConnection()
+					.prepareCall("Delete * from Plays_In");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		try {
+			callableStatement = dbService.getConnection()
+					.prepareCall("Delete * from Season");
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
