@@ -323,4 +323,16 @@ public abstract class AbstractWindow {
 		frame.getContentPane().add(rdbtnCareer);
 		return rdbtnCareer;
 	}
+	
+	protected void getSelectedButton(JRadioButton rdbtnGame, JRadioButton rdbtnSeason, JRadioButton rdbtnOverall) {
+		if(rdbtnGame.isSelected()){
+			buttonSelection = 1;
+		}
+		if(rdbtnSeason.isSelected()) {
+			buttonSelection = 2;
+		}
+		if(rdbtnOverall.isSelected()) {
+			buttonSelection = 3;
+		}
+	}
 }

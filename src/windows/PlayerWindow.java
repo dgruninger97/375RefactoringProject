@@ -16,12 +16,9 @@ import services.DatabaseConnectionService;
 import services.PlayerService;
 
 public class PlayerWindow extends AbstractWindow{
-
-
 	private String firstName;
 	private String lastName;
 	private boolean careerIsSelected;
-
 	private static PlayerService playerService;
 	private int buttonSelection = -1;
 	/**
@@ -123,6 +120,9 @@ public class PlayerWindow extends AbstractWindow{
 				return;
 			}
 			getAvailableYears();
+			if(careerIsSelected) {
+				retrieveCareerInfo();
+			}
 			return;
 		} else if (methodType == 2) {
 			retrieveGameInfo();
@@ -220,16 +220,5 @@ public class PlayerWindow extends AbstractWindow{
 //		}
 //	}
 
-	private void getSelectedButton(JRadioButton rdbtnGame, JRadioButton rdbtnSeason, JRadioButton rdbtnCareer) {
-		if(rdbtnGame.isSelected()){
-			buttonSelection = 1;
-		}
-		if(rdbtnSeason.isSelected()) {
-			buttonSelection = 2;
-		}
-		if(rdbtnCareer.isSelected()) {
-			buttonSelection = 3;
-		}
-	}
 	
 }
