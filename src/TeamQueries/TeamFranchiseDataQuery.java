@@ -29,4 +29,9 @@ public class TeamFranchiseDataQuery extends DatabaseQuery {
 		}
 		return results;
 	}
+
+	@Override
+	protected String queryToString() {
+		return "view_team_franchise(" + teamName + ")";
+	}
 }
