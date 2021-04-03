@@ -33,4 +33,9 @@ public class TeamGamesPlayedDataQuery extends DatabaseQuery {
 		
 		return results;
 	}
+
+	@Override
+	protected String queryToString() {
+		return null;
+	}
 }

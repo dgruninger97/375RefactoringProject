@@ -34,4 +34,9 @@ public class PlayerCareerDataQuery extends DatabaseQuery {
 		
 		return results;
 	}
+
+	@Override
+	protected String queryToString() {
+		return "view_player_career(" + firstName + "," + lastName + ")";
+	}
 }

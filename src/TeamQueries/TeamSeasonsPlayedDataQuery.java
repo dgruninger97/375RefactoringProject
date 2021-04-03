@@ -29,4 +29,9 @@ public class TeamSeasonsPlayedDataQuery extends DatabaseQuery {
 		}
 		return results;
 	}
+
+	@Override
+	protected String queryToString() {
+		return null;
+	}
 }
