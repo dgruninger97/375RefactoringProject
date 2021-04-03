@@ -37,4 +37,9 @@ public class PlayerGameDataQuery extends DatabaseQuery {
 		
 		return results;
 	}
+
+	@Override
+	protected String queryToString() {
+		return "player_game_data(" + firstName + "," + lastName + "," + gameID + ")";
+	}
 }
