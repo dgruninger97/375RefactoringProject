@@ -20,7 +20,8 @@ import TeamQueries.TeamSeasonsPlayedDataQuery;
 public class TeamService {
 	private DatabaseConnectionService dbService = null;
 	private String gameID;
-	private ArrayList<String> seasonList;
+	private List<String> seasonList;
+	private List<String> gameList;
 
 	public TeamService(DatabaseConnectionService dbService) {
 		this.dbService = dbService;
@@ -30,9 +31,12 @@ public class TeamService {
 			boolean career, String year, int choiceIndex) {
 		try {
 			if (game) {
-				return getTeamGamesPlayedInfo(teamName, year);
+				gameList = getTeamGamesPlayedInfo(teamName, year);
+				gameID = gameList.get(choiceIndex).split(":")[0];
+				return gameList;
 			} else if (season) {
-				return getTeamSeasonsPlayedInfo(teamName);
+				seasonList = getTeamSeasonsPlayedInfo(teamName);
+				return seasonList;
 			} else if (career) {
 				return getTeamFranchiseInfo(teamName);
 			}
@@ -59,6 +63,7 @@ public class TeamService {
 	}
 	
 	public List<String> getTeamGameInfo(String teamName, String year, int choiceIndex) throws SQLException {
+		gameID = gameList.get(choiceIndex).split(":")[0];
 		DatabaseQuery query = new TeamGameDataQuery(dbService, teamName, year, gameID);
 		return query.getResults();
 	}

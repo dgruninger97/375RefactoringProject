@@ -10,13 +10,13 @@ import services.DatabaseConnectionService;
 public class PlayerGameDataQuery extends DatabaseQuery {
 	private String firstName;
 	private String lastName;
-	private String seasonYear;
+	private String gameID;
 	
-	public PlayerGameDataQuery(DatabaseConnectionService dbService, String firstName, String lastName, String seasonYear) {
+	public PlayerGameDataQuery(DatabaseConnectionService dbService, String firstName, String lastName, String gameID) {
 		super(dbService);
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.seasonYear = seasonYear;
+		this.gameID = gameID;
 	}
 
 	@Override
@@ -25,7 +25,7 @@ public class PlayerGameDataQuery extends DatabaseQuery {
 		callableStatement.registerOutParameter(1, Types.INTEGER);
 		callableStatement.setString(2, firstName);
 		callableStatement.setString(3, lastName);
-		callableStatement.setInt(4, Integer.valueOf(seasonYear));
+		callableStatement.setInt(4, Integer.valueOf(gameID));
 	}
 
 	@Override
