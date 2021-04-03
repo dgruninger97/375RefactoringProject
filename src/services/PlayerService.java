@@ -1,6 +1,7 @@
 package services;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import DatabaseQueries.DatabaseQuery;
@@ -13,9 +14,12 @@ import PlayerQueries.PlayerSeasonsPlayedDataQuery;
 public class PlayerService{
 	private DatabaseConnectionService dbService = null;
 	private String seasonYear;
+	private List<String> gameList;
+	private String gameID;
 
 	public PlayerService(DatabaseConnectionService dbService) {
 		this.dbService = dbService;
+		this.gameList = new ArrayList<String>();
 	}
 
 	public List<String> getPlayerInformation(String firstName, String lastName, boolean game, boolean season,
@@ -24,7 +28,9 @@ public class PlayerService{
 		
 		try {
 			if (game) {
-				return getPlayerGameInformation(firstName, lastName, year, choiceIndex);
+				gameList = getPlayerGameInformation(firstName, lastName, year, choiceIndex);
+				gameID = gameList.get(choiceIndex).split(":")[0];
+				return gameList;
 			} else if (season) {
 				return getPlayerSeasonInformation(firstName, lastName, choiceIndex);
 			} else if (career) {
@@ -53,7 +59,8 @@ public class PlayerService{
 	}
 
 	public List<String> getGameInfo(String firstName, String lastName, int choiceIndex) throws SQLException {
-		DatabaseQuery query = new PlayerGameDataQuery(dbService, firstName, lastName, seasonYear);
+		String gameID = gameList.get(choiceIndex).split(":")[0];
+		DatabaseQuery query = new PlayerGameDataQuery(dbService, firstName, lastName, gameID);
 		return query.getResults();
 	}
 
