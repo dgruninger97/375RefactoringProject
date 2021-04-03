@@ -36,6 +36,6 @@ public class PlayerSeasonsPlayedDataQuery extends DatabaseQuery {
 
 	@Override
 	protected String queryToString() {
-		return null;
+		return "view_player_season(" + firstName + "," + lastName + ")";
 	}
 }

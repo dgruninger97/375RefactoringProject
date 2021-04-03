@@ -28,9 +28,9 @@ public abstract class DatabaseQuery {
 		try {
 			resultSet = runQuery();
 			results = addResultStrings();
-			logger.log("SUCCESS: " + queryToString() + Instant.now().toString());
+			logger.log("SUCCESS: " + queryToString() + " " + Instant.now().toString());
 		} catch (SQLException sqlException) {
-			logger.log("ERROR: " + queryToString() + Instant.now().toString());
+			logger.log("ERROR: " + queryToString() + " " + Instant.now().toString());
 			throw sqlException;
 		}
 		

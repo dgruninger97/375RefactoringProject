@@ -40,6 +40,6 @@ public class PlayerGameDataQuery extends DatabaseQuery {
 
 	@Override
 	protected String queryToString() {
-		return null;
+		return "player_game_data(" + firstName + "," + lastName + "," + gameID + ")";
 	}
 }

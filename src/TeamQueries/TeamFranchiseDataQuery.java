@@ -32,6 +32,6 @@ public class TeamFranchiseDataQuery extends DatabaseQuery {
 
 	@Override
 	protected String queryToString() {
-		return null;
+		return "view_team_franchise(" + teamName + ")";
 	}
 }

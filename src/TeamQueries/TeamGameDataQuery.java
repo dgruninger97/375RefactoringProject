@@ -39,7 +39,7 @@ public class TeamGameDataQuery extends DatabaseQuery {
 
 	@Override
 	protected String queryToString() {
-		return null;
+		return "team_game_data(" + teamName + "," + year + "," + gameID + ")";
 	}
 
 }

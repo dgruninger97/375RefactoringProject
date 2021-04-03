@@ -36,6 +36,6 @@ public class TeamSeasonDataQuery extends DatabaseQuery {
 
 	@Override
 	protected String queryToString() {
-		return null;
+		return "team_season_data(" + teamName + "," + year + ")";
 	}
 }
