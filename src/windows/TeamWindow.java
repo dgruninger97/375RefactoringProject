@@ -130,7 +130,7 @@ public class TeamWindow extends AbstractWindow {
 			// TODO Figure out the best way to respond to SQLExceptions
 			e.printStackTrace();
 		}
-		super.displayInfo();
+		super.displayInfo(teamName);
 	}
 
 	private void retrieveGameInfo() {
@@ -140,7 +140,7 @@ public class TeamWindow extends AbstractWindow {
 			// TODO Figure out the best way to respond to SQLExceptions
 			e.printStackTrace();
 		}
-		super.displayInfo();
+		super.displayInfo(teamName);
 	}
 	@Override
 	protected void backButton() {
@@ -151,9 +151,6 @@ public class TeamWindow extends AbstractWindow {
 			JFormattedTextField formattedTextField) {
 		if (buttonSelection == -1) {
 			getSelectedButton(rdbtnGame, rdbtnSeason, rdbtnFranchise);
-		} else {
-			displayErrorMessage(rdbtnGame, rdbtnSeason, rdbtnFranchise);
-			return;
 		}
 		setCurrentPanel();
 		getSearchValues(rdbtnGame, rdbtnSeason, rdbtnFranchise, formattedTextField);
@@ -161,7 +158,9 @@ public class TeamWindow extends AbstractWindow {
 			JOptionPane.showMessageDialog(null, "You need to enter a team name");
 			return;
 		}
-		promptForYear();
+		if(promptForYear()) {
+			return;
+		}
 		setUpFranchiseView();
 		callService(1);
 	}
@@ -187,19 +186,7 @@ public class TeamWindow extends AbstractWindow {
 //			textArea.setBounds(0, 30, 310, 129);
 //			textArea.setEditable(false);
 //			curPanel.add(textArea);
-			super.displayInfo();
+			super.displayInfo(teamName);
 		}
 	}
-
-	private void displayErrorMessage(JRadioButton rdbtnGame, JRadioButton rdbtnSeason, JRadioButton rdbtnFranchise) {
-		if (buttonSelection == 1 && (rdbtnFranchise.isSelected() || rdbtnSeason.isSelected())) {
-			JOptionPane.showMessageDialog(null, "You must select the same comparison option");
-		} else if (buttonSelection == 2 && (rdbtnFranchise.isSelected() || rdbtnGame.isSelected())) {
-			JOptionPane.showMessageDialog(null, "You must select the same comparison option");
-		} else if (buttonSelection == 3 && (rdbtnSeason.isSelected() || rdbtnGame.isSelected())) {
-			JOptionPane.showMessageDialog(null, "You must select the same comparison option");
-		}
-	}
-
-
 }

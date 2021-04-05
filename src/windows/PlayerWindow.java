@@ -116,18 +116,22 @@ public class PlayerWindow extends AbstractWindow{
 	
 	@Override
 	protected void callService(int methodType) {
-		super.setReturnedList(playerService.getPlayerInformation(firstName, lastName, super.getGameSelected(), super.getSeasonSelected(), careerIsSelected, super.getYear(), 0));
-		if(checkInvalidEntry()) {
+		if (methodType == 1) {
+			
+			super.setReturnedList(playerService.getPlayerInformation(firstName, lastName, super.getGameSelected(), super.getSeasonSelected(), careerIsSelected, super.getYear(), 0));
+			if(checkInvalidEntry()) {
+				return;
+			}
+			getAvailableYears();
 			return;
 		}
-		getAvailableYears();
-		if (getGameSelected()) {
+		else if (methodType == 2) {
 			retrieveGameInfo();
 		}
-		else if (getSeasonSelected()) {
+		else if (methodType == 3) {
 			retrieveSeasonInfo();
 		}
-		else if(careerIsSelected) {
+		else {
 			retrieveCareerInfo();
 		}
 	}
@@ -145,7 +149,7 @@ public class PlayerWindow extends AbstractWindow{
 			// TODO Figure out the best way to respond to SQLExceptions
 			e.printStackTrace();
 		}
-		super.displayInfo();
+		super.displayInfo(firstName + " " + lastName);
 	}
 
 	private void retrieveGameInfo() {
@@ -155,7 +159,7 @@ public class PlayerWindow extends AbstractWindow{
 			// TODO Figure out the best way to respond to SQLExceptions
 			e.printStackTrace();
 		}
-		super.displayInfo();
+		super.displayInfo(firstName + " " + lastName);
 	}
 	@Override
 	protected void backButton() {
@@ -193,7 +197,7 @@ public class PlayerWindow extends AbstractWindow{
 //		textArea.setBounds(0, 30, 300, 129);
 //		textArea.setEditable(false);
 //		curPanel.add(textArea);
-		super.displayInfo();
+		super.displayInfo(firstName + " " + lastName);
 	}
 
 
@@ -217,18 +221,4 @@ public class PlayerWindow extends AbstractWindow{
 		careerIsSelected = rdbtnCareer.isSelected();
 	}
 
-//	private void displayComparisonSelectionErrors(JRadioButton rdbtnGame, JRadioButton rdbtnSeason,
-//			JRadioButton rdbtnCareer) {
-//		if(buttonSelection == 1 && (rdbtnCareer.isSelected() || rdbtnSeason.isSelected())) {
-//			JOptionPane.showMessageDialog(null, "You must select the same comparison option");
-//		}
-//		else if(buttonSelection == 2 && (rdbtnCareer.isSelected() || rdbtnGame.isSelected())) {
-//			JOptionPane.showMessageDialog(null, "You must select the same comparison option");
-//		}
-//		else if(buttonSelection == 3 && (rdbtnSeason.isSelected() || rdbtnGame.isSelected())) {
-//			JOptionPane.showMessageDialog(null, "You must select the same comparison option");
-//		}
-//	}
-
-	
 }
