@@ -116,22 +116,20 @@ public class PlayerWindow extends AbstractWindow{
 	
 	@Override
 	protected void callService(int methodType) {
-		if (methodType == 1) {
-			super.setReturnedList(playerService.getPlayerInformation(firstName, lastName, super.getGameSelected(), super.getSeasonSelected(), careerIsSelected, super.getYear(), 0));
-			if(checkInvalidEntry()) {
-				return;
-			}
-			getAvailableYears();
-			if(careerIsSelected) {
-				retrieveCareerInfo();
-			}
+		super.setReturnedList(playerService.getPlayerInformation(firstName, lastName, super.getGameSelected(), super.getSeasonSelected(), careerIsSelected, super.getYear(), 0));
+		if(checkInvalidEntry()) {
 			return;
-		} else if (methodType == 2) {
+		}
+		getAvailableYears();
+		if (getGameSelected()) {
 			retrieveGameInfo();
-		} else if (methodType == 3) {
+		}
+		else if (getSeasonSelected()) {
 			retrieveSeasonInfo();
 		}
-		retrieveCareerInfo();
+		else if(careerIsSelected) {
+			retrieveCareerInfo();
+		}
 	}
 
 
