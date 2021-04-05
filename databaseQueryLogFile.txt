@@ -5,3 +5,26 @@ SUCCESS: view_player_game(lebron,james,2005) 2021-04-05T16:27:22.574Z
 SUCCESS: player_game_data(lebron,james,58415) 2021-04-05T16:27:22.613Z
 SUCCESS: view_player_game(lebron,james,2002) 2021-04-05T16:27:28.090Z
 SUCCESS: view_player_game(lebron,james,2002) 2021-04-05T16:27:31.150Z
+SUCCESS: view_player_game(lebron,james,2002) 2021-04-05T16:33:24.430Z
+SUCCESS: player_game_data(lebron,james,59147) 2021-04-05T16:33:24.479Z
+SUCCESS: view_player_season(lebron,james) 2021-04-05T16:33:27.775Z
+SUCCESS: player_season_data(lebron,james,2002) 2021-04-05T16:33:27.846Z
+SUCCESS: view_player_career(lebron,james) 2021-04-05T16:33:29.889Z
+SUCCESS: view_player_season(lebron,james) 2021-04-05T16:33:33.558Z
+SUCCESS: player_season_data(lebron,james,2002) 2021-04-05T16:33:33.614Z
+SUCCESS: view_team_game(indiana pacers,2002) 2021-04-05T16:33:53.894Z
+SUCCESS: team_game_data(indiana pacers,2002,62359) 2021-04-05T16:33:58.008Z
+SUCCESS: team_game_data(indiana pacers,2002,61520) 2021-04-05T16:34:00.579Z
+SUCCESS: view_team_game(indiana pacers,2003) 2021-04-05T16:34:06.556Z
+SUCCESS: team_game_data(indiana pacers,2003,63551) 2021-04-05T16:34:09.605Z
+SUCCESS: team_game_data(indiana pacers,2003,64142) 2021-04-05T16:34:13.469Z
+SUCCESS: team_game_data(indiana pacers,2003,64197) 2021-04-05T16:34:16.053Z
+SUCCESS: view_team_game(miami heat,2004) 2021-04-05T16:34:24.394Z
+SUCCESS: team_game_data(miami heat,2004,64195) 2021-04-05T16:34:26.723Z
+SUCCESS: view_team_franchise(miami heat) 2021-04-05T16:34:30.800Z
+SUCCESS: view_team_season(miami heat) 2021-04-05T16:34:32.902Z
+SUCCESS: team_season_data(miami heat,2005) 2021-04-05T16:34:35.429Z
+SUCCESS: view_team_franchise(miami heat) 2021-04-05T16:34:37.965Z
+ERROR: view_team_game(miami heat,202) 2021-04-05T16:34:47.819Z
+ERROR: view_team_game(miami heat,20000) 2021-04-05T16:35:02.239Z
+SUCCESS: view_team_game(miami heat,2000) 2021-04-05T16:35:07.034Z

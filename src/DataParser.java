@@ -12,20 +12,20 @@ import services.DatabaseConnectionService;
 public class DataParser {
 	// Rename and get rid of String[] args
 	public static void main(String[] args, DatabaseConnectionService dbService) {
-		String fileName = "DataSheet.csv";
-		clearDatabase(dbService);
-		reEnableConstraints(dbService);
-		File file = new File(fileName);
-		try {
-			Scanner inputStream = new Scanner(file);
-			inputStream.nextLine();
-			while (inputStream.hasNext()) {
-				insertData(dbService, inputStream);
-			}
-			inputStream.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+//		String fileName = "DataSheet3.csv";
+//		clearDatabase(dbService);
+//		reEnableConstraints(dbService);
+//		File file = new File(fileName);
+//		try {
+//			Scanner inputStream = new Scanner(file);
+//			inputStream.nextLine();
+//			while (inputStream.hasNext()) {
+//				insertData(dbService, inputStream);
+//			}
+//			inputStream.close();
+//		} catch (FileNotFoundException e) {
+//			e.printStackTrace();
+//		}
 	}
 
 	private static void reEnableConstraints(DatabaseConnectionService dbService) {
