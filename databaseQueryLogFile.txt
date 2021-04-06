@@ -28,3 +28,221 @@ SUCCESS: view_team_franchise(miami heat) 2021-04-05T16:34:37.965Z
 ERROR: view_team_game(miami heat,202) 2021-04-05T16:34:47.819Z
 ERROR: view_team_game(miami heat,20000) 2021-04-05T16:35:02.239Z
 SUCCESS: view_team_game(miami heat,2000) 2021-04-05T16:35:07.034Z
+SUCCESS: view_team_game(indiana pacers,2000) 2021-04-05T16:38:14.407Z
+SUCCESS: view_team_game(indiana pacers,2000) 2021-04-05T16:38:22.757Z
+SUCCESS: team_game_data(indiana pacers,2000,62137) 2021-04-05T16:38:28.169Z
+SUCCESS: view_team_franchise(indiana pacers) 2021-04-05T16:38:32.436Z
+SUCCESS: view_team_season(indiana pacers) 2021-04-05T16:38:34.916Z
+SUCCESS: team_season_data(indiana pacers,2006) 2021-04-05T16:38:36.860Z
+SUCCESS: team_season_data(indiana pacers,2006) 2021-04-05T16:38:37.854Z
+SUCCESS: team_season_data(indiana pacers,2006) 2021-04-05T16:38:39.344Z
+SUCCESS: view_team_franchise(indiana pacers) 2021-04-05T16:41:06.294Z
+SUCCESS: view_team_franchise(indiana pacers) 2021-04-05T16:47:16.355Z
+SUCCESS: view_team_franchise(indiana pacers) 2021-04-05T16:48:10.952Z
+SUCCESS: view_team_game(indiana pacers,2004) 2021-04-05T16:49:35.290Z
+SUCCESS: team_game_data(indiana pacers,2004,62225) 2021-04-05T16:50:10.235Z
+SUCCESS: team_game_data(indiana pacers,2004,62402) 2021-04-05T16:50:13.379Z
+SUCCESS: view_team_franchise(indiana pacers) 2021-04-05T16:53:02.901Z
+SUCCESS: view_team_franchise(indiana pacers) 2021-04-05T16:53:34.140Z
+SUCCESS: view_team_franchise(indiana pacers) 2021-04-05T16:54:14.569Z
+SUCCESS: view_team_season(indiana pacers) 2021-04-05T16:54:18.740Z
+SUCCESS: team_season_data(indiana pacers,2000) 2021-04-05T16:54:18.802Z
+SUCCESS: view_team_game(indiana pacers,2004) 2021-04-05T16:54:23.101Z
+SUCCESS: team_game_data(indiana pacers,2004,58553) 2021-04-05T16:54:23.144Z
+SUCCESS: view_team_franchise(indiana pacers) 2021-04-05T16:55:26.992Z
+SUCCESS: view_team_season(indiana pacers) 2021-04-05T16:55:29.182Z
+SUCCESS: team_season_data(indiana pacers,2000) 2021-04-05T16:55:29.245Z
+SUCCESS: view_team_season(indiana pacers) 2021-04-05T16:55:30.441Z
+SUCCESS: team_season_data(indiana pacers,2000) 2021-04-05T16:55:30.504Z
+SUCCESS: view_team_season(indiana pacers) 2021-04-05T16:55:30.688Z
+SUCCESS: team_season_data(indiana pacers,2000) 2021-04-05T16:55:30.758Z
+SUCCESS: view_team_season(indiana pacers) 2021-04-05T16:55:31.114Z
+SUCCESS: team_season_data(indiana pacers,2000) 2021-04-05T16:55:31.183Z
+SUCCESS: view_team_season(indiana pacers) 2021-04-05T16:55:31.818Z
+SUCCESS: team_season_data(indiana pacers,2000) 2021-04-05T16:55:31.875Z
+SUCCESS: view_team_game(indiana pacers,2004) 2021-04-05T16:55:35.490Z
+SUCCESS: team_game_data(indiana pacers,2004,58553) 2021-04-05T16:55:35.530Z
+SUCCESS: view_team_game(indiana pacers,2000) 2021-04-05T16:55:39.539Z
+SUCCESS: team_game_data(indiana pacers,2000,59879) 2021-04-05T16:55:39.598Z
+SUCCESS: view_team_game(indiana pacers,2006) 2021-04-05T16:55:55.770Z
+SUCCESS: team_game_data(indiana pacers,2006,58928) 2021-04-05T16:55:55.850Z
+SUCCESS: view_team_game(indiana pacers,2005) 2021-04-05T16:56:49.964Z
+SUCCESS: team_game_data(indiana pacers,2005,58589) 2021-04-05T16:56:50.025Z
+SUCCESS: view_team_season(indiana pacers) 2021-04-05T16:56:52.609Z
+SUCCESS: team_season_data(indiana pacers,2000) 2021-04-05T16:56:52.667Z
+SUCCESS: view_team_franchise(indiana pacers) 2021-04-05T16:56:59.993Z
+SUCCESS: view_team_franchise(indiana pacers) 2021-04-05T16:57:03.856Z
+SUCCESS: view_team_franchise(indiana pacers) 2021-04-05T16:57:05.420Z
+SUCCESS: view_team_season(indiana pacers) 2021-04-05T16:57:07.089Z
+SUCCESS: team_season_data(indiana pacers,2000) 2021-04-05T16:57:07.152Z
+SUCCESS: view_team_game(indiana pacers,2005) 2021-04-05T16:58:05.130Z
+SUCCESS: team_game_data(indiana pacers,2005,58589) 2021-04-05T16:58:29.393Z
+SUCCESS: view_team_game(indiana pacers,2006) 2021-04-05T16:59:24.734Z
+SUCCESS: view_team_game(indiana pacers,2006) 2021-04-05T16:59:28.157Z
+SUCCESS: view_team_game(indiana pacers,2006) 2021-04-05T16:59:29.397Z
+SUCCESS: view_team_game(indiana pacers,2006) 2021-04-05T16:59:31.517Z
+SUCCESS: view_team_game(indiana pacers,2006) 2021-04-05T16:59:32.726Z
+SUCCESS: view_team_game(indiana pacers,2006) 2021-04-05T16:59:33.292Z
+SUCCESS: view_team_game(indiana pacers,2006) 2021-04-05T16:59:33.461Z
+SUCCESS: view_team_game(indiana pacers,2006) 2021-04-05T16:59:33.613Z
+SUCCESS: view_team_game(indiana pacers,2006) 2021-04-05T16:59:33.770Z
+SUCCESS: view_team_game(indiana pacers,2006) 2021-04-05T16:59:33.928Z
+SUCCESS: view_team_game(indiana pacers,2006) 2021-04-05T16:59:34.094Z
+SUCCESS: view_team_game(indiana pacers,2006) 2021-04-05T16:59:36.956Z
+SUCCESS: view_team_franchise(indiana pacers) 2021-04-05T17:00:40.509Z
+SUCCESS: view_team_game(indiana pacers,2006) 2021-04-05T17:01:14.668Z
+SUCCESS: view_team_season(indiana pacers) 2021-04-05T17:04:05.210Z
+SUCCESS: view_team_season(indiana pacers) 2021-04-05T17:04:06.901Z
+SUCCESS: view_team_season(indiana pacers) 2021-04-05T17:04:09.003Z
+SUCCESS: view_team_season(indiana pacers) 2021-04-05T17:04:09.160Z
+SUCCESS: view_team_season(indiana pacers) 2021-04-05T17:04:09.319Z
+SUCCESS: view_team_season(indiana pacers) 2021-04-05T17:04:09.487Z
+SUCCESS: view_team_season(indiana pacers) 2021-04-05T17:04:09.640Z
+SUCCESS: view_team_season(indiana pacers) 2021-04-05T17:04:09.792Z
+SUCCESS: view_team_season(indiana pacers) 2021-04-05T17:04:09.943Z
+SUCCESS: view_team_season(indiana pacers) 2021-04-05T17:04:10.090Z
+SUCCESS: view_team_season(indiana pacers) 2021-04-05T17:04:48.240Z
+SUCCESS: view_team_season(indiana pacers) 2021-04-05T17:04:50.956Z
+SUCCESS: team_season_data(indiana pacers,2004) 2021-04-05T17:04:51.026Z
+SUCCESS: view_team_season(indiana pacers) 2021-04-05T17:04:52.931Z
+SUCCESS: team_season_data(indiana pacers,2004) 2021-04-05T17:04:53.004Z
+SUCCESS: view_team_season(indiana pacers) 2021-04-05T17:04:55.478Z
+SUCCESS: team_season_data(indiana pacers,2009) 2021-04-05T17:04:55.551Z
+SUCCESS: view_team_franchise(indiana pacers) 2021-04-05T17:04:59.353Z
+SUCCESS: view_team_game(indiana pacers,2000) 2021-04-05T17:05:05.116Z
+SUCCESS: view_team_game(indiana pacers,2000) 2021-04-05T17:05:08.257Z
+SUCCESS: team_game_data(indiana pacers,2000,62167) 2021-04-05T17:05:08.376Z
+SUCCESS: view_team_game(indiana pacers,2005) 2021-04-05T17:06:10.718Z
+SUCCESS: view_team_game(indiana pacers,2005) 2021-04-05T17:06:18.518Z
+SUCCESS: team_game_data(indiana pacers,2005,62169) 2021-04-05T17:06:25.007Z
+SUCCESS: view_team_game(indiana pacers,2000) 2021-04-05T17:10:54.788Z
+SUCCESS: view_team_game(indiana pacers,2000) 2021-04-05T17:10:56.120Z
+SUCCESS: team_game_data(indiana pacers,2000,59879) 2021-04-05T17:10:56.196Z
+SUCCESS: view_team_game(indiana pacers,2000) 2021-04-05T17:10:59.903Z
+SUCCESS: team_game_data(indiana pacers,2000,62185) 2021-04-05T17:10:59.992Z
+SUCCESS: view_team_game(indiana pacers,2000) 2021-04-05T17:11:03.283Z
+SUCCESS: view_team_game(indiana pacers,2000) 2021-04-05T17:11:26.940Z
+SUCCESS: view_team_game(indiana pacers,2000) 2021-04-05T17:11:29.579Z
+SUCCESS: view_team_season(indiana pacers) 2021-04-05T17:11:46.735Z
+SUCCESS: view_team_season(indiana pacers) 2021-04-05T17:11:54.104Z
+SUCCESS: team_season_data(indiana pacers,2017) 2021-04-05T17:11:54.178Z
+SUCCESS: view_team_season(indiana pacers) 2021-04-05T17:11:57.001Z
+SUCCESS: team_season_data(indiana pacers,2005) 2021-04-05T17:11:57.088Z
+SUCCESS: view_team_season(indiana pacers) 2021-04-05T17:12:00.753Z
+SUCCESS: view_team_game(indiana pacers,2000) 2021-04-05T17:23:49.283Z
+SUCCESS: team_game_data(indiana pacers,2000,59879) 2021-04-05T17:23:50.560Z
+SUCCESS: team_game_data(indiana pacers,2000,62147) 2021-04-05T17:23:53.608Z
+SUCCESS: view_team_season(indiana pacers) 2021-04-05T17:23:55.578Z
+SUCCESS: team_season_data(indiana pacers,2004) 2021-04-05T17:23:58.001Z
+SUCCESS: team_season_data(indiana pacers,2018) 2021-04-05T17:24:01.359Z
+SUCCESS: team_season_data(indiana pacers,2012) 2021-04-05T17:24:03.651Z
+SUCCESS: view_team_franchise(indiana pacers) 2021-04-05T17:33:43.221Z
+SUCCESS: view_team_franchise(indiana pacers) 2021-04-05T17:34:52.735Z
+SUCCESS: view_team_season(indiana pacers) 2021-04-05T17:35:11.710Z
+SUCCESS: team_season_data(indiana pacers,2018) 2021-04-05T17:35:15.626Z
+SUCCESS: team_season_data(indiana pacers,2018) 2021-04-05T17:35:19.265Z
+SUCCESS: view_team_game(indiana pacers,2006) 2021-04-05T17:35:24.660Z
+SUCCESS: team_game_data(indiana pacers,2006,62401) 2021-04-05T17:35:27.711Z
+SUCCESS: view_team_franchise(indiana pacers) 2021-04-05T17:36:53.914Z
+SUCCESS: view_team_season(indiana pacers) 2021-04-05T17:37:01.617Z
+SUCCESS: team_season_data(indiana pacers,2005) 2021-04-05T17:37:13.242Z
+SUCCESS: team_season_data(indiana pacers,2005) 2021-04-05T17:37:16.345Z
+SUCCESS: view_team_franchise(indiana pacers) 2021-04-05T17:37:50.613Z
+SUCCESS: view_team_season(indiana pacers) 2021-04-05T17:38:02.092Z
+SUCCESS: team_season_data(indiana pacers,2000) 2021-04-05T17:38:24.701Z
+SUCCESS: view_team_season(Indiana Pacers) 2021-04-05T17:39:15.938Z
+SUCCESS: team_season_data(Indiana Pacers,2000) 2021-04-05T17:39:34.765Z
+SUCCESS: view_team_season(indiana pacers) 2021-04-05T17:40:09.251Z
+SUCCESS: team_season_data(indiana pacers,2000) 2021-04-05T17:40:10.890Z
+SUCCESS: team_season_data(indiana pacers,2006) 2021-04-05T17:40:14.179Z
+SUCCESS: view_team_season(indiana pacers) 2021-04-05T17:40:39.668Z
+SUCCESS: team_season_data(indiana pacers,2000) 2021-04-05T17:40:40.407Z
+SUCCESS: view_team_season(indiana pacers) 2021-04-05T17:40:57.012Z
+SUCCESS: team_season_data(indiana pacers,2000) 2021-04-05T17:40:57.690Z
+SUCCESS: view_team_season(indiana pacers) 2021-04-05T17:41:26.380Z
+SUCCESS: team_season_data(indiana pacers,2000) 2021-04-05T17:41:40.576Z
+SUCCESS: view_team_game(indiana pacers,2000) 2021-04-05T17:46:00.057Z
+SUCCESS: team_game_data(indiana pacers,2000,59879) 2021-04-05T17:46:01.199Z
+SUCCESS: view_team_game(indiana pacers,2000) 2021-04-05T17:46:19.827Z
+SUCCESS: team_game_data(indiana pacers,2000,59879) 2021-04-05T17:46:20.916Z
+SUCCESS: team_game_data(indiana pacers,2000,64511) 2021-04-05T17:46:25.636Z
+SUCCESS: team_game_data(indiana pacers,2000,63277) 2021-04-05T17:46:28.855Z
+SUCCESS: team_game_data(indiana pacers,2000,62826) 2021-04-05T17:46:31.032Z
+SUCCESS: view_team_season(indiana pacers) 2021-04-05T17:46:33.158Z
+SUCCESS: team_season_data(indiana pacers,2000) 2021-04-05T17:46:33.898Z
+SUCCESS: team_season_data(indiana pacers,2016) 2021-04-05T17:46:36.243Z
+SUCCESS: team_season_data(indiana pacers,2018) 2021-04-05T17:46:38.906Z
+SUCCESS: view_team_season(indiana pacers) 2021-04-05T17:46:41.251Z
+SUCCESS: team_season_data(indiana pacers,2000) 2021-04-05T17:46:42.669Z
+SUCCESS: team_season_data(indiana pacers,2000) 2021-04-05T17:46:43.227Z
+SUCCESS: view_team_franchise(indiana pacers) 2021-04-05T17:46:46.204Z
+SUCCESS: view_team_game(indiana pacers,2006) 2021-04-05T18:14:22.837Z
+SUCCESS: team_game_data(indiana pacers,2006,58928) 2021-04-05T18:14:24.749Z
+SUCCESS: team_game_data(indiana pacers,2006,60724) 2021-04-05T18:14:26.792Z
+SUCCESS: team_game_data(indiana pacers,2006,62218) 2021-04-05T18:14:29.430Z
+SUCCESS: team_game_data(indiana pacers,2006,62627) 2021-04-05T18:14:32.338Z
+SUCCESS: team_game_data(indiana pacers,2006,62320) 2021-04-05T18:14:35.060Z
+SUCCESS: view_team_season(indiana pacers) 2021-04-05T18:14:38.144Z
+SUCCESS: team_season_data(indiana pacers,2006) 2021-04-05T18:14:39.882Z
+SUCCESS: team_season_data(indiana pacers,2009) 2021-04-05T18:14:41.864Z
+SUCCESS: view_team_season(indiana pacers) 2021-04-05T18:14:43.745Z
+SUCCESS: team_season_data(indiana pacers,2002) 2021-04-05T18:14:45.233Z
+SUCCESS: view_team_season(indiana pacers) 2021-04-05T18:14:47.665Z
+SUCCESS: team_season_data(indiana pacers,2000) 2021-04-05T18:14:48.476Z
+SUCCESS: view_team_franchise(indiana pacers) 2021-04-05T18:14:51.036Z
+SUCCESS: view_team_season(indiana pacers) 2021-04-05T18:14:54.202Z
+SUCCESS: team_season_data(indiana pacers,2004) 2021-04-05T18:14:55.962Z
+SUCCESS: team_season_data(indiana pacers,2009) 2021-04-05T18:15:06.188Z
+SUCCESS: view_team_game(miami heat,2010) 2021-04-05T18:15:14.802Z
+SUCCESS: team_game_data(miami heat,2010,60046) 2021-04-05T18:15:17.106Z
+SUCCESS: team_game_data(miami heat,2010,64152) 2021-04-05T18:15:20.369Z
+SUCCESS: team_game_data(miami heat,2010,64152) 2021-04-05T18:15:22.553Z
+SUCCESS: view_team_season(miami heat) 2021-04-05T18:15:24.334Z
+SUCCESS: team_season_data(miami heat,2018) 2021-04-05T18:15:27.368Z
+SUCCESS: team_season_data(miami heat,2002) 2021-04-05T18:15:30.928Z
+SUCCESS: team_season_data(miami heat,2000) 2021-04-05T18:15:36.526Z
+SUCCESS: view_team_franchise(miami heat) 2021-04-05T18:15:39.659Z
+SUCCESS: view_team_game(Indiana Pacers,2004) 2021-04-05T18:15:58.771Z
+SUCCESS: view_team_game(Chicago Bulls,2009) 2021-04-05T18:16:09.074Z
+SUCCESS: team_game_data(Chicago Bulls,2009,58707) 2021-04-05T18:16:12.408Z
+SUCCESS: team_game_data(Chicago Bulls,2009,58707) 2021-04-05T18:16:13.258Z
+SUCCESS: view_team_game(Indiana Pacers,2009) 2021-04-05T18:16:37.617Z
+SUCCESS: team_game_data(Indiana Pacers,2009,62150) 2021-04-05T18:16:44.961Z
+SUCCESS: view_team_game(Miami Heat,2001) 2021-04-05T18:17:01.740Z
+SUCCESS: team_game_data(Miami Heat,2001,60002) 2021-04-05T18:18:04.239Z
+SUCCESS: view_player_game(lebron,james,2005) 2021-04-05T18:20:29.363Z
+SUCCESS: player_game_data(lebron,james,59389) 2021-04-05T18:20:29.415Z
+SUCCESS: view_player_game(lebron,james,2002) 2021-04-05T18:20:33.768Z
+SUCCESS: player_game_data(lebron,james,59147) 2021-04-05T18:20:33.803Z
+SUCCESS: view_player_season(lebron,james) 2021-04-05T18:20:35.998Z
+SUCCESS: player_season_data(lebron,james,2002) 2021-04-05T18:20:36.066Z
+SUCCESS: view_player_career(lebron,james) 2021-04-05T18:20:37.834Z
+SUCCESS: view_player_career(lebron,james) 2021-04-05T18:20:38.490Z
+SUCCESS: view_player_career(lebron,james) 2021-04-05T18:20:38.646Z
+SUCCESS: view_player_career(lebron,james) 2021-04-05T18:20:38.809Z
+SUCCESS: view_player_career(lebron,james) 2021-04-05T18:20:38.962Z
+SUCCESS: view_player_career(lebron,james) 2021-04-05T18:20:40.356Z
+SUCCESS: view_player_career(lebron,james) 2021-04-05T18:20:42.038Z
+SUCCESS: view_player_game(lebron,james,2004) 2021-04-05T18:20:46.944Z
+SUCCESS: player_game_data(lebron,james,59148) 2021-04-05T18:20:46.979Z
+SUCCESS: view_player_game(lebron,james,2004) 2021-04-05T18:22:11.651Z
+SUCCESS: player_game_data(lebron,james,59148) 2021-04-05T18:22:11.698Z
+SUCCESS: view_player_game(lebron,james,2004) 2021-04-05T18:22:51.710Z
+SUCCESS: view_player_game(lebron,james,2005) 2021-04-05T18:24:33.402Z
+SUCCESS: player_game_data(lebron,james,59389) 2021-04-05T18:24:35.001Z
+SUCCESS: player_game_data(lebron,james,59405) 2021-04-05T18:24:37.578Z
+SUCCESS: player_game_data(lebron,james,59213) 2021-04-05T18:24:40.288Z
+SUCCESS: view_player_game(lebron,james,2009) 2021-04-05T18:24:44.093Z
+SUCCESS: player_game_data(lebron,james,59385) 2021-04-05T18:24:46.236Z
+SUCCESS: view_player_season(lebron,james) 2021-04-05T18:24:48.082Z
+SUCCESS: player_season_data(lebron,james,2009) 2021-04-05T18:24:49.299Z
+SUCCESS: player_season_data(lebron,james,2009) 2021-04-05T18:24:51.051Z
+SUCCESS: player_season_data(lebron,james,2009) 2021-04-05T18:24:53.193Z
+SUCCESS: player_season_data(lebron,james,2009) 2021-04-05T18:24:56.279Z
+SUCCESS: view_player_career(lebron,james) 2021-04-05T18:24:57.422Z
+SUCCESS: view_player_career(lebron,james) 2021-04-05T18:24:59.832Z
+SUCCESS: view_player_season(lebron,james) 2021-04-05T18:25:03.869Z
+SUCCESS: player_season_data(lebron,james,2009) 2021-04-05T18:25:05.719Z
+SUCCESS: player_season_data(lebron,james,2009) 2021-04-05T18:25:08.324Z
+SUCCESS: view_player_season(lebron,james) 2021-04-05T18:25:11.963Z
+SUCCESS: player_season_data(lebron,james,2009) 2021-04-05T18:25:13.151Z
