@@ -123,6 +123,9 @@ public class PlayerWindow extends AbstractWindow{
 				return;
 			}
 			getAvailableYears();
+			if (careerIsSelected) {
+				super.displayInfo(firstName + " " + lastName);
+			}
 			return;
 		}
 		else if (methodType == 2) {
@@ -132,14 +135,20 @@ public class PlayerWindow extends AbstractWindow{
 			retrieveSeasonInfo();
 		}
 		else {
-			retrieveCareerInfo();
+			retrieveOverallInfo();
 		}
+		super.displayInfo(firstName + " " + lastName);
 	}
 
 
 
-	private void retrieveCareerInfo() {
-		super.retrieveCareerInfo(firstName+" "+lastName);
+	private void retrieveOverallInfo() {
+		try {
+			super.setReturnedList(playerService.getCareerInfo(firstName, lastName));
+		} catch (SQLException e) {
+			// TODO Figure out the best way to respond to SQLExceptions
+			e.printStackTrace();
+		}
 	}
 
 	private void retrieveSeasonInfo() {

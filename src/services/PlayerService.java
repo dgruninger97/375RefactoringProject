@@ -68,4 +68,9 @@ public class PlayerService{
 		DatabaseQuery query = new PlayerSeasonDataQuery(dbService, firstName, lastName, seasonYear);
 		return query.getResults();
 	}
+	
+	public List<String> getCareerInfo(String firstName, String lastName) throws SQLException{
+		DatabaseQuery query = new PlayerCareerDataQuery(dbService, firstName, lastName);
+		return query.getResults();
+	}
 }
