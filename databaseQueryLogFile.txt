@@ -399,3 +399,5 @@ SUCCESS: view_player_career(lebron,james) 2021-04-07T01:33:51.673Z
 SUCCESS: view_player_season(lebron,james) 2021-04-07T01:33:54.731Z
 SUCCESS: player_season_data(lebron,james,2006) 2021-04-07T01:33:56.759Z
 SUCCESS: view_player_career(lebron,james) 2021-04-07T01:33:58.924Z
+SUCCESS: view_player_career(lebron,james) 2021-04-07T01:39:41.865Z
+SUCCESS: view_player_season(lebron,james) 2021-04-07T01:39:44.536Z
