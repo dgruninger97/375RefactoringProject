@@ -110,17 +110,27 @@ public class TeamWindow extends AbstractWindow {
 				return;
 			}
 			getAvailableYears();
+			if (franchiseIsSelected) {
+				super.displayInfo(teamName);
+			}
 			return;
 		} else if (methodType == 2) {
 			retrieveGameInfo();
 		} else if (methodType == 3) {
 			retrieveSeasonInfo();
 		}
-		retrieveCareerInfo();
+		else {
+			retrieveOverallInfo();
+		}
+		super.displayInfo(teamName);
 	}
 
-	private void retrieveCareerInfo() {
-		super.retrieveCareerInfo(teamName);
+	private void retrieveOverallInfo() {
+		try {
+			super.setReturnedList(teamService.getTeamFranchiseInfo(teamName));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private void retrieveSeasonInfo() {
@@ -130,7 +140,6 @@ public class TeamWindow extends AbstractWindow {
 			// TODO Figure out the best way to respond to SQLExceptions
 			e.printStackTrace();
 		}
-		super.displayInfo(teamName);
 	}
 
 	private void retrieveGameInfo() {
@@ -161,7 +170,7 @@ public class TeamWindow extends AbstractWindow {
 		if(promptForYear()) {
 			return;
 		}
-		setUpFranchiseView();
+//		setUpFranchiseView();
 		callService(1);
 	}
 
@@ -186,7 +195,8 @@ public class TeamWindow extends AbstractWindow {
 //			textArea.setBounds(0, 30, 310, 129);
 //			textArea.setEditable(false);
 //			curPanel.add(textArea);
-			super.displayInfo(teamName);
+			callService(4);
+//			super.displayInfo(teamName);
 		}
 	}
 }
