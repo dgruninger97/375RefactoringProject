@@ -206,7 +206,7 @@ public class PlayerWindow extends AbstractWindow{
 //		textArea.setBounds(0, 30, 300, 129);
 //		textArea.setEditable(false);
 //		curPanel.add(textArea);
-		super.displayInfo(firstName + " " + lastName);
+//		super.displayInfo(firstName + " " + lastName);
 	}
 
 
