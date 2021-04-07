@@ -15,11 +15,13 @@ public class PlayerService{
 	private DatabaseConnectionService dbService = null;
 	private String seasonYear;
 	private List<String> gameList;
+	private List<String> seasonList;
 	private String gameID;
 
 	public PlayerService(DatabaseConnectionService dbService) {
 		this.dbService = dbService;
 		this.gameList = new ArrayList<String>();
+		this.seasonList = new ArrayList<String>();
 	}
 
 	public List<String> getPlayerInformation(String firstName, String lastName, boolean game, boolean season,
@@ -32,7 +34,8 @@ public class PlayerService{
 				gameID = gameList.get(choiceIndex).split(":")[0];
 				return gameList;
 			} else if (season) {
-				return getPlayerSeasonInformation(firstName, lastName, choiceIndex);
+				seasonList = getPlayerSeasonInformation(firstName, lastName, choiceIndex);
+				return seasonList;
 			} else if (career) {
 				return getPlayerCareerInformation(firstName, lastName);
 			}
@@ -65,7 +68,8 @@ public class PlayerService{
 	}
 
 	public List<String> getSeasonInfo(String firstName, String lastName, int choiceIndex) throws SQLException {
-		DatabaseQuery query = new PlayerSeasonDataQuery(dbService, firstName, lastName, seasonYear);
+		String year = seasonList.get(choiceIndex).split(": ")[1];
+		DatabaseQuery query = new PlayerSeasonDataQuery(dbService, firstName, lastName, year);
 		return query.getResults();
 	}
 	

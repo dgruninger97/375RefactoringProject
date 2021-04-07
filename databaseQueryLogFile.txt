@@ -401,3 +401,15 @@ SUCCESS: player_season_data(lebron,james,2006) 2021-04-07T01:33:56.759Z
 SUCCESS: view_player_career(lebron,james) 2021-04-07T01:33:58.924Z
 SUCCESS: view_player_career(lebron,james) 2021-04-07T01:39:41.865Z
 SUCCESS: view_player_season(lebron,james) 2021-04-07T01:39:44.536Z
+SUCCESS: view_player_season(lebron,james) 2021-04-07T01:51:15.365Z
+SUCCESS: view_player_season(lebron,james) 2021-04-07T01:52:06.085Z
+SUCCESS: view_player_season(lebron,james) 2021-04-07T01:53:05.600Z
+SUCCESS: view_player_season(lebron,james) 2021-04-07T01:53:26.961Z
+SUCCESS: view_player_season(lebron,james) 2021-04-07T01:54:59.124Z
+SUCCESS: view_team_season(indiana pacers) 2021-04-07T01:56:30.810Z
+SUCCESS: view_player_season(lebron,james) 2021-04-07T01:59:01.527Z
+SUCCESS: player_season_data(lebron,james,2000) 2021-04-07T01:59:02.360Z
+SUCCESS: player_season_data(lebron,james,2001) 2021-04-07T01:59:05.513Z
+SUCCESS: player_season_data(lebron,james,2003) 2021-04-07T01:59:08.210Z
+SUCCESS: player_season_data(lebron,james,2004) 2021-04-07T01:59:10.847Z
+SUCCESS: player_season_data(lebron,james,2009) 2021-04-07T01:59:13.019Z
