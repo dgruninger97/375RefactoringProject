@@ -17,7 +17,7 @@ public class DataGenerator {
 	
 	public static void main(String[] args) throws IOException {
 		loadHashMap();
-		FileWriter csvWriter = new FileWriter("DataSheet3.csv");
+		FileWriter csvWriter = new FileWriter("DataSheet4.csv");
 		csvWriter.append("FName");
 		csvWriter.append(",");
 		csvWriter.append("LName");
@@ -39,7 +39,7 @@ public class DataGenerator {
 		csvWriter.append("Year");
 		csvWriter.append("\n");
 		for (String playerName : playerTeamMap.keySet()) {
-			for(int i = 0; i < 300; i++) {
+			for(int i = 0; i < 5; i++) {
 				csvWriter.append(playerName.substring(0, playerName.indexOf(" ")));
 				csvWriter.append(",");
 				csvWriter.append(playerName.substring(playerName.indexOf(" ")).trim());
