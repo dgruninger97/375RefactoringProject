@@ -1,3 +1,4 @@
+package DataParsing;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.sql.CallableStatement;
@@ -6,6 +7,8 @@ import java.sql.SQLException;
 import java.sql.Types;
 import java.util.Scanner;
 import java.util.StringTokenizer;
+
+import javax.swing.JOptionPane;
 
 import services.DatabaseConnectionService;
 
@@ -103,18 +106,15 @@ public class DataParser {
 		}
 	}
 
-	private static void insertData(DatabaseConnectionService dbService, Scanner inputStream) {
+	public static void insertData(DatabaseConnectionService dbService, Scanner inputStream) {
 		String data = inputStream.nextLine();
 		String[] values = data.split(",");
-		try {
-			executeInsertDataStatement(dbService, values);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		executeInsertDataStatement(dbService, values);
 	}
 
 	private static void executeInsertDataStatement(DatabaseConnectionService dbService, String[] values)
-			throws SQLException {
+			{
+		try {
 		CallableStatement callableStatement;
 		callableStatement = dbService.getConnection()
 				.prepareCall("{?=call insertData(?,?,?,?,?,?,?,?,?,?)}");
@@ -130,5 +130,9 @@ public class DataParser {
 		callableStatement.setString(10, values[8]);
 		callableStatement.setString(11, values[9]);
 		callableStatement.execute();
+		}
+		catch(SQLException e) {
+			JOptionPane.showMessageDialog(null, "Invalid File Structure, try again.");
+		}
 	}
 }

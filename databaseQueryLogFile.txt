@@ -413,3 +413,24 @@ SUCCESS: player_season_data(lebron,james,2001) 2021-04-07T01:59:05.513Z
 SUCCESS: player_season_data(lebron,james,2003) 2021-04-07T01:59:08.210Z
 SUCCESS: player_season_data(lebron,james,2004) 2021-04-07T01:59:10.847Z
 SUCCESS: player_season_data(lebron,james,2009) 2021-04-07T01:59:13.019Z
+SUCCESS: view_player_season(lebron,james) 2021-04-07T02:04:40.011Z
+SUCCESS: player_season_data(lebron,james,2006) 2021-04-07T02:04:42.217Z
+SUCCESS: player_season_data(lebron,james,2016) 2021-04-07T02:04:44.506Z
+SUCCESS: view_player_game(lebron,james,2004) 2021-04-07T02:04:47.959Z
+SUCCESS: player_game_data(lebron,james,59148) 2021-04-07T02:04:49.600Z
+SUCCESS: player_game_data(lebron,james,59236) 2021-04-07T02:04:51.938Z
+SUCCESS: player_game_data(lebron,james,59255) 2021-04-07T02:04:54.560Z
+SUCCESS: view_player_career(lebron,james) 2021-04-07T02:04:56.256Z
+SUCCESS: view_team_franchise(indiana pacers) 2021-04-07T02:05:03.608Z
+SUCCESS: view_team_season(indiana pacers) 2021-04-07T02:05:05.569Z
+SUCCESS: team_season_data(indiana pacers,2000) 2021-04-07T02:05:07.055Z
+SUCCESS: view_team_franchise(indiana pacers) 2021-04-07T02:05:09.172Z
+SUCCESS: view_team_season(indiana pacers) 2021-04-07T02:05:11.074Z
+SUCCESS: team_season_data(indiana pacers,2004) 2021-04-07T02:05:12.999Z
+SUCCESS: team_season_data(indiana pacers,2004) 2021-04-07T02:05:15.775Z
+SUCCESS: view_team_game(indiana pacers,2004) 2021-04-07T02:05:20.193Z
+SUCCESS: team_game_data(indiana pacers,2004,62407) 2021-04-07T02:05:24.003Z
+SUCCESS: team_game_data(indiana pacers,2004,62297) 2021-04-07T02:05:29.160Z
+ERROR: view_player_game(lebron,james,2000) 2021-04-08T14:16:15.135Z
+ERROR: view_team_franchise(indiana teams) 2021-04-08T14:16:38.334Z
+SUCCESS: view_team_franchise(indiana pacers) 2021-04-08T14:16:43Z
