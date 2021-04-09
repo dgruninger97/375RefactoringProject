@@ -3,30 +3,31 @@ package unitTests;
 import static org.junit.jupiter.api.Assertions.*;
 import java.sql.Connection;
 import java.sql.SQLException;
-import org.junit.jupiter.api.BeforeAll;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import services.DatabaseConnectionService;
 
-class DatabaseConnectionServiceTests {
+public class DatabaseConnectionServiceTests {
 
-	static DatabaseConnectionService instance;
+	private DatabaseConnectionService instance;
 	
-	static String serverName = "nba-database.csse.rose-hulman.edu";
-	static String databaseName = "TestDatabase";
-	static String user = "sa";
-	static String pass = "Thesquarerootoftheradiusofthesun123";
+	private String serverName = "nba-database.csse.rose-hulman.edu";
+	private String databaseName = "TestDatabase";
+	private String user = "sa";
+	private String pass = "Thesquarerootoftheradiusofthesun123";
 	
-	String expectedURL = "jdbc:sqlserver://nba-database.csse.rose-hulman.edu:1433;";
+	private String expectedURL = "jdbc:sqlserver://nba-database.csse.rose-hulman.edu:1433;";
 			
-	@BeforeAll
-	static void Setup() {
+	@BeforeEach
+	public void Setup() {
 		instance = new DatabaseConnectionService(serverName, databaseName);
 		instance.connect(user, pass);
 	}
 	
 	@Test
-	void TestConnection() {
+	public void TestConnection() {
 		Connection connection = instance.getConnection();
 		
 		try {
