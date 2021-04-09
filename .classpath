@@ -48,5 +48,6 @@
 	<classpathentry kind="lib" path="easymock-4.2.jar"/>
 	<classpathentry kind="lib" path="original-easymock-4.2-sources.jar"/>
 	<classpathentry kind="lib" path="original-easymock-4.2.jar"/>
+	<classpathentry kind="lib" path="objenesis-3.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
