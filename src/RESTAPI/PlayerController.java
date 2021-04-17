@@ -1,8 +1,13 @@
+package RESTAPI;
+
+import org.springframework.web.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.*;
 
-import java.awt.List;
+import java.util.List;
+import java.util.ArrayList;
 
 import org.json.JSONObject;
 

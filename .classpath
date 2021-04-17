@@ -2,6 +2,5 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8/"/>
 	<classpathentry kind="con" path="org.eclipse.buildship.core.gradleclasspathcontainer"/>
-	<classpathentry kind="lib" path="C:/Users/grayledw/Documents/Spring2021/CSSE375/Project/Repo/databasesproj/json-20210307.jar"/>
 	<classpathentry kind="output" path="bin/default"/>
 </classpath>
