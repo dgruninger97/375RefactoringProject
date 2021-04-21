@@ -19,6 +19,7 @@ public class Main {
 		parser.main(args, dbService);
 		NBADatabaseWindow mainWin = new NBADatabaseWindow();
 		mainWin.startMainWindow(dbService);
+		
 	}
 
 }

@@ -14,7 +14,7 @@ import services.DatabaseConnectionService;
 
 public class DataParser {
 	// Rename and get rid of String[] args
-	public static void main(String[] args, DatabaseConnectionService dbService) {
+	public void main(String[] args, DatabaseConnectionService dbService) {
 //		String fileName = "DataSheet3.csv";
 //		clearDatabase(dbService);
 //		reEnableConstraints(dbService);

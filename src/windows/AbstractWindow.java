@@ -155,12 +155,30 @@ public abstract class AbstractWindow {
 		btnGo.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				updateCurPanel((JButton)e.getSource());
 				goButton();
 			}
+
+			
 		});
 		curPanel.add(choice);
 		curPanel.add(btnGo);
 		curPanel.repaint();
+	}
+	private void updateCurPanel(JButton e) {
+		JPanel source = (JPanel)e.getParent();
+		if(source.equals(panel_1)) {
+			System.out.println("Panel 1");
+			curPanel = panel_1;
+		}
+		if(source==panel_2) {
+			System.out.println("Panel 2");
+			curPanel = panel_2;
+		}
+		if(source==panel_3) {
+			System.out.println("Panel 3");
+			curPanel = panel_3;
+		}
 	}
 	
 	protected void paintBackButton() {
@@ -218,6 +236,7 @@ public abstract class AbstractWindow {
 		backBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				updateCurPanel((JButton)e.getSource());
 				backButton();
 			}
 		});
