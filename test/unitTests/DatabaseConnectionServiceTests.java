@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import services.DatabaseConnectionService;
+import Domain.DatabaseConnectionService;
 
 public class DatabaseConnectionServiceTests {
 

@@ -1,4 +1,4 @@
-package windows;
+package presentationWindows;
 
 import java.awt.EventQueue;
 
@@ -14,8 +14,9 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import java.awt.Label;
 import javax.swing.JRadioButton;
-import services.DatabaseConnectionService;
-import services.PlayerService;
+
+import Domain.DatabaseConnectionService;
+import Domain.PlayerService;
 
 public class PlayerWindow extends AbstractWindow{
 	private String[] firstName = new String[3];

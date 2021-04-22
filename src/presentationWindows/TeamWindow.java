@@ -1,12 +1,14 @@
-package windows;
+package presentationWindows;
 
 import java.awt.EventQueue;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
-import services.DatabaseConnectionService;
-import services.TeamService;
+
+import Domain.DatabaseConnectionService;
+import Domain.TeamService;
+
 import java.awt.Font;
 import java.awt.Label;
 import java.awt.event.ActionEvent;

@@ -6,7 +6,7 @@ import java.sql.Types;
 import java.util.List;
 
 import DatabaseQueries.DatabaseQuery;
-import services.DatabaseConnectionService;
+import Domain.DatabaseConnectionService;
 
 public class PlayerSeasonDataQuery extends DatabaseQuery {
 	private String firstName;
