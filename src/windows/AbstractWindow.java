@@ -19,59 +19,66 @@ import services.DatabaseConnectionService;
 
 public abstract class AbstractWindow {
 	private JFrame frame;
-	private JPanel panel_1;
-	private JPanel panel_2;
-	private JPanel panel_3;
+	private JPanel[] panels;
 	private int openSlot = 1;
 	private JPanel curPanel;
 	private int buttonSelection = -1;
 	private JButton btnGo;
 	private JButton backBtn;
 	private TextArea textArea;
-	private Choice choice;
+	private Choice[] choices = new Choice[3];
 	private List<String> returnedList;
 	private DatabaseConnectionService dbService;
 	private int choiceIndex;
 	private boolean gameIsSelected;
 	private boolean seasonIsSelected;
 	private String year;
+	private int panelIndex;
 	
 	public abstract void startWindow(DatabaseConnectionService dbService);
 	
 	protected abstract void backButton();
 	
 	protected void setupPanels() {
-		panel_1 = new JPanel();
+		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(5, 110, 400, 328);
 		frame.getContentPane().add(panel_1);
 
-		panel_2 = new JPanel();
+		JPanel panel_2 = new JPanel();
 		panel_2.setBounds(405, 110, 400, 328);
 		frame.getContentPane().add(panel_2);
 
-		panel_3 = new JPanel();
+		JPanel panel_3 = new JPanel();
 		panel_3.setBounds(810, 110, 400, 328);
 		frame.getContentPane().add(panel_3);
+		
+		panels = new JPanel[3];
+		panels[0] = panel_1;
+		panels[1] = panel_2;
+		panels[2] = panel_3;
 	}
 	protected void setCurrentPanel() {
-		if (openSlot == 1)
-			curPanel = panel_1;
-		else if (openSlot == 2)
-			curPanel = panel_2;
-		else if (openSlot == 3)
-			curPanel = panel_3;
-		else {
+		if (openSlot == 1) {
+			curPanel = panels[0];
+			panelIndex = 0;
+		} else if (openSlot == 2) {
+			curPanel = panels[1];
+			panelIndex = 1;
+		} else if (openSlot == 3) {
+			curPanel = panels[2];
+			panelIndex = 2;
+		}else {
 			curPanel = null;
 		}
 	}
 	
 	protected void clearWindow() {
-		panel_1.removeAll();
-		panel_2.removeAll();
-		panel_3.removeAll();
-		panel_1.repaint();
-		panel_2.repaint();
-		panel_3.repaint();
+		panels[0].removeAll();
+		panels[1].removeAll();
+		panels[2].removeAll();
+		panels[0].repaint();
+		panels[1].repaint();
+		panels[2].repaint();
 		openSlot = 1;
 		buttonSelection = -1;
 	}
@@ -92,14 +99,15 @@ public abstract class AbstractWindow {
 	}
 	protected void backButton(String labelText) {
 		curPanel.removeAll();
-		curPanel.add(btnGo);
-		curPanel.add(choice);
-		Label label = new Label(labelText);
-		label.setAlignment(Label.CENTER);
-		label.setFont(new Font("Arial", Font.BOLD, 12));
-		label.setBounds(0, 0, 165, 24);
-		curPanel.add(label);
-		curPanel.repaint();
+//		curPanel.add(btnGo);
+//		curPanel.add(choice);
+//		Label label = new Label(labelText);
+//		label.setAlignment(Label.CENTER);
+//		label.setFont(new Font("Arial", Font.BOLD, 12));
+//		label.setBounds(0, 0, 165, 24);
+//		curPanel.add(label);
+//		curPanel.repaint();
+		setUpChoiceWindow();
 	}
 	
 //	protected void displayInfo(String labelText) {
@@ -147,20 +155,42 @@ public abstract class AbstractWindow {
 		return false;
 	}
 	protected void setUpChoiceWindow() {
-		choice = new Choice();
-		choice.setBounds(0, 30, 300, 22);
+		if(choices[panelIndex]==null)
+			choices[panelIndex] = new Choice();
+		choices[panelIndex].setBounds(0, 30, 300, 22);
 		btnGo = new JButton("Go");
 		btnGo.setBounds(310, 30, 50, 20);
 		
 		btnGo.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				updateCurPanel((JButton)e.getSource());
 				goButton();
 			}
+
+			
 		});
-		curPanel.add(choice);
+		curPanel.add(choices[panelIndex]);
 		curPanel.add(btnGo);
 		curPanel.repaint();
+	}
+	private void updateCurPanel(JButton e) {
+		JPanel source = (JPanel)e.getParent();
+		if(source.equals(panels[0])) {
+//			System.out.println("Panel 1");
+			curPanel = panels[0];
+			panelIndex = 0;
+		}
+		if(source==panels[1]) {
+//			System.out.println("Panel 2");
+			curPanel = panels[1];
+			panelIndex = 1;
+		}
+		if(source==panels[2]) {
+//			System.out.println("Panel 3");
+			curPanel = panels[2];
+			panelIndex = 2;
+		}
 	}
 	
 	protected void paintBackButton() {
@@ -177,17 +207,22 @@ public abstract class AbstractWindow {
 	}
 	
 	protected void getAvailableYears() {
+//		if(choices[panelIndex].getItemCount()>0) {
+//			choices[panelIndex] = new Choice();
+//		}
+		
 		if (gameIsSelected || seasonIsSelected) {
+			choices[panelIndex].removeAll();
 			for (int i = 0; i < returnedList.size(); i++) {
-				choice.add(returnedList.get(i));
+				choices[panelIndex].add(returnedList.get(i));
 			}
-			choiceIndex = choice.getSelectedIndex();
+			choiceIndex = choices[panelIndex].getSelectedIndex();
 			return;
 		}
 	}
 	
 	protected int getSelectedIndex() {
-		return choice.getSelectedIndex();
+		return choices[panelIndex].getSelectedIndex();
 	}
 	
 	protected void setReturnedList(List<String> stringList) {
@@ -218,6 +253,7 @@ public abstract class AbstractWindow {
 		backBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				updateCurPanel((JButton)e.getSource());
 				backButton();
 			}
 		});

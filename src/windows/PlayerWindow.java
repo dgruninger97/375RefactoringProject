@@ -67,8 +67,8 @@ public class PlayerWindow extends AbstractWindow{
 		super.setupAddButton("Add New Player");
 	}
 	
-	private void setupRadialButtons(JButton btnSearch, JFormattedTextField formattedTextField,
-			JFormattedTextField formattedTextField_1) {
+	private void setupRadialButtons(JButton btnSearch, JFormattedTextField formattedFirstName,
+			JFormattedTextField formattedLastName) {
 		JRadioButton rdbtnGame = setUpGameRadialButton();
 		JRadioButton rdbtnSeason = setUpSeasonRadialButton();
 		JRadioButton rdbtnCareer = setUpOverallRadialButton();
@@ -80,7 +80,7 @@ public class PlayerWindow extends AbstractWindow{
 		btnSearch.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				searchButton(formattedTextField, formattedTextField_1, rdbtnGame, rdbtnSeason, rdbtnCareer);
+				searchButton(formattedFirstName, formattedLastName, rdbtnGame, rdbtnSeason, rdbtnCareer);
 			}
 		});
 	}

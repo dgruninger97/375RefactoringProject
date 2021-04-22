@@ -26,7 +26,7 @@ public class NBADatabaseWindow {
 	/**
 	 * Launch the application.
 	 */
-	public static void startMainWindow(DatabaseConnectionService dbService) {
+	public void startMainWindow(DatabaseConnectionService dbService) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
