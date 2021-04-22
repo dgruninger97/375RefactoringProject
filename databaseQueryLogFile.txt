@@ -617,3 +617,12 @@ SUCCESS: team_game_data(Chicago Bulls,2003,65178) 2021-04-21T00:56:36.585Z
 SUCCESS: team_game_data(Chicago Bulls,2003,65178) 2021-04-21T00:56:42.554Z
 SUCCESS: team_game_data(Chicago Bulls,2003,65178) 2021-04-21T00:56:44.581Z
 SUCCESS: view_team_game(Chicago Bulls,2001) 2021-04-21T00:56:50.301Z
+SUCCESS: view_player_career(Trevor,Strahdslayer) 2021-04-22T05:49:18.968Z
+SUCCESS: player_game_data(Trevor,Strahdslayer,42) 2021-04-22T05:49:19.045Z
+SUCCESS: view_player_season(Trevor,Strahdslayer) 2021-04-22T05:49:19.067Z
+SUCCESS: view_player_game(Trevor,Strahdslayer,550) 2021-04-22T05:49:19.074Z
+SUCCESS: player_season_data(Trevor,Strahdslayer,550) 2021-04-22T05:49:19.084Z
+SUCCESS: view_player_game(LeBron,James,2015) 2021-04-22T06:52:39.477Z
+SUCCESS: player_game_data(LeBron,James,70839) 2021-04-22T06:53:23.817Z
+SUCCESS: view_team_game(Indiana Pacers,2015) 2021-04-22T06:54:32.571Z
+SUCCESS: team_game_data(Indiana Pacers,2015,65828) 2021-04-22T06:54:42.773Z
