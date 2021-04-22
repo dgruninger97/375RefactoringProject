@@ -1,0 +1,106 @@
+@startuml
+class Main {
+}
+
+package DatabaseQueries {
+abstract class DatabaseQuery {
+~dbService:DatabaseConnectionService
+~callableStatement:CallableStatement
+~results:List<String>
+~resultSet:ResultSet
+~logger:Logger
++getResults(): List<String>
++runQuery(): ResultSet
+~prepareCallableStatement(): void
+~addResultsStrings(): List<String>
+~queryToString(): String
+}
+}
+
+package Logging {
+interface Logger {
++log(stringToLog: String): void
+}
+
+class DatabaseQueryLogger implements Logger {
+
+}
+}
+
+package TeamQueries {
+class TeamFranchiseDataQuery extends DatabaseQuery {
+
+}
+
+class TeamGameDataQuery extends DatabaseQuery {
+
+}
+
+class TeamGamesPlayedDataQuery extends DatabaseQuery {
+
+}
+
+class TeamSeasonDataQuery extends DatabaseQuery {
+
+}
+
+class TeamSeasonsPlayedDataQuery extends DatabaseQuery {
+
+}
+}
+
+package PlayerQueries {
+class PlayerCareerDataQuery extends DatabaseQuery {
+
+}
+
+class PlayerGameDataQuery extends DatabaseQuery {
+
+}
+
+class PlayerGamesPlayedInSeasonDataQuery extends DatabaseQuery {
+
+}
+
+class PlayerSeasonDataQuery extends DatabaseQuery {
+
+}
+
+class PlayerSeasonsPlayedDataQuery extends DatabaseQuery {
+
+}
+}
+
+package services {
+class DatabaseConnectionService {
+
+}
+
+class PlayerService {
+
+}
+
+class TeamService {
+
+}
+}
+
+package windows {
+
+abstract class AbstractWindow {
+
+}
+
+class PlayerWindow extends AbstractWindow {
+
+}
+
+class TeamWindow extends AbstractWindow {
+
+}
+
+class NBADatabaseWindow {
+
+}
+}
+@enduml
