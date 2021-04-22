@@ -145,6 +145,8 @@ public abstract class AbstractWindow {
 
 			
 		});
+		
+		
 		curPanel.add(choices[panelIndex]);
 		curPanel.add(btnGo);
 		curPanel.repaint();
@@ -353,5 +355,9 @@ public abstract class AbstractWindow {
 		if(rdbtnOverall.isSelected()) {
 			buttonSelection = 3;
 		}
+	}
+	
+	protected int getPanelIndex() {
+		return this.panelIndex;
 	}
 }
