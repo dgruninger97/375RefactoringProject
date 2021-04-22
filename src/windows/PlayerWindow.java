@@ -178,7 +178,7 @@ public class PlayerWindow extends AbstractWindow{
 		}else{
 			return;
 		}
-		setCurrentPanel();
+		setCurrentPanelToOpenSlot();
 		retrieveSeasonInfo(formattedTextField, formattedTextField_1, rdbtnGame, rdbtnSeason, rdbtnCareer);
 		if (firstName[index].isEmpty() || lastName[index].isEmpty()) {
 			JOptionPane.showMessageDialog(null, "You need to enter a first and last name");

@@ -617,6 +617,7 @@ SUCCESS: team_game_data(Chicago Bulls,2003,65178) 2021-04-21T00:56:36.585Z
 SUCCESS: team_game_data(Chicago Bulls,2003,65178) 2021-04-21T00:56:42.554Z
 SUCCESS: team_game_data(Chicago Bulls,2003,65178) 2021-04-21T00:56:44.581Z
 SUCCESS: view_team_game(Chicago Bulls,2001) 2021-04-21T00:56:50.301Z
+<<<<<<< HEAD
 ERROR: view_team_game(asdfasdfasdf,2004) 2021-04-22T14:20:04.968Z
 SUCCESS: view_team_season(Indiana Pacers) 2021-04-22T14:21:28.826Z
 ERROR: view_team_franchise(asrfasdfwreawef) 2021-04-22T14:22:26.773Z
@@ -685,3 +686,5 @@ SUCCESS: team_game_data(Chicago Bulls,2001,64911) 2021-04-22T15:01:19.066Z
 SUCCESS: view_player_game(Lebron,James,2001) 2021-04-22T15:01:28.470Z
 SUCCESS: player_game_data(Lebron,James,65306) 2021-04-22T15:01:29.921Z
 SUCCESS: player_game_data(Lebron,James,65306) 2021-04-22T15:01:31.304Z
+=======
+>>>>>>> master

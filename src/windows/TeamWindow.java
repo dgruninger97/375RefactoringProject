@@ -158,7 +158,7 @@ public class TeamWindow extends AbstractWindow {
 		if (buttonSelection == -1) {
 			getSelectedButton(rdbtnGame, rdbtnSeason, rdbtnFranchise);
 		}
-		setCurrentPanel();
+		setCurrentPanelToOpenSlot();
 		getSearchValues(rdbtnGame, rdbtnSeason, rdbtnFranchise, formattedTextField);
 		if (teamName[index].isEmpty()) {
 			JOptionPane.showMessageDialog(null, "You need to enter a team name");
