@@ -1,8 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="test"/>
+	<classpathentry kind="lib" path="jasypt-1.9.2/lib/icu4j-3.4.4.jar"/>
+	<classpathentry kind="lib" path="jasypt-1.9.2/lib/jasypt-1.9.2-javadoc.jar"/>
+	<classpathentry kind="lib" path="jasypt-1.9.2/lib/jasypt-1.9.2-lite.jar"/>
+	<classpathentry kind="lib" path="jasypt-1.9.2/lib/jasypt-1.9.2-sources.jar"/>
+	<classpathentry kind="lib" path="jasypt-1.9.2/lib/jasypt-1.9.2.jar"/>
+	<classpathentry kind="lib" path="jasypt-1.9.2/lib/jasypt-acegisecurity-1.9.2-javadoc.jar"/>
+	<classpathentry kind="lib" path="jasypt-1.9.2/lib/jasypt-acegisecurity-1.9.2-sources.jar"/>
+	<classpathentry kind="lib" path="jasypt-1.9.2/lib/jasypt-acegisecurity-1.9.2.jar"/>
+	<classpathentry kind="lib" path="jasypt-1.9.2/lib/jasypt-hibernate3-1.9.2-javadoc.jar"/>
+	<classpathentry kind="lib" path="jasypt-1.9.2/lib/jasypt-hibernate3-1.9.2-sources.jar"/>
+	<classpathentry kind="lib" path="jasypt-1.9.2/lib/jasypt-hibernate3-1.9.2.jar"/>
+	<classpathentry kind="lib" path="jasypt-1.9.2/lib/jasypt-hibernate4-1.9.2-javadoc.jar"/>
+	<classpathentry kind="lib" path="jasypt-1.9.2/lib/jasypt-hibernate4-1.9.2-sources.jar"/>
+	<classpathentry kind="lib" path="jasypt-1.9.2/lib/jasypt-hibernate4-1.9.2.jar"/>
+	<classpathentry kind="lib" path="jasypt-1.9.2/lib/jasypt-spring2-1.9.2-javadoc.jar"/>
+	<classpathentry kind="lib" path="jasypt-1.9.2/lib/jasypt-spring2-1.9.2-sources.jar"/>
+	<classpathentry kind="lib" path="jasypt-1.9.2/lib/jasypt-spring2-1.9.2.jar"/>
+	<classpathentry kind="lib" path="jasypt-1.9.2/lib/jasypt-spring3-1.9.2-javadoc.jar"/>
+	<classpathentry kind="lib" path="jasypt-1.9.2/lib/jasypt-spring3-1.9.2-sources.jar"/>
+	<classpathentry kind="lib" path="jasypt-1.9.2/lib/jasypt-spring3-1.9.2.jar"/>
+	<classpathentry kind="lib" path="jasypt-1.9.2/lib/jasypt-spring31-1.9.2-javadoc.jar"/>
+	<classpathentry kind="lib" path="jasypt-1.9.2/lib/jasypt-spring31-1.9.2-sources.jar"/>
+	<classpathentry kind="lib" path="jasypt-1.9.2/lib/jasypt-spring31-1.9.2.jar"/>
+	<classpathentry kind="lib" path="jasypt-1.9.2/lib/jasypt-springsecurity2-1.9.2-javadoc.jar"/>
+	<classpathentry kind="lib" path="jasypt-1.9.2/lib/jasypt-springsecurity2-1.9.2-sources.jar"/>
+	<classpathentry kind="lib" path="jasypt-1.9.2/lib/jasypt-springsecurity2-1.9.2.jar"/>
+	<classpathentry kind="lib" path="jasypt-1.9.2/lib/jasypt-springsecurity3-1.9.2-javadoc.jar"/>
+	<classpathentry kind="lib" path="jasypt-1.9.2/lib/jasypt-springsecurity3-1.9.2-sources.jar"/>
+	<classpathentry kind="lib" path="jasypt-1.9.2/lib/jasypt-springsecurity3-1.9.2.jar"/>
+	<classpathentry kind="lib" path="jasypt-1.9.2/lib/jasypt-wicket13-1.9.2-javadoc.jar"/>
+	<classpathentry kind="lib" path="jasypt-1.9.2/lib/jasypt-wicket13-1.9.2-sources.jar"/>
+	<classpathentry kind="lib" path="jasypt-1.9.2/lib/jasypt-wicket13-1.9.2.jar"/>
+	<classpathentry kind="lib" path="jasypt-1.9.2/lib/jasypt-wicket15-1.9.2-javadoc.jar"/>
+	<classpathentry kind="lib" path="jasypt-1.9.2/lib/jasypt-wicket15-1.9.2-sources.jar"/>
+	<classpathentry kind="lib" path="jasypt-1.9.2/lib/jasypt-wicket15-1.9.2.jar"/>
+	<classpathentry kind="lib" path="mssql-jdbc-6.2.2.jre8.jar"/>
+	<classpathentry kind="lib" path="SodaBaseUi.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
+	<classpathentry kind="lib" path="easymock-4.2-javadoc.jar"/>
+	<classpathentry kind="lib" path="easymock-4.2-samples.jar"/>
+	<classpathentry kind="lib" path="easymock-4.2-sources.jar"/>
+	<classpathentry kind="lib" path="easymock-4.2-tests.jar"/>
+	<classpathentry kind="lib" path="easymock-4.2.jar"/>
+	<classpathentry kind="lib" path="original-easymock-4.2-sources.jar"/>
+	<classpathentry kind="lib" path="original-easymock-4.2.jar"/>
+	<classpathentry kind="lib" path="objenesis-3.2.jar"/>
+	<classpathentry kind="output" path="bin"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8/"/>
 	<classpathentry kind="con" path="org.eclipse.buildship.core.gradleclasspathcontainer"/>
 	<classpathentry kind="lib" path="C:/Users/grayledw/Documents/Spring2021/CSSE375/Project/Repo/databasesproj/json-20210307.jar"/>
-	<classpathentry kind="output" path="bin/default"/>
+	
 </classpath>

@@ -1,20 +1,22 @@
 package windows;
 
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JButton;
-import javax.swing.JTextField;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
+import DataParsing.DataParser;
 import services.DatabaseConnectionService;
-
-import javax.swing.JTextArea;
-import javax.swing.JLabel;
 
 public class NBADatabaseWindow {
 
@@ -61,6 +63,7 @@ public class NBADatabaseWindow {
 		setupFramePane();
 		displayPlayerButton();
 		displayTeamButton();
+		displayDataButton();
 		displayHomeScreenText();
 	}
 
@@ -93,6 +96,33 @@ public class NBADatabaseWindow {
 				frame.dispose();
 				TeamWindow tw = new TeamWindow();
 				tw.startWindow(getService());
+			}
+		});
+	}
+	
+	private void displayDataButton() {
+		JButton btnTeams = new JButton("New Data");
+		btnTeams.setBounds(155, 200, 97, 25);
+		frame.getContentPane().add(btnTeams);
+		btnTeams.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser j = new JFileChooser("./");
+				j.showSaveDialog(null);
+				
+				File selectedFile = j.getSelectedFile();
+				try {
+				Scanner inputStream = new Scanner(selectedFile);
+				inputStream.nextLine();
+				while (inputStream.hasNext()) {
+					DataParser.insertData(dbService, inputStream);
+				}
+				inputStream.close();
+				JOptionPane.showMessageDialog(null, "Data successfully added");
+			} catch (Exception e1) {
+				JOptionPane.showMessageDialog(null, "Invalid file entry");
+			}
 			}
 		});
 	}
