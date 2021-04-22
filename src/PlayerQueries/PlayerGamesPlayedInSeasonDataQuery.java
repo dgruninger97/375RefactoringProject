@@ -7,17 +7,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import DatabaseQueries.DatabaseQuery;
+import DomainObjects.PlayerName;
 import Domain.DatabaseConnectionService;
 
 public class PlayerGamesPlayedInSeasonDataQuery extends DatabaseQuery {
-	private String firstName;
-	private String lastName;
+	private PlayerName playerName;
 	private String seasonYear;
 	
-	public PlayerGamesPlayedInSeasonDataQuery(DatabaseConnectionService dbService, String firstName, String lastName, String seasonYear) {
+	public PlayerGamesPlayedInSeasonDataQuery(DatabaseConnectionService dbService, PlayerName playerName, String seasonYear) {
 		super(dbService);
-		this.firstName = firstName;
-		this.lastName = lastName;
+		this.playerName = playerName;
 		this.seasonYear = seasonYear;
 	}
 
@@ -25,8 +24,8 @@ public class PlayerGamesPlayedInSeasonDataQuery extends DatabaseQuery {
 	protected void prepareCallableStatement() throws SQLException {
 		callableStatement = dbService.getConnection().prepareCall("{?=call view_player_game(?,?,?)}");
 		callableStatement.registerOutParameter(1, Types.INTEGER);
-		callableStatement.setString(2, firstName);
-		callableStatement.setString(3, lastName);
+		callableStatement.setString(2, playerName.firstName);
+		callableStatement.setString(3, playerName.lastName);
 		callableStatement.setInt(4, Integer.valueOf(seasonYear));
 	}
 
@@ -42,6 +41,6 @@ public class PlayerGamesPlayedInSeasonDataQuery extends DatabaseQuery {
 
 	@Override
 	protected String queryToString() {
-		return "view_player_game(" + firstName + "," + lastName + "," + seasonYear + ")";
+		return "view_player_game(" + playerName.firstName + "," + playerName.lastName + "," + seasonYear + ")";
 	}
 }

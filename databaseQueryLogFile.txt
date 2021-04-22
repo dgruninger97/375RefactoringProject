@@ -688,3 +688,13 @@ SUCCESS: player_game_data(Lebron,James,65306) 2021-04-22T15:01:29.921Z
 SUCCESS: player_game_data(Lebron,James,65306) 2021-04-22T15:01:31.304Z
 =======
 >>>>>>> master
+SUCCESS: view_player_career(Trevor,Strahdslayer) 2021-04-22T20:26:00.339Z
+SUCCESS: player_game_data(Trevor,Strahdslayer,42) 2021-04-22T20:26:00.526Z
+SUCCESS: view_player_season(Trevor,Strahdslayer) 2021-04-22T20:26:00.614Z
+SUCCESS: view_player_game(Trevor,Strahdslayer,550) 2021-04-22T20:26:00.641Z
+SUCCESS: player_season_data(Trevor,Strahdslayer,550) 2021-04-22T20:26:00.665Z
+SUCCESS: view_player_career(Trevor,Strahdslayer) 2021-04-22T20:42:11.546Z
+SUCCESS: player_game_data(Trevor,Strahdslayer,42) 2021-04-22T20:42:11.638Z
+SUCCESS: view_player_season(Trevor,Strahdslayer) 2021-04-22T20:42:11.682Z
+SUCCESS: view_player_game(Trevor,Strahdslayer,550) 2021-04-22T20:42:11.699Z
+SUCCESS: player_season_data(Trevor,Strahdslayer,550) 2021-04-22T20:42:11.717Z
