@@ -18,8 +18,8 @@ import services.DatabaseConnectionService;
 import services.PlayerService;
 
 public class PlayerWindow extends AbstractWindow{
-	private String firstName;
-	private String lastName;
+	private String[] firstName = new String[3];
+	private String[] lastName = new String[3];
 	private boolean careerIsSelected;
 	private static PlayerService playerService;
 	private int buttonSelection = -1;
@@ -109,15 +109,16 @@ public class PlayerWindow extends AbstractWindow{
 	
 	@Override
 	protected void callService(int methodType) {
+		int index = super.getPanelIndex();
 		if (methodType == 1) {
 			
-			super.setReturnedList(playerService.getPlayerInformation(firstName, lastName, super.getGameSelected(), super.getSeasonSelected(), careerIsSelected, super.getYear(), 0));
+			super.setReturnedList(playerService.getPlayerInformation(firstName[index], lastName[index], super.getGameSelected(), super.getSeasonSelected(), careerIsSelected, super.getYear(), 0));
 			if(checkInvalidEntry()) {
 				return;
 			}
 			getAvailableYears();
 			if (careerIsSelected) {
-				super.displayInfo(firstName + " " + lastName);
+				super.displayInfo(firstName[index] + " " + lastName[index]);
 			}
 			return;
 		}
@@ -130,43 +131,48 @@ public class PlayerWindow extends AbstractWindow{
 		else {
 			retrieveOverallInfo();
 		}
-		super.displayInfo(firstName + " " + lastName);
+		super.displayInfo(firstName[index] + " " + lastName[index]);
 	}
 
 
 
 	private void retrieveOverallInfo() {
+		int index = super.getPanelIndex();
 		try {
-			super.setReturnedList(playerService.getCareerInfo(firstName, lastName));
+			super.setReturnedList(playerService.getCareerInfo(firstName[index], lastName[index]));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 	private void retrieveSeasonInfo() {
+		int index = super.getPanelIndex();
 		try {
-			super.setReturnedList(playerService.getSeasonInfo(firstName, lastName, super.getSelectedIndex()));
+			super.setReturnedList(playerService.getSeasonInfo(firstName[index], lastName[index], super.getSelectedIndex()));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		super.displayInfo(firstName + " " + lastName);
+		super.displayInfo(firstName[index] + " " + lastName[index]);
 	}
 
 	private void retrieveGameInfo() {
+		int index = super.getPanelIndex();
 		try {
-			super.setReturnedList(playerService.getGameInfo(firstName, lastName, super.getSelectedIndex()));
+			super.setReturnedList(playerService.getGameInfo(firstName[index], lastName[index], super.getSelectedIndex()));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		super.displayInfo(firstName + " " + lastName);
+		super.displayInfo(firstName[index] + " " + lastName[index]);
 	}
 	@Override
 	protected void backButton() {
-		super.backButton(firstName+" "+lastName);
+		int index = super.getPanelIndex();
+		super.backButton(firstName[index]+" "+lastName[index]);
 	}
 	
 	private void searchButton(JFormattedTextField formattedTextField, JFormattedTextField formattedTextField_1,
 			JRadioButton rdbtnGame, JRadioButton rdbtnSeason, JRadioButton rdbtnCareer) {
+		int index = super.getPanelIndex();
 		if(buttonSelection == -1) {
 			getSelectedButton(rdbtnGame, rdbtnSeason, rdbtnCareer);
 		}else{
@@ -174,7 +180,7 @@ public class PlayerWindow extends AbstractWindow{
 		}
 		setCurrentPanelToOpenSlot();
 		retrieveSeasonInfo(formattedTextField, formattedTextField_1, rdbtnGame, rdbtnSeason, rdbtnCareer);
-		if (firstName.isEmpty() || lastName.isEmpty()) {
+		if (firstName[index].isEmpty() || lastName[index].isEmpty()) {
 			JOptionPane.showMessageDialog(null, "You need to enter a first and last name");
 			return;
 		}
@@ -185,7 +191,8 @@ public class PlayerWindow extends AbstractWindow{
 	}
 
 	private void setUpInfoPanel() {
-		Label label = new Label(firstName + " " + lastName);
+		int index = super.getPanelIndex();
+		Label label = new Label(firstName[index] + " " + lastName[index]);
 		label.setAlignment(Label.CENTER);
 		label.setFont(new Font("Arial", Font.BOLD, 12));
 		label.setBounds(0, 0, 165, 24);
@@ -194,11 +201,12 @@ public class PlayerWindow extends AbstractWindow{
 	}
 
 
-	private void retrieveSeasonInfo(JFormattedTextField formattedTextField, JFormattedTextField formattedTextField_1,
+	private void retrieveSeasonInfo(JFormattedTextField firstNameTextField, JFormattedTextField lastNameTextField,
 			JRadioButton rdbtnGame, JRadioButton rdbtnSeason, JRadioButton rdbtnCareer) {
+		int index = super.getPanelIndex();
 		super.removeAllFromPanel();
-		lastName = formattedTextField_1.getText();
-		firstName = formattedTextField.getText();
+		lastName[index] = lastNameTextField.getText();
+		firstName[index] = firstNameTextField.getText();
 		getGameAndSeasonSelections(rdbtnGame, rdbtnSeason);
 		careerIsSelected = rdbtnCareer.isSelected();
 	}
