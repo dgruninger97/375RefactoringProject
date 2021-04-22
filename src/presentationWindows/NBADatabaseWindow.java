@@ -1,4 +1,4 @@
-package windows;
+package presentationWindows;
 
 import java.awt.EventQueue;
 import java.awt.Font;

@@ -1,3 +1,4 @@
+package Domain;
 import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
@@ -5,10 +6,10 @@ import javax.swing.JOptionPane;
 import javax.swing.border.Border;
 
 import DataParsing.DataParser;
+import presentationWindows.NBADatabaseWindow;
 import services.DatabaseConnectionService;
 import services.PlayerService;
 import sodabase.ui.ApplicationRunner;
-import windows.NBADatabaseWindow;
 
 public class Main {
 

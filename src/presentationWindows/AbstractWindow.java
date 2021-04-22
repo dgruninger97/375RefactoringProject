@@ -1,4 +1,4 @@
-package windows;
+package presentationWindows;
 
 import java.awt.Choice;
 import java.awt.Font;
