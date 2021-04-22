@@ -617,18 +617,3 @@ SUCCESS: team_game_data(Chicago Bulls,2003,65178) 2021-04-21T00:56:36.585Z
 SUCCESS: team_game_data(Chicago Bulls,2003,65178) 2021-04-21T00:56:42.554Z
 SUCCESS: team_game_data(Chicago Bulls,2003,65178) 2021-04-21T00:56:44.581Z
 SUCCESS: view_team_game(Chicago Bulls,2001) 2021-04-21T00:56:50.301Z
-ERROR: view_team_game(asdfasdfasdf,2004) 2021-04-22T14:20:04.968Z
-SUCCESS: view_team_season(Indiana Pacers) 2021-04-22T14:21:28.826Z
-ERROR: view_team_franchise(asrfasdfwreawef) 2021-04-22T14:22:26.773Z
-ERROR: view_team_franchise(asdfasdfasdf) 2021-04-22T14:23:10.339Z
-ERROR: view_team_season(asdfasdfasdf) 2021-04-22T14:23:13.380Z
-ERROR: view_team_season(a;sldkfja;lskdfj;alskdjf;alskdjf;alskdfj) 2021-04-22T14:24:45.354Z
-ERROR: view_team_season(asdfasdf) 2021-04-22T14:26:19.992Z
-ERROR: view_team_franchise(asdfasdf) 2021-04-22T14:26:52.252Z
-ERROR: view_team_franchise(asdfasdfasdff) 2021-04-22T14:27:14.952Z
-ERROR: view_team_franchise(asdf) 2021-04-22T14:28:04.963Z
-ERROR: view_team_season(asdf) 2021-04-22T14:28:08.145Z
-ERROR: view_team_game(asdf,2004) 2021-04-22T14:28:14.572Z
-ERROR: view_team_season(asdfaksdjfhalskdfhlkwdjhfalksjdf) 2021-04-22T14:28:25.332Z
-SUCCESS: view_team_season(chicago bulls) 2021-04-22T14:28:34.366Z
-SUCCESS: team_season_data(chicago bulls,2000) 2021-04-22T14:28:35.748Z

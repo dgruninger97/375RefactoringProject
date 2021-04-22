@@ -21,7 +21,7 @@ public abstract class AbstractWindow {
 	private JFrame frame;
 	private JPanel[] panels;
 	private int openSlot = 1;
-	private JPanel curPanel;
+	private JPanel currentPanel;
 	private int buttonSelection = -1;
 	private JButton btnGo;
 	private JButton backBtn;
@@ -57,18 +57,18 @@ public abstract class AbstractWindow {
 		panels[1] = panel_2;
 		panels[2] = panel_3;
 	}
-	protected void setCurrentPanel() {
+	protected void setCurrentPanelToOpenSlot() {
 		if (openSlot == 1) {
-			curPanel = panels[0];
+			currentPanel = panels[0];
 			panelIndex = 0;
 		} else if (openSlot == 2) {
-			curPanel = panels[1];
+			currentPanel = panels[1];
 			panelIndex = 1;
 		} else if (openSlot == 3) {
-			curPanel = panels[2];
+			currentPanel = panels[2];
 			panelIndex = 2;
 		}else {
-			curPanel = null;
+			currentPanel = null;
 		}
 	}
 	
@@ -98,7 +98,7 @@ public abstract class AbstractWindow {
 		frame.getContentPane().add(btnAddNew);
 	}
 	protected void backButton(String labelText) {
-		curPanel.removeAll();
+		currentPanel.removeAll();
 		setUpChoiceWindow();
 	}
 	
@@ -111,13 +111,13 @@ public abstract class AbstractWindow {
 		textArea.setText(info);
 		textArea.setBounds(0, 30, 310, 129);
 		textArea.setEditable(false);
-		curPanel.removeAll();
-		curPanel.add(textArea);
+		currentPanel.removeAll();
+		currentPanel.add(textArea);
 		Label label = new Label(labelText);
 		label.setAlignment(Label.CENTER);
 		label.setFont(new Font("Arial", Font.BOLD, 12));
 		label.setBounds(0, 0, 165, 24);
-		curPanel.add(label);
+		currentPanel.add(label);
 	}
 	
 	protected boolean checkInvalidEntry() {
@@ -139,43 +139,44 @@ public abstract class AbstractWindow {
 		btnGo.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				updateCurPanel((JButton)e.getSource());
+				setCurrentPanelToButtonSource((JButton)e.getSource());
 				goButton();
 			}
 
 			
 		});
-		curPanel.add(choices[panelIndex]);
-		curPanel.add(btnGo);
-		curPanel.repaint();
+		currentPanel.add(choices[panelIndex]);
+		currentPanel.add(btnGo);
+		currentPanel.repaint();
 	}
-	private void updateCurPanel(JButton e) {
+	private void setCurrentPanelToButtonSource(JButton e) {
 		JPanel source = (JPanel)e.getParent();
 		if(source.equals(panels[0])) {
-			curPanel = panels[0];
+			currentPanel = panels[0];
+
 			panelIndex = 0;
 		}
 		if(source==panels[1]) {
-			curPanel = panels[1];
+			currentPanel = panels[1];
 			panelIndex = 1;
 		}
 		if(source==panels[2]) {
-			curPanel = panels[2];
+			currentPanel = panels[2];
 			panelIndex = 2;
 		}
 	}
 	
 	protected void paintBackButton() {
-		curPanel.add(backBtn);
-		curPanel.repaint();
+		currentPanel.add(backBtn);
+		currentPanel.repaint();
 	}
 	
 	protected void removeAllFromPanel() {
-		curPanel.removeAll();
+		currentPanel.removeAll();
 	}
 	
 	protected void addLabelToPanel(Label label) {
-		curPanel.add(label);
+		currentPanel.add(label);
 	}
 	
 	protected void getAvailableYears() {
@@ -221,7 +222,7 @@ public abstract class AbstractWindow {
 		backBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				updateCurPanel((JButton)e.getSource());
+				setCurrentPanelToButtonSource((JButton)e.getSource());
 				backButton();
 			}
 		});

@@ -105,7 +105,7 @@ public class NBADatabaseWindow {
 				Scanner inputStream = new Scanner(selectedFile);
 				inputStream.nextLine();
 				while (inputStream.hasNext()) {
-					DataParser.insertData(dbService, inputStream);
+					DataParser.insertNextLineToDB(dbService, inputStream);
 				}
 				inputStream.close();
 				JOptionPane.showMessageDialog(null, "Data successfully added");
