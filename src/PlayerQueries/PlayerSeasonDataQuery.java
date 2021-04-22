@@ -1,8 +1,10 @@
 package PlayerQueries;
 
 import java.sql.CallableStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.util.ArrayList;
 import java.util.List;
 
 import DatabaseQueries.DatabaseQuery;
@@ -30,7 +32,8 @@ public class PlayerSeasonDataQuery extends DatabaseQuery {
 	}
 
 	@Override
-	protected List<String> getFormattedResultStrings() throws SQLException {
+	protected List<String> getFormattedResultStrings(ResultSet resultSet) throws SQLException {
+		List<String> results = new ArrayList<String>();
 		while(resultSet.next()) {
 			results.add("Season Points: " + resultSet.getString(1) + "\nSeason Assists: " + resultSet.getString(2)
 					+ "\nSeason Rebounds: " + resultSet.getString(3));

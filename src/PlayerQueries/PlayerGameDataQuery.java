@@ -1,7 +1,9 @@
 package PlayerQueries;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.util.ArrayList;
 import java.util.List;
 
 import DatabaseQueries.DatabaseQuery;
@@ -29,7 +31,8 @@ public class PlayerGameDataQuery extends DatabaseQuery {
 	}
 
 	@Override
-	protected List<String> getFormattedResultStrings() throws SQLException {
+	protected List<String> getFormattedResultStrings(ResultSet resultSet) throws SQLException {
+		List<String> results = new ArrayList<String>();
 		while(resultSet.next()) {
 			results.add("Game Points: " + resultSet.getString(1) + "\nGame Assists: " + resultSet.getString(2) + "\nGame Rebounds: "
 					+ resultSet.getString(3));

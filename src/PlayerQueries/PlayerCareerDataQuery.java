@@ -2,7 +2,9 @@ package PlayerQueries;
 
 import java.sql.SQLException;
 import java.sql.Types;
+import java.util.ArrayList;
 import java.util.List;
+import java.sql.ResultSet;
 
 import DatabaseQueries.DatabaseQuery;
 import Domain.DatabaseConnectionService;
@@ -22,11 +24,12 @@ public class PlayerCareerDataQuery extends DatabaseQuery {
 		callableStatement = dbService.getConnection().prepareCall("{?=call view_player_career(?,?)}");
 		callableStatement.registerOutParameter(1, Types.INTEGER);
 		callableStatement.setString(2, firstName);
-		callableStatement.setString(3, lastName);
+		callableStatement.setString(3, lastName);	
 	}
 
 	@Override
-	protected List<String> getFormattedResultStrings() throws SQLException {
+	protected List<String> getFormattedResultStrings(ResultSet resultSet) throws SQLException {
+		List<String> results = new ArrayList<String>();
 		while(resultSet.next()) {
 			results.add("Career Points: " + resultSet.getString(3) + "\nCareer Assists: " + resultSet.getString(4)
 					+ "\nCareer Rebounds: " + resultSet.getString(5));
