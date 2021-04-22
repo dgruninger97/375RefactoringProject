@@ -23,9 +23,7 @@ public class PlayerWindow extends AbstractWindow{
 	private boolean careerIsSelected;
 	private static PlayerService playerService;
 	private int buttonSelection = -1;
-	/**
-	 * Launch the application.
-	 */
+
 	public void startWindow(DatabaseConnectionService dbService) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -40,16 +38,11 @@ public class PlayerWindow extends AbstractWindow{
 		});
 	}
 
-	/**
-	 * Create the application.
-	 */
 	public PlayerWindow() {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
+
 	private void initialize() {
 		setUpFrame();
 		JFormattedTextField firstNameTextField = createFirstNameSearchBox();
@@ -146,7 +139,6 @@ public class PlayerWindow extends AbstractWindow{
 		try {
 			super.setReturnedList(playerService.getCareerInfo(firstName, lastName));
 		} catch (SQLException e) {
-			// TODO Figure out the best way to respond to SQLExceptions
 			e.printStackTrace();
 		}
 	}
@@ -155,7 +147,6 @@ public class PlayerWindow extends AbstractWindow{
 		try {
 			super.setReturnedList(playerService.getSeasonInfo(firstName, lastName, super.getSelectedIndex()));
 		} catch (SQLException e) {
-			// TODO Figure out the best way to respond to SQLExceptions
 			e.printStackTrace();
 		}
 		super.displayInfo(firstName + " " + lastName);
@@ -165,7 +156,6 @@ public class PlayerWindow extends AbstractWindow{
 		try {
 			super.setReturnedList(playerService.getGameInfo(firstName, lastName, super.getSelectedIndex()));
 		} catch (SQLException e) {
-			// TODO Figure out the best way to respond to SQLExceptions
 			e.printStackTrace();
 		}
 		super.displayInfo(firstName + " " + lastName);
@@ -180,7 +170,6 @@ public class PlayerWindow extends AbstractWindow{
 		if(buttonSelection == -1) {
 			getSelectedButton(rdbtnGame, rdbtnSeason, rdbtnCareer);
 		}else{
-//			displayComparisonSelectionErrors(rdbtnGame, rdbtnSeason, rdbtnCareer);
 			return;
 		}
 		setCurrentPanelToOpenSlot();
@@ -192,24 +181,8 @@ public class PlayerWindow extends AbstractWindow{
 		while(promptForYear()) {
 
 		}
-		if (careerIsSelected) {
-			setUpCareerInfoArea();
-		}
 		setUpInfoPanel();
 	}
-
-
-	//May need to revert to commented code
-	private void setUpCareerInfoArea() {
-//		curPanel.repaint();
-//		textArea = new TextArea();
-//		textArea.setBounds(0, 30, 300, 129);
-//		textArea.setEditable(false);
-//		curPanel.add(textArea);
-//		super.displayInfo(firstName + " " + lastName);
-	}
-
-
 
 	private void setUpInfoPanel() {
 		Label label = new Label(firstName + " " + lastName);

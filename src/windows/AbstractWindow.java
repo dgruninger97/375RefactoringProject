@@ -99,34 +99,9 @@ public abstract class AbstractWindow {
 	}
 	protected void backButton(String labelText) {
 		currentPanel.removeAll();
-//		curPanel.add(btnGo);
-//		curPanel.add(choice);
-//		Label label = new Label(labelText);
-//		label.setAlignment(Label.CENTER);
-//		label.setFont(new Font("Arial", Font.BOLD, 12));
-//		label.setBounds(0, 0, 165, 24);
-//		curPanel.add(label);
-//		curPanel.repaint();
 		setUpChoiceWindow();
 	}
 	
-//	protected void displayInfo(String labelText) {
-////		String info = "";
-////		for (int i = 0; i < returnedList.size(); i++) {
-////			info += returnedList.get(i);
-////		}
-////		curPanel.removeAll();
-////		textArea = new TextArea();
-////		textArea.setBounds(0, 30, 310, 129);
-////		textArea.setEditable(false);
-////		curPanel.add(textArea);
-////		textArea.setText(info);
-//		Label label = new Label(labelText);
-//		label.setAlignment(Label.CENTER);
-//		label.setFont(new Font("Arial", Font.BOLD, 12));
-//		label.setBounds(0, 0, 165, 24);
-//		curPanel.add(label);
-//	}
 	protected void displayInfo(String labelText) {
 		String info = "";
 		for (int i = 0; i < returnedList.size(); i++) {
@@ -177,17 +152,15 @@ public abstract class AbstractWindow {
 	private void setCurrentPanelToButtonSource(JButton e) {
 		JPanel source = (JPanel)e.getParent();
 		if(source.equals(panels[0])) {
-//			System.out.println("Panel 1");
 			currentPanel = panels[0];
+
 			panelIndex = 0;
 		}
 		if(source==panels[1]) {
-//			System.out.println("Panel 2");
 			currentPanel = panels[1];
 			panelIndex = 1;
 		}
 		if(source==panels[2]) {
-//			System.out.println("Panel 3");
 			currentPanel = panels[2];
 			panelIndex = 2;
 		}
@@ -207,10 +180,6 @@ public abstract class AbstractWindow {
 	}
 	
 	protected void getAvailableYears() {
-//		if(choices[panelIndex].getItemCount()>0) {
-//			choices[panelIndex] = new Choice();
-//		}
-		
 		if (gameIsSelected || seasonIsSelected) {
 			choices[panelIndex].removeAll();
 			for (int i = 0; i < returnedList.size(); i++) {
@@ -326,7 +295,6 @@ public abstract class AbstractWindow {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				frame.dispose();
 				NBADatabaseWindow newWin = new NBADatabaseWindow();
 				newWin.startMainWindow(getService());

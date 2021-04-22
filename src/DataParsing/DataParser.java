@@ -1,35 +1,14 @@
 package DataParsing;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.sql.CallableStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.Scanner;
-import java.util.StringTokenizer;
 
 import javax.swing.JOptionPane;
 
 import services.DatabaseConnectionService;
 
 public class DataParser {
-	// Rename and get rid of String[] args
-	public void main(String[] args, DatabaseConnectionService dbService) {
-//		String fileName = "DataSheet3.csv";
-//		clearDatabase(dbService);
-//		reEnableConstraints(dbService);
-//		File file = new File(fileName);
-//		try {
-//			Scanner inputStream = new Scanner(file);
-//			inputStream.nextLine();
-//			while (inputStream.hasNext()) {
-//				insertData(dbService, inputStream);
-//			}
-//			inputStream.close();
-//		} catch (FileNotFoundException e) {
-//			e.printStackTrace();
-//		}
-	}
 
 	private static void reEnableConstraints(DatabaseConnectionService dbService) {
 		CallableStatement callableStatement;
