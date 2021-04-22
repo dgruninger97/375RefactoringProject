@@ -22,7 +22,7 @@ import javax.swing.JButton;
 public class TeamWindow extends AbstractWindow {
 
 
-	private String teamName;
+	private String[] teamName = new String[3];
 	private boolean franchiseIsSelected;
 	private static TeamService teamService;
 	private int buttonSelection = -1;
@@ -98,15 +98,16 @@ public class TeamWindow extends AbstractWindow {
 	}
 	@Override
 	protected void callService(int methodType) {
+		int index = super.getPanelIndex();
 		if (methodType == 1) {
-			super.setReturnedList(teamService.getTeamInformation(teamName, super.getGameSelected(), super.getSeasonSelected(), franchiseIsSelected, super.getYear(), 0));
+			super.setReturnedList(teamService.getTeamInformation(teamName[index], super.getGameSelected(), super.getSeasonSelected(), franchiseIsSelected, super.getYear(), 0));
 			if(checkInvalidEntry()) {
 				super.clearWindow();
 				return;
 			}
 			getAvailableYears();
 			if (franchiseIsSelected) {
-				super.displayInfo(teamName);
+				super.displayInfo(teamName[index]);
 			}
 			return;
 		} else if (methodType == 2) {
@@ -117,46 +118,51 @@ public class TeamWindow extends AbstractWindow {
 		else {
 			retrieveOverallInfo();
 		}
-		super.displayInfo(teamName);
+		super.displayInfo(teamName[index]);
 	}
 
 	private void retrieveOverallInfo() {
+		int index = super.getPanelIndex();
 		try {
-			super.setReturnedList(teamService.getTeamFranchiseInfo(teamName));
+			super.setReturnedList(teamService.getTeamFranchiseInfo(teamName[index]));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	
 	private void retrieveSeasonInfo() {
+		int index = super.getPanelIndex();
 		try {
-			super.setReturnedList(teamService.getTeamSeasonInfo(teamName, super.getSelectedIndex()));
+			super.setReturnedList(teamService.getTeamSeasonInfo(teamName[index], super.getSelectedIndex()));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 	private void retrieveGameInfo() {
+		int index = super.getPanelIndex();
 		try {
-			super.setReturnedList(teamService.getTeamGameInfo(teamName, super.getYear(), super.getSelectedIndex()));
+			super.setReturnedList(teamService.getTeamGameInfo(teamName[index], super.getYear(), super.getSelectedIndex()));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		super.displayInfo(teamName);
+		super.displayInfo(teamName[index]);
 	}
 	@Override
 	protected void backButton() {
-		super.backButton(teamName);
+		int index = super.getPanelIndex();
+		super.backButton(teamName[index]);
 	}
 
 	public void searchButton(JRadioButton rdbtnGame, JRadioButton rdbtnSeason, JRadioButton rdbtnFranchise,
 			JFormattedTextField formattedTextField) {
+		int index = super.getPanelIndex();
 		if (buttonSelection == -1) {
 			getSelectedButton(rdbtnGame, rdbtnSeason, rdbtnFranchise);
 		}
 		setCurrentPanelToOpenSlot();
 		getSearchValues(rdbtnGame, rdbtnSeason, rdbtnFranchise, formattedTextField);
-		if (teamName.isEmpty()) {
+		if (teamName[index].isEmpty()) {
 			JOptionPane.showMessageDialog(null, "You need to enter a team name");
 			return;
 		}
@@ -168,8 +174,9 @@ public class TeamWindow extends AbstractWindow {
 
 	private void getSearchValues(JRadioButton rdbtnGame, JRadioButton rdbtnSeason, JRadioButton rdbtnFranchise,
 			JFormattedTextField formattedTextField) {
+		int index = super.getPanelIndex();
 		super.removeAllFromPanel();
-		teamName = formattedTextField.getText();
+		teamName[index] = formattedTextField.getText();
 		getGameAndSeasonSelections(rdbtnGame, rdbtnSeason);
 		franchiseIsSelected = rdbtnFranchise.isSelected();
 	}

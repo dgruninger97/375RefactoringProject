@@ -146,8 +146,9 @@ public abstract class AbstractWindow {
 			
 		});
 		currentPanel.add(choices[panelIndex]);
-		currentPanel.add(btnGo);
+		currentPanel.add(btnGo); 
 		currentPanel.repaint();
+
 	}
 	private void setCurrentPanelToButtonSource(JButton e) {
 		JPanel source = (JPanel)e.getParent();
@@ -354,5 +355,9 @@ public abstract class AbstractWindow {
 		if(rdbtnOverall.isSelected()) {
 			buttonSelection = 3;
 		}
+	}
+	
+	protected int getPanelIndex() {
+		return this.panelIndex;
 	}
 }
