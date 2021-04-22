@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
-import services.DatabaseConnectionService;
+import Domain.DatabaseConnectionService;
 
 public abstract class AbstractWindow {
 	private JFrame frame;

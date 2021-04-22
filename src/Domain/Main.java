@@ -7,8 +7,6 @@ import javax.swing.border.Border;
 
 import DataParsing.DataParser;
 import presentationWindows.NBADatabaseWindow;
-import services.DatabaseConnectionService;
-import services.PlayerService;
 import sodabase.ui.ApplicationRunner;
 
 public class Main {

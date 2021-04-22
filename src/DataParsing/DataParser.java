@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
-import services.DatabaseConnectionService;
+import Domain.DatabaseConnectionService;
 
 public class DataParser {
 

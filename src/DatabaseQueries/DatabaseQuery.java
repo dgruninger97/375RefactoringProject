@@ -7,9 +7,9 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
+import Domain.DatabaseConnectionService;
 import Logging.DatabaseQueryLogger;
 import Logging.Logger;
-import services.DatabaseConnectionService;
 
 public abstract class DatabaseQuery {
 	protected DatabaseConnectionService dbService;

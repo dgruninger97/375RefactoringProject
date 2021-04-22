@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 import DataParsing.DataParser;
-import services.DatabaseConnectionService;
+import Domain.DatabaseConnectionService;
 
 public class NBADatabaseWindow {
 
