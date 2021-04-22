@@ -146,7 +146,7 @@ public abstract class AbstractWindow {
 			
 		});
 		currentPanel.add(choices[panelIndex]);
-		currentPanel.add(btnGo);
+		currentPanel.add(btnGo); 
 		currentPanel.repaint();
 
 	}
