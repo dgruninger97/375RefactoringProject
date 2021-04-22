@@ -15,7 +15,6 @@ public class DatabaseQueryLogger implements Logger {
 			bufferedWriter.newLine();
 			bufferedWriter.close();
 		} catch (IOException e) {
-			// TODO Figure out best way to handle IOException
 			e.printStackTrace();
 		}
 	}
