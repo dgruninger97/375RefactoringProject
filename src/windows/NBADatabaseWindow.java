@@ -23,9 +23,6 @@ public class NBADatabaseWindow {
 	private JFrame frame;
 	private DatabaseConnectionService dbService = null;
 
-	/**
-	 * Launch the application.
-	 */
 	public void startMainWindow(DatabaseConnectionService dbService) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -40,9 +37,6 @@ public class NBADatabaseWindow {
 		});
 	}
 
-	/**
-	 * Create the application.
-	 */
 	public NBADatabaseWindow() {
 		initialize();
 	}
@@ -56,9 +50,6 @@ public class NBADatabaseWindow {
 	}
 	
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize() {
 		setupFramePane();
 		displayPlayerButton();
@@ -76,7 +67,6 @@ public class NBADatabaseWindow {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				frame.dispose();
 				PlayerWindow pw = new PlayerWindow();
 				pw.startWindow(getService());
@@ -92,7 +82,6 @@ public class NBADatabaseWindow {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				frame.dispose();
 				TeamWindow tw = new TeamWindow();
 				tw.startWindow(getService());
