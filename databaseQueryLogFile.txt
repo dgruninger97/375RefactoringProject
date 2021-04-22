@@ -617,6 +617,77 @@ SUCCESS: team_game_data(Chicago Bulls,2003,65178) 2021-04-21T00:56:36.585Z
 SUCCESS: team_game_data(Chicago Bulls,2003,65178) 2021-04-21T00:56:42.554Z
 SUCCESS: team_game_data(Chicago Bulls,2003,65178) 2021-04-21T00:56:44.581Z
 SUCCESS: view_team_game(Chicago Bulls,2001) 2021-04-21T00:56:50.301Z
+<<<<<<< HEAD
+ERROR: view_team_game(asdfasdfasdf,2004) 2021-04-22T14:20:04.968Z
+SUCCESS: view_team_season(Indiana Pacers) 2021-04-22T14:21:28.826Z
+ERROR: view_team_franchise(asrfasdfwreawef) 2021-04-22T14:22:26.773Z
+ERROR: view_team_franchise(asdfasdfasdf) 2021-04-22T14:23:10.339Z
+ERROR: view_team_season(asdfasdfasdf) 2021-04-22T14:23:13.380Z
+ERROR: view_team_season(a;sldkfja;lskdfj;alskdjf;alskdjf;alskdfj) 2021-04-22T14:24:45.354Z
+ERROR: view_team_season(asdfasdf) 2021-04-22T14:26:19.992Z
+ERROR: view_team_franchise(asdfasdf) 2021-04-22T14:26:52.252Z
+ERROR: view_team_franchise(asdfasdfasdff) 2021-04-22T14:27:14.952Z
+ERROR: view_team_franchise(asdf) 2021-04-22T14:28:04.963Z
+ERROR: view_team_season(asdf) 2021-04-22T14:28:08.145Z
+ERROR: view_team_game(asdf,2004) 2021-04-22T14:28:14.572Z
+ERROR: view_team_season(asdfaksdjfhalskdfhlkwdjhfalksjdf) 2021-04-22T14:28:25.332Z
+SUCCESS: view_team_season(chicago bulls) 2021-04-22T14:28:34.366Z
+SUCCESS: team_season_data(chicago bulls,2000) 2021-04-22T14:28:35.748Z
+SUCCESS: view_team_game(Chicago Bulls,2000) 2021-04-22T14:32:08.590Z
+SUCCESS: view_team_game(Indiana Pacers,2000) 2021-04-22T14:33:24.682Z
+SUCCESS: view_team_game(Chicago Bulls,2001) 2021-04-22T14:33:37.425Z
+SUCCESS: team_game_data(Chicago Bulls,2001,64911) 2021-04-22T14:33:39.016Z
+SUCCESS: team_game_data(Chicago Bulls,2001,64911) 2021-04-22T14:33:40.538Z
+SUCCESS: view_team_game(Chicago Bulls,2001) 2021-04-22T14:33:45.331Z
+SUCCESS: view_team_game(Chicago Bulls,2001) 2021-04-22T14:39:39.209Z
+SUCCESS: view_team_season(Chicago Bulls) 2021-04-22T14:39:43.886Z
+SUCCESS: view_team_season(Indiana Pacers) 2021-04-22T14:39:50.666Z
+SUCCESS: team_season_data(Chicago Bulls,2000) 2021-04-22T14:39:52.270Z
+SUCCESS: team_season_data(Indiana Pacers,2000) 2021-04-22T14:39:54.250Z
+SUCCESS: team_season_data(Indiana Pacers,2000) 2021-04-22T14:39:55.788Z
+SUCCESS: team_season_data(Indiana Pacers,2005) 2021-04-22T14:39:58.298Z
+SUCCESS: team_season_data(Chicago Bulls,2000) 2021-04-22T14:39:59.555Z
+SUCCESS: view_player_season(Lebron,James) 2021-04-22T14:41:09.417Z
+SUCCESS: view_player_season(Kobe,Bryant) 2021-04-22T14:41:18.459Z
+SUCCESS: player_season_data(Kobe,Bryant,2000) 2021-04-22T14:41:20.058Z
+SUCCESS: player_season_data(Kobe,Bryant,2000) 2021-04-22T14:41:21.850Z
+SUCCESS: player_season_data(Kobe,Bryant,2006) 2021-04-22T14:41:24.682Z
+SUCCESS: player_season_data(Kobe,Bryant,2007) 2021-04-22T14:41:27.720Z
+SUCCESS: player_season_data(Kobe,Bryant,2006) 2021-04-22T14:41:29.447Z
+SUCCESS: view_player_game(Lebron,James,2001) 2021-04-22T14:45:19.090Z
+SUCCESS: view_player_season(Lebron,James) 2021-04-22T14:45:22.397Z
+SUCCESS: view_player_game(Lebron,James,2001) 2021-04-22T14:46:11.911Z
+SUCCESS: view_player_season(Lebron,James) 2021-04-22T14:46:16.545Z
+SUCCESS: view_player_season(Kobe,Bryant) 2021-04-22T14:46:24.154Z
+SUCCESS: player_season_data(Lebron,James,2000) 2021-04-22T14:46:25.409Z
+SUCCESS: player_season_data(Lebron,James,2000) 2021-04-22T14:46:27.826Z
+SUCCESS: player_season_data(Kobe,Bryant,2000) 2021-04-22T14:46:29.881Z
+SUCCESS: player_season_data(Lebron,James,2000) 2021-04-22T14:46:30.832Z
+SUCCESS: view_player_game(Lebron,James,2001) 2021-04-22T14:48:13.747Z
+SUCCESS: view_player_season(Lebron,James) 2021-04-22T14:48:17.161Z
+SUCCESS: view_player_season(Kobe,Bryant) 2021-04-22T14:48:25.517Z
+SUCCESS: player_season_data(Kobe,Bryant,2000) 2021-04-22T14:48:27.096Z
+SUCCESS: player_season_data(Lebron,James,2000) 2021-04-22T14:48:28.871Z
+SUCCESS: player_season_data(Lebron,James,2000) 2021-04-22T14:48:31.248Z
+SUCCESS: player_season_data(Kobe,Bryant,2000) 2021-04-22T14:48:32.180Z
+SUCCESS: view_team_game(Chicago Bulls,2001) 2021-04-22T14:55:32.970Z
+SUCCESS: view_team_season(Chicago Bulls) 2021-04-22T14:55:35.356Z
+SUCCESS: view_team_season(Indiana Pacers) 2021-04-22T14:55:41.893Z
+SUCCESS: team_season_data(Indiana Pacers,2001) 2021-04-22T14:55:44.912Z
+SUCCESS: team_season_data(Chicago Bulls,2000) 2021-04-22T14:55:46.558Z
+SUCCESS: team_season_data(Chicago Bulls,2000) 2021-04-22T14:56:40.214Z
+SUCCESS: view_team_game(Indiana Pacers,2001) 2021-04-22T14:56:52.310Z
+SUCCESS: view_team_franchise(Indiana Pacers) 2021-04-22T14:56:59.933Z
+SUCCESS: view_team_game(Chicago Bulls,2001) 2021-04-22T15:01:14.319Z
+SUCCESS: team_game_data(Chicago Bulls,2001,64911) 2021-04-22T15:01:16.946Z
+SUCCESS: team_game_data(Chicago Bulls,2001,64911) 2021-04-22T15:01:17.924Z
+SUCCESS: team_game_data(Chicago Bulls,2001,64911) 2021-04-22T15:01:18.750Z
+SUCCESS: team_game_data(Chicago Bulls,2001,64911) 2021-04-22T15:01:19.066Z
+SUCCESS: view_player_game(Lebron,James,2001) 2021-04-22T15:01:28.470Z
+SUCCESS: player_game_data(Lebron,James,65306) 2021-04-22T15:01:29.921Z
+SUCCESS: player_game_data(Lebron,James,65306) 2021-04-22T15:01:31.304Z
+=======
+>>>>>>> master
 SUCCESS: view_player_career(Trevor,Strahdslayer) 2021-04-22T20:26:00.339Z
 SUCCESS: player_game_data(Trevor,Strahdslayer,42) 2021-04-22T20:26:00.526Z
 SUCCESS: view_player_season(Trevor,Strahdslayer) 2021-04-22T20:26:00.614Z

@@ -1,4 +1,4 @@
-package services;
+package Domain;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

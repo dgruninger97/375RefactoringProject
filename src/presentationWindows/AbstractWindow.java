@@ -1,4 +1,4 @@
-package windows;
+package presentationWindows;
 
 import java.awt.Choice;
 import java.awt.Font;
@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
-import services.DatabaseConnectionService;
+import Domain.DatabaseConnectionService;
 
 public abstract class AbstractWindow {
 	private JFrame frame;
@@ -146,8 +146,9 @@ public abstract class AbstractWindow {
 			
 		});
 		currentPanel.add(choices[panelIndex]);
-		currentPanel.add(btnGo);
+		currentPanel.add(btnGo); 
 		currentPanel.repaint();
+
 	}
 	private void setCurrentPanelToButtonSource(JButton e) {
 		JPanel source = (JPanel)e.getParent();
@@ -354,5 +355,9 @@ public abstract class AbstractWindow {
 		if(rdbtnOverall.isSelected()) {
 			buttonSelection = 3;
 		}
+	}
+	
+	protected int getPanelIndex() {
+		return this.panelIndex;
 	}
 }

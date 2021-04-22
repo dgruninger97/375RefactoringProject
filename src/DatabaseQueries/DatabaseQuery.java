@@ -7,27 +7,24 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
+import Domain.DatabaseConnectionService;
 import Logging.DatabaseQueryLogger;
 import Logging.Logger;
-import services.DatabaseConnectionService;
 
 public abstract class DatabaseQuery {
 	protected DatabaseConnectionService dbService;
 	protected CallableStatement callableStatement;
-	protected List<String> results;
-	protected ResultSet resultSet;
 	protected Logger logger;
 	
 	public DatabaseQuery(DatabaseConnectionService dbService) {
 		this.dbService = dbService;
-		this.results = new ArrayList<String>();
 		this.logger = new DatabaseQueryLogger();
 	}
 	
 	public final List<String> getResults() throws SQLException {
+		List<String> results;
 		try {
-			resultSet = runQuery();
-			results = getFormattedResultStrings();
+			results = getFormattedResultStrings(runQuery());
 			logger.log("SUCCESS: " + queryToString() + " " + Instant.now().toString());
 		} catch (SQLException sqlException) {
 			logger.log("ERROR: " + queryToString() + " " + Instant.now().toString());
@@ -43,6 +40,6 @@ public abstract class DatabaseQuery {
 	}
 
 	protected abstract void prepareCallableStatement() throws SQLException;
-	protected abstract List<String> getFormattedResultStrings() throws SQLException;
+	protected abstract List<String> getFormattedResultStrings(ResultSet resultSet) throws SQLException;
 	protected abstract String queryToString();
 }

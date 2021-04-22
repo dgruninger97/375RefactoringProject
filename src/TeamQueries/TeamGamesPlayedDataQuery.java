@@ -1,11 +1,13 @@
 package TeamQueries;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.util.ArrayList;
 import java.util.List;
 
 import DatabaseQueries.DatabaseQuery;
-import services.DatabaseConnectionService;
+import Domain.DatabaseConnectionService;
 
 public class TeamGamesPlayedDataQuery extends DatabaseQuery {
 	private String teamName;
@@ -26,7 +28,8 @@ public class TeamGamesPlayedDataQuery extends DatabaseQuery {
 	}
 
 	@Override
-	protected List<String> getFormattedResultStrings() throws SQLException {
+	protected List<String> getFormattedResultStrings(ResultSet resultSet) throws SQLException {
+		List<String> results = new ArrayList<String>();
 		while(resultSet.next()) {
 			results.add(resultSet.getString(5) + ":" + resultSet.getString(1) + " vs. " + resultSet.getString(2));
 		}
