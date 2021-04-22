@@ -5,24 +5,23 @@ import java.sql.Types;
 import java.util.List;
 
 import DatabaseQueries.DatabaseQuery;
+import DomainObjects.PlayerName;
 import services.DatabaseConnectionService;
 
 public class PlayerCareerDataQuery extends DatabaseQuery {
-	private String firstName;
-	private String lastName;
+	private PlayerName playerName;
 	
-	public PlayerCareerDataQuery(DatabaseConnectionService dbService, String firstName, String lastName) {
+	public PlayerCareerDataQuery(DatabaseConnectionService dbService, PlayerName playerName) {
 		super(dbService);
-		this.firstName = firstName;
-		this.lastName = lastName;
+		this.playerName = playerName;
 	}
 
 	@Override
 	protected void prepareCallableStatement() throws SQLException {
 		callableStatement = dbService.getConnection().prepareCall("{?=call view_player_career(?,?)}");
 		callableStatement.registerOutParameter(1, Types.INTEGER);
-		callableStatement.setString(2, firstName);
-		callableStatement.setString(3, lastName);
+		callableStatement.setString(2, playerName.firstName);
+		callableStatement.setString(3, playerName.lastName);
 	}
 
 	@Override
@@ -37,6 +36,6 @@ public class PlayerCareerDataQuery extends DatabaseQuery {
 
 	@Override
 	protected String queryToString() {
-		return "view_player_career(" + firstName + "," + lastName + ")";
+		return "view_player_career(" + playerName.firstName + "," + playerName.lastName + ")";
 	}
 }

@@ -5,17 +5,16 @@ import java.sql.Types;
 import java.util.List;
 
 import DatabaseQueries.DatabaseQuery;
+import DomainObjects.PlayerName;
 import services.DatabaseConnectionService;
 
 public class PlayerGameDataQuery extends DatabaseQuery {
-	private String firstName;
-	private String lastName;
+	private PlayerName playerName;
 	private String gameID;
 	
-	public PlayerGameDataQuery(DatabaseConnectionService dbService, String firstName, String lastName, String gameID) {
+	public PlayerGameDataQuery(DatabaseConnectionService dbService, PlayerName playerName, String gameID) {
 		super(dbService);
-		this.firstName = firstName;
-		this.lastName = lastName;
+		this.playerName = playerName;
 		this.gameID = gameID;
 	}
 
@@ -23,8 +22,8 @@ public class PlayerGameDataQuery extends DatabaseQuery {
 	protected void prepareCallableStatement() throws SQLException {
 		callableStatement = dbService.getConnection().prepareCall("{?=call player_game_data(?,?,?)}");
 		callableStatement.registerOutParameter(1, Types.INTEGER);
-		callableStatement.setString(2, firstName);
-		callableStatement.setString(3, lastName);
+		callableStatement.setString(2, playerName.firstName);
+		callableStatement.setString(3, playerName.lastName);
 		callableStatement.setInt(4, Integer.valueOf(gameID));
 	}
 
@@ -40,6 +39,6 @@ public class PlayerGameDataQuery extends DatabaseQuery {
 
 	@Override
 	protected String queryToString() {
-		return "player_game_data(" + firstName + "," + lastName + "," + gameID + ")";
+		return "player_game_data(" + playerName.firstName + "," + playerName.lastName + "," + gameID + ")";
 	}
 }

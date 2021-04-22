@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import DatabaseQueries.DatabaseQuery;
+import DomainObjects.PlayerName;
 import PlayerQueries.PlayerCareerDataQuery;
 import PlayerQueries.PlayerGameDataQuery;
 import PlayerQueries.PlayerGamesPlayedInSeasonDataQuery;
@@ -47,34 +48,34 @@ public class PlayerService{
 	}
 
 	private List<String> getPlayerCareerInformation(String firstName, String lastName) throws SQLException {
-		DatabaseQuery query = new PlayerCareerDataQuery(dbService, firstName, lastName);
+		DatabaseQuery query = new PlayerCareerDataQuery(dbService, new PlayerName(firstName, lastName));
 		return query.getResults();
 	}
 
 	private List<String> getPlayerSeasonInformation(String firstName, String lastName, int choiceIndex) throws SQLException {
-		DatabaseQuery query = new PlayerSeasonsPlayedDataQuery(dbService, firstName, lastName);
+		DatabaseQuery query = new PlayerSeasonsPlayedDataQuery(dbService, new PlayerName(firstName, lastName));
 		return query.getResults();
 	}
 
 	private List<String> getPlayerGameInformation(String firstName, String lastName, String year, int choiceIndex) throws SQLException {
-		DatabaseQuery query = new PlayerGamesPlayedInSeasonDataQuery(dbService, firstName, lastName, seasonYear);
+		DatabaseQuery query = new PlayerGamesPlayedInSeasonDataQuery(dbService, new PlayerName(firstName, lastName), seasonYear);
 		return query.getResults();
 	}
 
 	public List<String> getGameInfo(String firstName, String lastName, int choiceIndex) throws SQLException {
 		String gameID = gameList.get(choiceIndex).split(":")[0];
-		DatabaseQuery query = new PlayerGameDataQuery(dbService, firstName, lastName, gameID);
+		DatabaseQuery query = new PlayerGameDataQuery(dbService, new PlayerName(firstName, lastName), gameID);
 		return query.getResults();
 	}
 
 	public List<String> getSeasonInfo(String firstName, String lastName, int choiceIndex) throws SQLException {
 		String year = seasonList.get(choiceIndex).split(": ")[1];
-		DatabaseQuery query = new PlayerSeasonDataQuery(dbService, firstName, lastName, year);
+		DatabaseQuery query = new PlayerSeasonDataQuery(dbService, new PlayerName(firstName, lastName), year);
 		return query.getResults();
 	}
 	
 	public List<String> getCareerInfo(String firstName, String lastName) throws SQLException{
-		DatabaseQuery query = new PlayerCareerDataQuery(dbService, firstName, lastName);
+		DatabaseQuery query = new PlayerCareerDataQuery(dbService, new PlayerName(firstName, lastName));
 		return query.getResults();
 	}
 }
