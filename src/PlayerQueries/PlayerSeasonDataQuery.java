@@ -30,7 +30,7 @@ public class PlayerSeasonDataQuery extends DatabaseQuery {
 	}
 
 	@Override
-	protected List<String> addResultStrings() throws SQLException {
+	protected List<String> getFormattedResultStrings() throws SQLException {
 		while(resultSet.next()) {
 			results.add("Season Points: " + resultSet.getString(1) + "\nSeason Assists: " + resultSet.getString(2)
 					+ "\nSeason Rebounds: " + resultSet.getString(3));

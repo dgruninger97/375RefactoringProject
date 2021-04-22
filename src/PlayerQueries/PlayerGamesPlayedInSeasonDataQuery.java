@@ -29,7 +29,7 @@ public class PlayerGamesPlayedInSeasonDataQuery extends DatabaseQuery {
 	}
 
 	@Override
-	protected List<String> addResultStrings() throws SQLException {
+	protected List<String> getFormattedResultStrings() throws SQLException {
 		while(resultSet.next()) {
 			results.add(resultSet.getString(5) + ": " + resultSet.getString(3) + " vs. " + resultSet.getString(4));
 		}
