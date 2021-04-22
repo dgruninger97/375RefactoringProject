@@ -29,7 +29,7 @@ public class TeamGameDataQuery extends DatabaseQuery {
 	}
 
 	@Override
-	protected List<String> addResultStrings() throws SQLException {
+	protected List<String> getFormattedResultStrings() throws SQLException {
 		while(resultSet.next()) {
 			results.add("Game Points For: " + resultSet.getString(1) + "\nGame Points Against: " + resultSet.getString(2));
 		}

@@ -27,7 +27,7 @@ public abstract class DatabaseQuery {
 	public final List<String> getResults() throws SQLException {
 		try {
 			resultSet = runQuery();
-			results = addResultStrings();
+			results = getFormattedResultStrings();
 			logger.log("SUCCESS: " + queryToString() + " " + Instant.now().toString());
 		} catch (SQLException sqlException) {
 			logger.log("ERROR: " + queryToString() + " " + Instant.now().toString());
@@ -43,6 +43,6 @@ public abstract class DatabaseQuery {
 	}
 
 	protected abstract void prepareCallableStatement() throws SQLException;
-	protected abstract List<String> addResultStrings() throws SQLException;
+	protected abstract List<String> getFormattedResultStrings() throws SQLException;
 	protected abstract String queryToString();
 }

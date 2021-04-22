@@ -23,7 +23,7 @@ public class TeamFranchiseDataQuery extends DatabaseQuery {
 	}
 
 	@Override
-	protected List<String> addResultStrings() throws SQLException {
+	protected List<String> getFormattedResultStrings() throws SQLException {
 		while(resultSet.next()) {
 			results.add("Franchise Points For: " + resultSet.getString(2) + "\nFranchise Points Against: " +  resultSet.getString(3) + "\nWin Percentage: " + resultSet.getString(4));
 		}

@@ -26,7 +26,7 @@ public class PlayerSeasonsPlayedDataQuery extends DatabaseQuery {
 	}
 
 	@Override
-	protected List<String> addResultStrings() throws SQLException {
+	protected List<String> getFormattedResultStrings() throws SQLException {
 		while(resultSet.next()) {
 			results.add("Season year: " + resultSet.getString(1));
 		}

@@ -26,7 +26,7 @@ public class TeamGamesPlayedDataQuery extends DatabaseQuery {
 	}
 
 	@Override
-	protected List<String> addResultStrings() throws SQLException {
+	protected List<String> getFormattedResultStrings() throws SQLException {
 		while(resultSet.next()) {
 			results.add(resultSet.getString(5) + ":" + resultSet.getString(1) + " vs. " + resultSet.getString(2));
 		}
