@@ -729,3 +729,13 @@ SUCCESS: player_game_data(Trevor,Strahdslayer,42) 2021-04-22T20:42:11.638Z
 SUCCESS: view_player_season(Trevor,Strahdslayer) 2021-04-22T20:42:11.682Z
 SUCCESS: view_player_game(Trevor,Strahdslayer,550) 2021-04-22T20:42:11.699Z
 SUCCESS: player_season_data(Trevor,Strahdslayer,550) 2021-04-22T20:42:11.717Z
+SUCCESS: view_team_franchise(Chicago Bulls) 2021-04-23T02:41:48.654Z
+SUCCESS: view_team_season(Chicago Bulls) 2021-04-23T02:41:51.745Z
+SUCCESS: team_season_data(Chicago Bulls,2000) 2021-04-23T02:41:53.404Z
+SUCCESS: view_team_game(Chicago Bulls,2004) 2021-04-23T02:41:57.348Z
+SUCCESS: team_game_data(Chicago Bulls,2004,65590) 2021-04-23T02:42:07.429Z
+SUCCESS: view_team_season(Chicago Bulls) 2021-04-23T02:42:12.046Z
+SUCCESS: team_season_data(Chicago Bulls,2006) 2021-04-23T02:42:14.050Z
+SUCCESS: view_team_season(Chicago Bulls) 2021-04-23T02:42:16.135Z
+SUCCESS: team_season_data(Chicago Bulls,2005) 2021-04-23T02:42:17.994Z
+SUCCESS: team_season_data(Chicago Bulls,2012) 2021-04-23T02:42:21.032Z
