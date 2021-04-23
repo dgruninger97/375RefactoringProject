@@ -16,6 +16,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import DatabaseQueries.DatabaseQuery;
+import DomainObjects.PlayerName;
 import Domain.DatabaseConnectionService;
 import PlayerQueries.*;
 
@@ -30,8 +31,7 @@ class PlayerQueryTests extends EasyMockSupport {
 	@Mock
 	ResultSet fakeResults;
 	
-	String playerFirstName;
-	String playerLastName;
+	PlayerName playerName;
 	String seasonYear;
 	String gameID;
 	String result;
@@ -39,8 +39,7 @@ class PlayerQueryTests extends EasyMockSupport {
 	
 	@BeforeEach
 	void Setup() {
-		playerFirstName = "Trevor";
-		playerLastName = "Strahdslayer";
+		playerName = new PlayerName("Trevor", "Strahdslayer");
 		seasonYear = "550";
 		gameID = "42";
 		result = "This is a test Result";
@@ -69,21 +68,25 @@ class PlayerQueryTests extends EasyMockSupport {
 		 *  - Executes the query and saves the results
 		 */
 		
-		PlayerCareerDataQuery instance = new PlayerCareerDataQuery(fakeDatabase, playerFirstName, playerLastName);
+		PlayerCareerDataQuery instance = new PlayerCareerDataQuery(fakeDatabase, playerName);
 		
 		EasyMock.expect(fakeDatabase.getConnection()).andReturn(fakeConnection);
 		try {
 			EasyMock.expect(fakeConnection.prepareCall(EasyMock.anyString())).andReturn(fakeStatement);
-			fakeStatement.setString(EasyMock.anyInt(), EasyMock.same(playerFirstName));
-			EasyMock.expectLastCall();
-			fakeStatement.setString(EasyMock.anyInt(), EasyMock.same(playerLastName));
-			EasyMock.expectLastCall();
+			preparePlayerName();
 			EasyMock.expect(fakeStatement.executeQuery()).andReturn(fakeResults);
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
 		
 		runQueryTest(instance);
+	}
+
+	private void preparePlayerName() throws SQLException {
+		fakeStatement.setString(EasyMock.anyInt(), EasyMock.same(playerName.firstName));
+		EasyMock.expectLastCall();
+		fakeStatement.setString(EasyMock.anyInt(), EasyMock.same(playerName.lastName));
+		EasyMock.expectLastCall();
 	}
 	
 	@Test
@@ -97,15 +100,12 @@ class PlayerQueryTests extends EasyMockSupport {
 		 *  - Executes the query and saves the results
 		 */
 		
-		PlayerSeasonDataQuery instance = new PlayerSeasonDataQuery(fakeDatabase, playerFirstName, playerLastName, seasonYear);
+		PlayerSeasonDataQuery instance = new PlayerSeasonDataQuery(fakeDatabase, playerName, seasonYear);
 
 		EasyMock.expect(fakeDatabase.getConnection()).andReturn(fakeConnection);
 		try {
 			EasyMock.expect(fakeConnection.prepareCall(EasyMock.anyString())).andReturn(fakeStatement);
-			fakeStatement.setString(EasyMock.anyInt(), EasyMock.same(playerFirstName));
-			EasyMock.expectLastCall();
-			fakeStatement.setString(EasyMock.anyInt(), EasyMock.same(playerLastName));
-			EasyMock.expectLastCall();
+			preparePlayerName();
 			fakeStatement.setInt(EasyMock.anyInt(), EasyMock.eq(Integer.valueOf(seasonYear)));
 			EasyMock.expectLastCall();
 			EasyMock.expect(fakeStatement.executeQuery()).andReturn(fakeResults);
@@ -127,15 +127,12 @@ class PlayerQueryTests extends EasyMockSupport {
 		 *  - Executes the query and saves the results
 		 */
 		
-		PlayerSeasonsPlayedDataQuery instance = new PlayerSeasonsPlayedDataQuery(fakeDatabase, playerFirstName, playerLastName);
+		PlayerSeasonsPlayedDataQuery instance = new PlayerSeasonsPlayedDataQuery(fakeDatabase, playerName);
 		
 		EasyMock.expect(fakeDatabase.getConnection()).andReturn(fakeConnection);
 		try {
 			EasyMock.expect(fakeConnection.prepareCall(EasyMock.anyString())).andReturn(fakeStatement);
-			fakeStatement.setString(EasyMock.anyInt(), EasyMock.same(playerFirstName));
-			EasyMock.expectLastCall();
-			fakeStatement.setString(EasyMock.anyInt(), EasyMock.same(playerLastName));
-			EasyMock.expectLastCall();
+			preparePlayerName();
 			EasyMock.expect(fakeStatement.executeQuery()).andReturn(fakeResults);
 		} catch (SQLException e1) {
 			e1.printStackTrace();
@@ -155,15 +152,12 @@ class PlayerQueryTests extends EasyMockSupport {
 		 *  - Executes the query and saves the results
 		 */
 		
-		PlayerGameDataQuery instance = new PlayerGameDataQuery(fakeDatabase, playerFirstName, playerLastName, gameID);
+		PlayerGameDataQuery instance = new PlayerGameDataQuery(fakeDatabase, playerName, gameID);
 		
 		EasyMock.expect(fakeDatabase.getConnection()).andReturn(fakeConnection);
 		try {
 			EasyMock.expect(fakeConnection.prepareCall(EasyMock.anyString())).andReturn(fakeStatement);
-			fakeStatement.setString(EasyMock.anyInt(), EasyMock.same(playerFirstName));
-			EasyMock.expectLastCall();
-			fakeStatement.setString(EasyMock.anyInt(), EasyMock.same(playerLastName));
-			EasyMock.expectLastCall();
+			preparePlayerName();
 			fakeStatement.setInt(EasyMock.anyInt(), EasyMock.eq((Integer.valueOf(gameID))));
 			EasyMock.expectLastCall();
 			EasyMock.expect(fakeStatement.executeQuery()).andReturn(fakeResults);
@@ -187,15 +181,12 @@ class PlayerQueryTests extends EasyMockSupport {
 		 *  - Executes the query and saves the results
 		 */
 		
-		PlayerGamesPlayedInSeasonDataQuery instance = new PlayerGamesPlayedInSeasonDataQuery(fakeDatabase, playerFirstName, playerLastName, seasonYear);
+		PlayerGamesPlayedInSeasonDataQuery instance = new PlayerGamesPlayedInSeasonDataQuery(fakeDatabase, playerName, seasonYear);
 		
 		EasyMock.expect(fakeDatabase.getConnection()).andReturn(fakeConnection);
 		try {
 			EasyMock.expect(fakeConnection.prepareCall(EasyMock.anyString())).andReturn(fakeStatement);
-			fakeStatement.setString(EasyMock.anyInt(), EasyMock.same(playerFirstName));
-			EasyMock.expectLastCall();
-			fakeStatement.setString(EasyMock.anyInt(), EasyMock.same(playerLastName));
-			EasyMock.expectLastCall();
+			preparePlayerName();
 			fakeStatement.setInt(EasyMock.anyInt(), EasyMock.eq(Integer.valueOf(seasonYear)));
 			EasyMock.expectLastCall();
 			EasyMock.expect(fakeStatement.executeQuery()).andReturn(fakeResults);
@@ -208,35 +199,35 @@ class PlayerQueryTests extends EasyMockSupport {
 	
 	@Test
 	void testGamesPlayedGetResults() {
-		DatabaseQuery instance = new PlayerGamesPlayedInSeasonDataQuery(fakeDatabase, playerFirstName, playerLastName, seasonYear);
+		DatabaseQuery instance = new PlayerGamesPlayedInSeasonDataQuery(fakeDatabase, playerName, seasonYear);
 		setExpectationsForCheckResults(instance, result);
 		checkResults(instance, result);
 	}
 	
 	@Test
 	void testGamesDataGetResults() {
-		DatabaseQuery instance = new PlayerGameDataQuery(fakeDatabase, playerFirstName, playerLastName, gameID);
+		DatabaseQuery instance = new PlayerGameDataQuery(fakeDatabase, playerName, gameID);
 		setExpectationsForCheckResults(instance, result);
 		checkResults(instance, result);	
 	}
 	
 	@Test
 	void testSeasonsPlayedGetResults() {
-		DatabaseQuery instance = new PlayerSeasonsPlayedDataQuery(fakeDatabase, playerFirstName, playerLastName);
+		DatabaseQuery instance = new PlayerSeasonsPlayedDataQuery(fakeDatabase, playerName);
 		setExpectationsForCheckResults(instance, result);
 		checkResults(instance, result);	
 	}
 	
 	@Test
 	void testCareerDataGetResults() {
-		DatabaseQuery instance = new PlayerCareerDataQuery(fakeDatabase, playerFirstName, playerLastName);
+		DatabaseQuery instance = new PlayerCareerDataQuery(fakeDatabase, playerName);
 		setExpectationsForCheckResults(instance, result);
 		checkResults(instance, result);	
 	}
 	
 	@Test
 	void testSeasonDataGetResults() {
-		DatabaseQuery instance = new PlayerSeasonDataQuery(fakeDatabase, playerFirstName, playerLastName, seasonYear);
+		DatabaseQuery instance = new PlayerSeasonDataQuery(fakeDatabase, playerName, seasonYear);
 		setExpectationsForCheckResults(instance, result);
 		checkResults(instance, result);
 	}
