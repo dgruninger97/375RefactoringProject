@@ -21,7 +21,6 @@ public abstract class AbstractWindow {
 	private JFrame frame;
 	private JPanel[] panels;
 	private int openSlot = 1;
-	private JPanel currentPanel;
 	private int buttonSelection = -1;
 	private JButton btnGo;
 	private JButton backBtn;
@@ -59,16 +58,13 @@ public abstract class AbstractWindow {
 	}
 	protected void setCurrentPanelToOpenSlot() {
 		if (openSlot == 1) {
-			currentPanel = panels[0];
 			panelIndex = 0;
 		} else if (openSlot == 2) {
-			currentPanel = panels[1];
 			panelIndex = 1;
 		} else if (openSlot == 3) {
-			currentPanel = panels[2];
 			panelIndex = 2;
 		}else {
-			currentPanel = null;
+			panelIndex = -1;
 		}
 	}
 	
@@ -98,7 +94,7 @@ public abstract class AbstractWindow {
 		frame.getContentPane().add(btnAddNew);
 	}
 	protected void backButton(String labelText) {
-		currentPanel.removeAll();
+		getCurrentPanel().removeAll();
 		setUpChoiceWindow();
 	}
 	
@@ -111,13 +107,13 @@ public abstract class AbstractWindow {
 		textArea.setText(info);
 		textArea.setBounds(0, 30, 310, 129);
 		textArea.setEditable(false);
-		currentPanel.removeAll();
-		currentPanel.add(textArea);
+		getCurrentPanel().removeAll();
+		getCurrentPanel().add(textArea);
 		Label label = new Label(labelText);
 		label.setAlignment(Label.CENTER);
 		label.setFont(new Font("Arial", Font.BOLD, 12));
 		label.setBounds(0, 0, 165, 24);
-		currentPanel.add(label);
+		getCurrentPanel().add(label);
 	}
 	
 	protected boolean checkInvalidEntry() {
@@ -145,39 +141,39 @@ public abstract class AbstractWindow {
 
 			
 		});
-		currentPanel.add(choices[panelIndex]);
-		currentPanel.add(btnGo); 
-		currentPanel.repaint();
+		getCurrentPanel().add(choices[panelIndex]);
+		getCurrentPanel().add(btnGo); 
+		getCurrentPanel().repaint();
 
 	}
 	private void setCurrentPanelToButtonSource(JButton e) {
 		JPanel source = (JPanel)e.getParent();
 		if(source.equals(panels[0])) {
-			currentPanel = panels[0];
-
 			panelIndex = 0;
 		}
 		if(source==panels[1]) {
-			currentPanel = panels[1];
 			panelIndex = 1;
 		}
 		if(source==panels[2]) {
-			currentPanel = panels[2];
 			panelIndex = 2;
 		}
 	}
 	
+	protected JPanel getCurrentPanel() {
+		return panels[panelIndex];
+	}
+	
 	protected void paintBackButton() {
-		currentPanel.add(backBtn);
-		currentPanel.repaint();
+		getCurrentPanel().add(backBtn);
+		getCurrentPanel().repaint();
 	}
 	
 	protected void removeAllFromPanel() {
-		currentPanel.removeAll();
+		getCurrentPanel().removeAll();
 	}
 	
 	protected void addLabelToPanel(Label label) {
-		currentPanel.add(label);
+		getCurrentPanel().add(label);
 	}
 	
 	protected void getAvailableYears() {

@@ -688,3 +688,34 @@ SUCCESS: player_game_data(Lebron,James,65306) 2021-04-22T15:01:29.921Z
 SUCCESS: player_game_data(Lebron,James,65306) 2021-04-22T15:01:31.304Z
 =======
 >>>>>>> master
+ERROR: view_team_game(lebron,2002) 2021-04-22T15:24:04.743Z
+SUCCESS: view_team_season(chicago bulls) 2021-04-22T15:24:14.254Z
+SUCCESS: team_season_data(chicago bulls,2006) 2021-04-22T15:24:20.994Z
+SUCCESS: view_team_season(chicago bulls) 2021-04-22T15:24:22.954Z
+SUCCESS: team_season_data(chicago bulls,2012) 2021-04-22T15:24:26.502Z
+SUCCESS: team_season_data(chicago bulls,2016) 2021-04-22T15:24:29.952Z
+SUCCESS: view_team_franchise(chicago bulls) 2021-04-22T15:24:33.104Z
+ERROR: view_team_game(chicacp bulls,2000) 2021-04-22T15:34:12.053Z
+SUCCESS: view_team_game(chicago bulls,2000) 2021-04-22T15:34:25.938Z
+SUCCESS: view_team_game(chicago bulls,2001) 2021-04-22T15:34:29.743Z
+SUCCESS: view_team_game(chicago bulls,2002) 2021-04-22T15:34:33.781Z
+SUCCESS: team_game_data(chicago bulls,2002,65903) 2021-04-22T15:34:41.380Z
+SUCCESS: team_game_data(chicago bulls,2002,67248) 2021-04-22T15:34:44.684Z
+SUCCESS: team_game_data(chicago bulls,2002,67086) 2021-04-22T15:34:47.004Z
+SUCCESS: team_game_data(chicago bulls,2002,70703) 2021-04-22T15:35:08.519Z
+SUCCESS: team_game_data(chicago bulls,2002,65903) 2021-04-22T15:35:11.128Z
+SUCCESS: team_game_data(chicago bulls,2002,70703) 2021-04-22T15:35:12.551Z
+SUCCESS: team_game_data(chicago bulls,2002,70703) 2021-04-22T15:35:28.010Z
+SUCCESS: team_game_data(chicago bulls,2002,70703) 2021-04-22T15:35:29.302Z
+SUCCESS: team_game_data(chicago bulls,2002,67086) 2021-04-22T15:35:37.284Z
+SUCCESS: team_game_data(chicago bulls,2002,70703) 2021-04-22T15:35:38.216Z
+SUCCESS: view_player_career(Trevor,Strahdslayer) 2021-04-22T15:41:15.949Z
+SUCCESS: player_game_data(Trevor,Strahdslayer,42) 2021-04-22T15:41:15.960Z
+SUCCESS: view_player_season(Trevor,Strahdslayer) 2021-04-22T15:41:15.964Z
+SUCCESS: view_player_game(Trevor,Strahdslayer,550) 2021-04-22T15:41:15.967Z
+SUCCESS: player_season_data(Trevor,Strahdslayer,550) 2021-04-22T15:41:15.970Z
+SUCCESS: view_team_season(The Tune Squad) 2021-04-22T15:41:15.976Z
+SUCCESS: team_game_data(The Tune Squad,550,42) 2021-04-22T15:41:15.979Z
+SUCCESS: view_team_game(The Tune Squad,550) 2021-04-22T15:41:15.981Z
+SUCCESS: team_season_data(The Tune Squad,550) 2021-04-22T15:41:15.986Z
+SUCCESS: view_team_franchise(The Tune Squad) 2021-04-22T15:41:15.987Z
