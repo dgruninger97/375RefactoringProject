@@ -739,3 +739,9 @@ SUCCESS: team_season_data(Chicago Bulls,2006) 2021-04-23T02:42:14.050Z
 SUCCESS: view_team_season(Chicago Bulls) 2021-04-23T02:42:16.135Z
 SUCCESS: team_season_data(Chicago Bulls,2005) 2021-04-23T02:42:17.994Z
 SUCCESS: team_season_data(Chicago Bulls,2012) 2021-04-23T02:42:21.032Z
+SUCCESS: view_player_game(lebron,james,2009) 2021-04-23T02:44:36.984Z
+SUCCESS: view_player_game(lebron,james,2003) 2021-04-23T02:44:40.969Z
+SUCCESS: view_player_game(lebron,james,2005) 2021-04-23T02:44:44.798Z
+SUCCESS: player_game_data(lebron,james,65505) 2021-04-23T02:44:46.769Z
+SUCCESS: player_game_data(lebron,james,65462) 2021-04-23T02:44:50.048Z
+SUCCESS: player_game_data(lebron,james,65256) 2021-04-23T02:44:52.769Z
