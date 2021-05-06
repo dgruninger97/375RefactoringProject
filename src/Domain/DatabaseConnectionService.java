@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import javax.swing.JOptionPane;
+
 public class DatabaseConnectionService {
 
 	private final String SampleURL = "jdbc:sqlserver://${dbServer};databaseName=${dbName};user=${user};password={${pass}}";
@@ -23,8 +25,9 @@ public class DatabaseConnectionService {
 		try {
 			this.connection = DriverManager.getConnection(connectionString);
 		} catch (SQLException e) {
-			e.printStackTrace();
-			return false;
+			JOptionPane.showMessageDialog(null,
+					"Issue connecting to the database. Please double check your files and try connecting again. The system will now safely shut down.");
+			System.exit(0);
 		}
 		return true;
 	}
