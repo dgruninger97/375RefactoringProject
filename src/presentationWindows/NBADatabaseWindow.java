@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 import DataParsing.DataParser;
+import DatabaseQueries.RebuildDatabase;
 import Domain.DatabaseConnectionService;
 
 public class NBADatabaseWindow {
@@ -56,6 +57,22 @@ public class NBADatabaseWindow {
 		displayTeamButton();
 		displayDataButton();
 		displayHomeScreenText();
+		displayRebuildDatabaseButton();
+	}
+
+	private void displayRebuildDatabaseButton() {
+		JButton btnClearDatabase = new JButton("Clear DB");
+		btnClearDatabase.setBounds(249, 200, 97, 25);
+		frame.getContentPane().add(btnClearDatabase);
+		btnClearDatabase.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				RebuildDatabase rebuildDatabase = new RebuildDatabase();
+				rebuildDatabase.clearDatabase(dbService);
+				rebuildDatabase.reEnableConstraints(dbService);
+				JOptionPane.showMessageDialog(null, "Database cleared.");
+			}
+		});
 	}
 
 	private void displayPlayerButton() {
@@ -90,10 +107,10 @@ public class NBADatabaseWindow {
 	}
 	
 	private void displayDataButton() {
-		JButton btnTeams = new JButton("New Data");
-		btnTeams.setBounds(155, 200, 97, 25);
-		frame.getContentPane().add(btnTeams);
-		btnTeams.addActionListener(new ActionListener() {
+		JButton btnData = new JButton("New Data");
+		btnData.setBounds(62, 200, 97, 25);
+		frame.getContentPane().add(btnData);
+		btnData.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
