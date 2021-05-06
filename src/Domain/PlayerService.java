@@ -47,17 +47,20 @@ public class PlayerService{
 		return null;
 	}
 
-	private List<String> getPlayerCareerInformation(String firstName, String lastName) throws SQLException {
+	//Public for testing purposes
+	public List<String> getPlayerCareerInformation(String firstName, String lastName) throws SQLException {
 		DatabaseQuery query = new PlayerCareerDataQuery(dbService, new PlayerName(firstName, lastName));
 		return query.getResults();
 	}
 
-	private List<String> getPlayerSeasonInformation(String firstName, String lastName, int choiceIndex) throws SQLException {
+	//Public for testing purposes
+	public List<String> getPlayerSeasonInformation(String firstName, String lastName, int choiceIndex) throws SQLException {
 		DatabaseQuery query = new PlayerSeasonsPlayedDataQuery(dbService, new PlayerName(firstName, lastName));
 		return query.getResults();
 	}
 
-	private List<String> getPlayerGameInformation(String firstName, String lastName, String year, int choiceIndex) throws SQLException {
+	//Public for testing purposes
+	public List<String> getPlayerGameInformation(String firstName, String lastName, String year, int choiceIndex) throws SQLException {
 		DatabaseQuery query = new PlayerGamesPlayedInSeasonDataQuery(dbService, new PlayerName(firstName, lastName), seasonYear);
 		return query.getResults();
 	}
