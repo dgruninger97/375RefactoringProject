@@ -1,4 +1,4 @@
-package DomainObjects;
+package Domain;
 
 public class PlayerName {
 	
