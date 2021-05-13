@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.util.HashMap;
 
 public class DataGenerator {
-	static HashMap<String, String> playerTeamMap = new HashMap<String, String>();
-	static String[] teamList = {"Boston Celtics", "Brooklyn Nets", "New York Knicks", "Philadelphia 76ers",
+	public static HashMap<String, String> playerTeamMap = new HashMap<String, String>();
+	public static String[] teamList = {"Boston Celtics", "Brooklyn Nets", "New York Knicks", "Philadelphia 76ers",
 			"Toronto Raptors", "Golden State Warriors", "Los Angeles Clippers", "Los Angeles Lakers", "Phoenix Suns",
 			"Sacramento Kings", "Chicago Bulls", "Cleveland Cavaliers", "Detroit Pistons", "Indiana Pacers", 
 			"Milwaukee Bucks", "Dallas Mavericks", "Houston Rockets", "Memphis Grizzlies", "New Orleans Hornets",
@@ -13,7 +13,7 @@ public class DataGenerator {
 			"Washington Wizards", "Denver Nuggets", "Minnesota Timberwolves", "Oklahoma City Thunder",
 			"Portland Trail Blazers", "Utah Jazz"};
 	
-	static String[] yearList = {"2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009",
+	public static String[] yearList = {"2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009",
 			"2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019"};
 	
 	public static void main(String[] args) throws IOException {
