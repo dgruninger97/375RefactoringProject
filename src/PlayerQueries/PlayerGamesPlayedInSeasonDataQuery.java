@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import DatabaseQueries.DatabaseQuery;
-import DomainObjects.PlayerName;
 import Domain.DatabaseConnectionService;
+import Domain.PlayerName;
 
 public class PlayerGamesPlayedInSeasonDataQuery extends DatabaseQuery {
 	private PlayerName playerName;
