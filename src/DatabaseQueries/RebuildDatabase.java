@@ -7,7 +7,7 @@ import Domain.DatabaseConnectionService;
 
 public class RebuildDatabase {
 
-	private static void reEnableConstraints(DatabaseConnectionService dbService) {
+	public static void reEnableConstraints(DatabaseConnectionService dbService) {
 		CallableStatement callableStatement;
 		try {
 			callableStatement = dbService.getConnection()
@@ -23,7 +23,7 @@ public class RebuildDatabase {
 		}
 	}
 
-	private static void clearDatabase(DatabaseConnectionService dbService) {
+	public static void clearDatabase(DatabaseConnectionService dbService) {
 		CallableStatement callableStatement;
 		try {
 			callableStatement = dbService.getConnection()

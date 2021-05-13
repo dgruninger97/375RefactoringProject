@@ -16,8 +16,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import DatabaseQueries.DatabaseQuery;
-import DomainObjects.PlayerName;
 import Domain.DatabaseConnectionService;
+import Domain.PlayerName;
 import PlayerQueries.*;
 
 class PlayerQueryTests extends EasyMockSupport {

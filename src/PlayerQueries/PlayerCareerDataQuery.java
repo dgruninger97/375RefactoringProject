@@ -7,9 +7,8 @@ import java.util.List;
 import java.sql.ResultSet;
 
 import DatabaseQueries.DatabaseQuery;
-import DomainObjects.PlayerName;
-
 import Domain.DatabaseConnectionService;
+import Domain.PlayerName;
 
 public class PlayerCareerDataQuery extends DatabaseQuery {
 	private PlayerName playerName;
