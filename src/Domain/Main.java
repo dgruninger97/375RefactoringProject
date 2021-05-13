@@ -14,21 +14,23 @@ public class Main {
 		String serverName = "";
 		String username = "";
 		String password = "";
-	    try {
-	        File serverFile = new File("server.txt");
-	        Scanner myReader = new Scanner(serverFile);
-            serverName = myReader.nextLine();
+		try {
+			File serverFile = new File("serverConfiguration/server.txt");
+			Scanner myReader = new Scanner(serverFile);
+			serverName = myReader.nextLine();
 			myReader.close();
-			File userFile = new File("username.txt");
+			File userFile = new File("serverConfiguration/username.txt");
 			myReader = new Scanner(userFile);
 			username = myReader.nextLine();
 			myReader.close();
-			File passFile = new File("password.txt");
+			File passFile = new File("serverConfiguration/password.txt");
 			myReader = new Scanner(passFile);
 			password = myReader.nextLine();
 			myReader.close();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null,
+					"One or more of the configurations files do not exist, make sure the JAR file is in the correction directory");
+			System.exit(0);
 		}
 		DatabaseConnectionService dbService = new DatabaseConnectionService(serverName, "TestDatabase");
 		dbService.connect(username, password);

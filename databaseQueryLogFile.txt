@@ -804,3 +804,8 @@ SUCCESS: team_game_data(The Tune Squad,550,42) 2021-05-12T23:02:44.636Z
 SUCCESS: view_team_game(The Tune Squad,550) 2021-05-12T23:02:44.636Z
 SUCCESS: team_season_data(The Tune Squad,550) 2021-05-12T23:02:44.636Z
 SUCCESS: view_team_franchise(The Tune Squad) 2021-05-12T23:02:44.636Z
+SUCCESS: view_player_career(kobe,bryant) 2021-05-13T14:25:11.746Z
+SUCCESS: view_player_season(kobe,bryant) 2021-05-13T14:25:14.674Z
+SUCCESS: player_season_data(kobe,bryant,2007) 2021-05-13T14:25:17.660Z
+SUCCESS: view_player_game(kobe,bryant,2004) 2021-05-13T14:25:22.403Z
+SUCCESS: player_game_data(kobe,bryant,91935) 2021-05-13T14:25:25.007Z
