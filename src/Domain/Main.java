@@ -29,7 +29,7 @@ public class Main {
 			myReader.close();
 		} catch (FileNotFoundException e) {
 			JOptionPane.showMessageDialog(null,
-					"One or more of the configurations files do not exist, make sure the JAR file is in the correction directory");
+					"One or more of the configurations files do not exist, make sure the JAR file is in the correc directory");
 			System.exit(0);
 		}
 		DatabaseConnectionService dbService = new DatabaseConnectionService(serverName, "TestDatabase");
