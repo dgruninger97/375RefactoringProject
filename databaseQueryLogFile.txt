@@ -11028,3 +11028,22 @@ SUCCESS: view_team_game(Utah Jazz,2016) 2021-05-13T15:44:56.475Z
 SUCCESS: view_team_game(Utah Jazz,2017) 2021-05-13T15:44:56.491Z
 SUCCESS: view_team_game(Utah Jazz,2018) 2021-05-13T15:44:56.506Z
 ERROR: view_team_game(Utah Jazz,2019) 2021-05-13T15:44:56.506Z
+SUCCESS: view_player_game(lebron,james,2008) 2021-05-14T01:48:39.632Z
+SUCCESS: player_game_data(lebron,james,101079) 2021-05-14T01:48:42.207Z
+SUCCESS: view_player_game(lebron,james,2004) 2021-05-14T01:48:47.751Z
+SUCCESS: view_player_game(lebron,james,2006) 2021-05-14T01:48:55.668Z
+SUCCESS: player_game_data(lebron,james,101081) 2021-05-14T01:48:57.896Z
+SUCCESS: view_player_season(lebron,james) 2021-05-14T01:49:01.173Z
+SUCCESS: player_season_data(lebron,james,2015) 2021-05-14T01:49:03.356Z
+SUCCESS: view_player_career(lebron,james) 2021-05-14T01:49:06.277Z
+SUCCESS: view_player_career(kobe,bryant) 2021-05-14T01:49:15.798Z
+SUCCESS: view_player_season(kobe,bryant) 2021-05-14T01:49:19.848Z
+SUCCESS: player_season_data(kobe,bryant,2016) 2021-05-14T01:49:21.857Z
+SUCCESS: view_player_game(kobe,bryant,2004) 2021-05-14T01:49:27.275Z
+SUCCESS: view_player_game(kobe,bryant,2006) 2021-05-14T01:49:35.746Z
+SUCCESS: view_player_game(kobe,bryant,2009) 2021-05-14T01:49:40.954Z
+SUCCESS: view_player_game(kobe,bryant,2010) 2021-05-14T01:49:45.319Z
+SUCCESS: player_game_data(kobe,bryant,101117) 2021-05-14T01:49:47.534Z
+ERROR: view_team_game(indiana,2004) 2021-05-14T01:49:57.338Z
+SUCCESS: view_team_game(indiana pacers,2001) 2021-05-14T01:50:03.435Z
+SUCCESS: view_team_game(indiana pacers,2004) 2021-05-14T01:50:08.118Z
