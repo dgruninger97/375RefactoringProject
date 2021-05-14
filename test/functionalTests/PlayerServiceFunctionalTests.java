@@ -1,4 +1,4 @@
-package characterizationTests;
+package functionalTests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -10,22 +10,22 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
-import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import DataParsing.DataGenerator;
 import Domain.DatabaseConnectionService;
 import Domain.PlayerService;
 
-class PlayerServiceCharTests {
+class PlayerServiceFunctionalTests {
 
-	PlayerService instance;
-	DatabaseConnectionService database;
+	static PlayerService instance;
+	static DatabaseConnectionService database;
 	
-	@BeforeEach
-	void setup() {
+	@BeforeAll
+	static void setup() {
 		String serverName = "";
 		String username = "";
 		String password = "";
@@ -61,39 +61,48 @@ class PlayerServiceCharTests {
 		}
 		*/
 		
+		DataGenerator.loadHashMap();
+		
 		instance = new PlayerService(database);
 	}
 
-	@AfterEach
-	void tearDown() {
+	@AfterAll
+	static void tearDown() {
 		database.closeConnection();
 	}
 	
 	@Test
-	void TestGetTeamGamesPlayedInfo() {
+	void TestGetPlayerGamesPlayedInfo() {
 		String[] years = DataGenerator.yearList;
 		Set<String> names = DataGenerator.playerTeamMap.keySet();
 		List<String> firstNames = new ArrayList<String>();
 		List<String> lastNames = new ArrayList<String>();
+		List<String> fullParellelNames = new ArrayList<String>();
 		
 		for(String name : names) {
 			firstNames.add(name.substring(0, name.indexOf(' ')));
 			lastNames.add(name.substring(1 + name.indexOf(' ')));
+			fullParellelNames.add(name); 
 		}
 		
 		for(int i = 0; i < firstNames.size(); i++) {
 			String firstName = firstNames.get(i), lastName = lastNames.get(i);
+			String teamName = DataGenerator.playerTeamMap.get(fullParellelNames.get(i));
 			for(String year : years) {
 				List<String> resultList = instance.getPlayerInformation(firstName, lastName, true, false, false, year, 0);
-				if(resultList != null && resultList.size() != 0) {
-					System.out.println("Database didn't fail with TestGetTeamGamesPlayedInfo on " + firstName + " " + lastName);
-				}					
+				if(resultList == null) {
+					Assertions.fail("An Error occured and no data was received");
+					continue;
+				}
+				for(int j = 0; j < resultList.size(); j++) {
+					assertTrue(resultList.get(j).contains(teamName + " vs."));
+				}
 			}
 		}
 	}
 	
 	@Test
-	void TestGetTeamSeasonsPlayedInfo() {
+	void TestGetPlayerSeasonsPlayedInfo() {
 		String[] years = DataGenerator.yearList;
 		Set<String> names = DataGenerator.playerTeamMap.keySet();
 		List<String> firstNames = new ArrayList<String>();
@@ -108,15 +117,19 @@ class PlayerServiceCharTests {
 			String firstName = firstNames.get(i), lastName = lastNames.get(i);
 			for(String year : years) {
 				List<String> resultList = instance.getPlayerInformation(firstName, lastName, false, true, false, year, 0);
-				if(resultList != null && resultList.size() != 0) {
-					System.out.println("Database didn't fail with TestGetTeamGamesPlayedInfo on " + firstName + " " + lastName);
-				}					
+				if(resultList == null) {
+					Assertions.fail("An Error occured and no data was received");
+					continue;
+				}
+				for(int j = 0; j < resultList.size(); j++) {
+					resultList.get(j).startsWith("Season year: ");
+				}
 			}
 		}
 	}
 	
 	@Test
-	void TestGetTeamFranchiseInfo() {
+	void TestGetPlayerCareerInfo() {
 		String[] years = DataGenerator.yearList;
 		Set<String> names = DataGenerator.playerTeamMap.keySet();
 		List<String> firstNames = new ArrayList<String>();
@@ -131,9 +144,13 @@ class PlayerServiceCharTests {
 			String firstName = firstNames.get(i), lastName = lastNames.get(i);
 			for(String year : years) {
 				List<String> resultList = instance.getPlayerInformation(firstName, lastName, false, false, true, year, 0);
-				if(resultList != null && resultList.size() != 0) {
-					System.out.println("Database didn't fail with TestGetTeamGamesPlayedInfo on " + firstName + " " + lastName);
-				}					
+				if(resultList == null) {
+					Assertions.fail("An Error occured and no data was received");
+					continue;
+				}
+				assertTrue(resultList.get(0).contains("Career Points: "));	
+				assertTrue(resultList.get(0).contains("Career Assists: "));	
+				assertTrue(resultList.get(0).contains("Career Rebounds: "));						
 			}
 		}
 	}
@@ -155,10 +172,15 @@ class PlayerServiceCharTests {
 			for(String year : years) {
 				try {
 					List<String> resultListA = instance.getPlayerInformation(firstName, lastName, true, false, false, year, 0);
-					if(resultListA != null) {
-						List<String> resultListB = instance.getGameInfo(firstName, lastName, 0);
-						System.out.println("Database didn't fail with getGameInfo on " + firstName + " " + lastName);
-					}	
+					if(resultListA == null) {
+						Assertions.fail("An Error occured and no data was received");
+						continue;
+					}
+					List<String> resultListB = instance.getGameInfo(firstName, lastName, 0);
+
+					assertTrue(resultListB.get(0).contains("Game Points: "));
+					assertTrue(resultListB.get(0).contains("Game Assists: "));
+					assertTrue(resultListB.get(0).contains("Game Rebounds: "));
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}			
@@ -183,10 +205,14 @@ class PlayerServiceCharTests {
 			for(String year : years) {
 				try {
 					List<String> resultListA = instance.getPlayerInformation(firstName, lastName, false, true, false, year, 0);
-					if(resultListA != null) {
-						List<String> resultListB = instance.getSeasonInfo(firstName, lastName, 0);
-						System.out.println("Database didn't fail with getSeasonInfo on " + firstName + " " + lastName);
-					}	
+					if(resultListA == null) {
+						Assertions.fail("An Error occured and no data was received");
+						continue;
+					}
+					List<String> resultListB = instance.getSeasonInfo(firstName, lastName, 0);
+					assertTrue(resultListB.get(0).contains("Season Points: "));
+					assertTrue(resultListB.get(0).contains("Season Assists: "));
+					assertTrue(resultListB.get(0).contains("Season Rebounds: "));	
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}				
@@ -211,10 +237,14 @@ class PlayerServiceCharTests {
 			for(String year : years) {
 				try {
 					List<String> resultListA = instance.getPlayerInformation(firstName, lastName, false, false, true, year, 0);
-					if(resultListA != null) {
-						List<String> resultListB = instance.getCareerInfo(firstName, lastName);
-						System.out.println("Database didn't fail with getSeasonInfo on " + firstName + " " + lastName);
+					if(resultListA == null) {
+						Assertions.fail("An Error occured and no data was received");
+						continue;
 					}	
+					List<String> resultListB = instance.getCareerInfo(firstName, lastName);
+					assertTrue(resultListB.get(0).contains("Career Points: "));	
+					assertTrue(resultListB.get(0).contains("Career Assists: "));	
+					assertTrue(resultListB.get(0).contains("Career Rebounds: "));	
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}				
